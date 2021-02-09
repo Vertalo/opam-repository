@@ -34,7 +34,7 @@ WORKDIR /home/tezos
 
 ### Begin Python setup
 # Install poetry (https://github.com/python-poetry/poetry)
-RUN pip3 install --user poetry==1.0.10
+RUN CRYPTOGRAPHY_DONT_BUILD_RUST=1 pip3 install --user poetry==1.0.10
 
 # Required to have poetry in the path in the CI
 ENV PATH="/home/tezos/.local/bin:${PATH}"
