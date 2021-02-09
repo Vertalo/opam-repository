@@ -42,6 +42,7 @@ build-arm64:
     IMAGE_ARCH_PREFIX: "arm64--"
   only:
     - master@tezos/opam-repository
+    - /-release$/@tezos/opam-repository
   tags:
     - arm64
 
@@ -78,6 +79,7 @@ merge-manifest:
     - docker manifest push "${CI_REGISTRY_IMAGE}:runtime-build-test-dependencies--${CI_COMMIT_SHA}"
   only:
     - master@tezos/opam-repository
+    - /-release$/@tezos/opam-repository
 
 build:
   <<: *build-definition
