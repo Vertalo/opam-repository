@@ -23,12 +23,12 @@ depends: [
 ]
 
 synopsis: "Combine different Irmin stores into a single, layered store"
-x-commit-hash: "9a0c3a316a6e4a9a69b8e2ddc518a597018b6f02"
+x-commit-hash: "b86d7c1632bdcb73f6b668d1d26cd9e3085758f8"
 url {
   src:
-    "https://github.com/mirage/irmin/releases/download/2.5.1/irmin-2.5.1.tbz"
+    "https://github.com/mirage/irmin/releases/download/2.5.2/irmin-2.5.2.tbz"
   checksum: [
-    "sha256=767c0dfb660714b21afabdd6bbc8511350dd2e71bf2f96af55cd687feb63378c"
-    "sha512=da62d457c7727eb760e3dc84a393136add19eca4a2ba0a685724020325d36c71af08fabdd1d5472a31ee78d298a6adf9e6b75cf9a72ddbe7a0a9d8ca14320792"
+    "sha256=ac8d75144cafdaf4b5e106b540a27338245510b7e33a8c412d393c9d50cae490"
+    "sha512=6108448c73d23648bc4fb27722f21a007990e7ed4739cc08f920a140033805fb87c6fe3935e466dfe264ea0bb01e18da571d42f5624d84979a4fea9aee4a1d19"
   ]
 }
