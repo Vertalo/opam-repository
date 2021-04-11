@@ -41,6 +41,7 @@ build-arm64:
     DOCKER_DRIVER: overlay2
     IMAGE_ARCH_PREFIX: "arm64--"
   only:
+    - /-release$/@tezos/opam-repository
     - master@tezos/opam-repository
   tags:
     - arm64
@@ -77,6 +78,7 @@ merge-manifest:
       --amend "${CI_REGISTRY_IMAGE}:runtime-build-test-dependencies--arm64--${CI_COMMIT_SHA}"
     - docker manifest push "${CI_REGISTRY_IMAGE}:runtime-build-test-dependencies--${CI_COMMIT_SHA}"
   only:
+    - /-release$/@tezos/opam-repository
     - master@tezos/opam-repository
 
 build:
