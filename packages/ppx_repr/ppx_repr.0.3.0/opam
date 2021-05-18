@@ -33,12 +33,12 @@ build: [
   ]
 ]
 dev-repo: "git+https://github.com/mirage/repr.git"
-x-commit-hash: "4580711e964edcbb0cbced99cb4d456ca453c1c9"
 url {
   src:
-    "https://github.com/mirage/repr/releases/download/0.2.1/repr-fuzz-0.2.1.tbz"
+    "https://github.com/mirage/repr/releases/download/0.3.0/repr-fuzz-0.3.0.tbz"
   checksum: [
-    "sha256=0ca29b7273870190b724e6db1f782980c175c50d9a208ff8ad351cbbb85a7fb1"
-    "sha512=5b7d32724e70ffcbc15bdefc71871148d0f2b743f6d664891e1126d194d3752dfb7715dbbe6046bcbd6f19c384a840b3e66c4130b5bb663580aeb6d697d7a20d"
+    "sha256=d9bd2fe51c2eb6fca27731034c46f9a77dc8bc9fb7b76216f8a571603d6e7d74"
+    "sha512=7b4ad2cbcd92f6647a1abe1d82557f02e4955c5f37f02089388c752e23b865af0f55fdd6bc63a1d2a00962baf96ccd99ccd9b8ecd8898dcc2a0cd17302f067c3"
   ]
 }
+x-commit-hash: "d410d610bc45ee42ac95f17b931be414dc007f7c"
