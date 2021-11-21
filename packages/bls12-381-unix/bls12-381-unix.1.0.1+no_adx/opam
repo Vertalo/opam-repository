@@ -20,11 +20,14 @@ depends: [
   "bisect_ppx" {with-test & >= "2.5"}
   "ff-pbt" {>= "0.6.0" & < "0.7.0" & with-test}
 ]
+patches: [ "force-no-adx.diff" ]
 build: ["dune" "build" "-j" jobs "-p" name "@install"]
 run-test: ["dune" "runtest" "-p" name "-j" jobs]
 dev-repo: "git+https://gitlab.com/dannywillems/ocaml-bls12-381.git"
 available: arch != "s390x" & arch != "ppc64"
-url {
+extra-files: [
+  [ "force-no-adx.diff" "sha256=9cbfb0f9f9a832c9158f9d839bdf99de95515859fa12ad7193083589ecb9efc9" ]
+]url {
   src:
     "https://gitlab.com/dannywillems/ocaml-bls12-381/-/archive/1.0.1/ocaml-bls12-381-1.0.1.tar.bz2"
   checksum: [

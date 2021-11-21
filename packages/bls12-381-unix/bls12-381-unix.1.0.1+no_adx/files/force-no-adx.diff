@@ -1,0 +1,16 @@
+diff -r -u bls12-381.1.0.1-orig/src/blst/libblst/build.sh bls12-381.1.0.1/src/blst/libblst/build.sh
+--- bls12-381.1.0.1-orig/src/blst/libblst/build.sh	2021-09-20 15:34:24.000000000 +0200
++++ bls12-381.1.0.1/src/blst/libblst/build.sh	2021-11-21 18:55:16.560937970 +0100
+@@ -47,9 +47,9 @@
+ 
+ if (${CC} ${CFLAGS} -dM -E -x c /dev/null) 2>/dev/null | grep -q x86_64; then
+     cflags="$cflags -mno-avx" # avoid costly transitions
+-    if (grep -q -e '^flags.*\badx\b' /proc/cpuinfo) 2>/dev/null; then
+-        cflags="-D__ADX__ $cflags"
+-    fi
++#    if (grep -q -e '^flags.*\badx\b' /proc/cpuinfo) 2>/dev/null; then
++#        cflags="-D__ADX__ $cflags"
++#    fi
+ fi
+ 
+ CFLAGS="$CFLAGS $cflags"
