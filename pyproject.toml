@@ -20,7 +20,7 @@ keywords = ["tezos"]
 python = "~3.9"
 
 # for the script to estimate rights
-scipy = {version = "^1.7.3"}
+scipy = {version = "^1.8.0"}
 base58check = "1.0.2"
 ed25519 = "1.4"
 # Set to 0.790 because the tests replication give duplicated modules errors with
