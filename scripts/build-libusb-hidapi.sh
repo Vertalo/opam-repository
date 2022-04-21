@@ -14,11 +14,10 @@ repo_dir="$(dirname "$script_dir")"
 
 cd "$repo_dir"
 
-# avoid shellcheck error
-alpine_version=
-
 # shellcheck source=scripts/version.sh
 . "$script_dir/version.sh"
+
+alpine_version='3.14'
 
 # cleanup in case of error
 cleanup () {

@@ -32,9 +32,11 @@ COPY remote-files.sha256 .
 
 # hadolint ignore=DL3018,SC2046
 RUN apk --no-cache add \
-        py3-pip python3 python3-dev  \
-        py3-sphinx py3-sphinx_rtd_theme \
-        libffi-dev \
+        libffi-dev=3.3-r2 \
+        py3-pip=20.3.4-r1 \
+        py3-sphinx=3.5.4-r0 \
+        py3-sphinx_rtd_theme=0.4.3-r4 \
+        python3-dev=3.9.5-r2 \
  # Install shellcheck manually to get current multi-arch release
  # https://www.shellcheck.net/
  && curl -fsSL https://github.com/koalaman/shellcheck/releases/download/v0.8.0/shellcheck-v0.8.0.linux.$(arch).tar.xz \
@@ -74,6 +76,3 @@ COPY pyproject.toml pyproject.toml
 RUN poetry config virtualenvs.in-project true && \
     poetry install
 ### End Python setup
-
-ENTRYPOINT [ "opam", "exec", "--" ]
-CMD [ "/bin/sh" ]

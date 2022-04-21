@@ -18,7 +18,7 @@ echo
 
 docker build \
        -f runtime-dependencies.Dockerfile \
-       --build-arg BUILD_IMAGE="alpine:${alpine_version}" \
+       --build-arg BUILD_IMAGE="alpine@sha256:${alpine_sha256}" \
        --build-arg IMAGE_VERSION="${image_tag}" \
        -t "$image_name:$image_tag" \
        "$repo_dir"

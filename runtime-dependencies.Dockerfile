@@ -28,13 +28,13 @@ USER root
 
 # hadolint ignore=DL3018
 RUN apk --no-cache add \
-    gcc \
-    gmp \
-    hidapi \
-    libc-dev \
-    libev \
-    libffi \
-    sudo
+    gcc=10.3.1_git20210424-r2 \
+    gmp=6.2.1-r1 \
+    hidapi=0.9.0-r2 \
+    libc-dev=0.7.2-r3 \
+    libev=4.33-r0 \
+    libffi=3.3-r2 \
+    sudo=1.9.7_p1-r1
 
 COPY zcash-params /usr/share/zcash-params
 

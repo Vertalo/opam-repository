@@ -14,6 +14,7 @@ runtime_dependencies_image="${3:-tezos/opam-repository:runtime-dependencies}"
 arch="${4:-x86_64}"
 targetarch="${5:-amd64}"
 
+# Calling this script will not be required anymore with alpine 3.15
 "$script_dir"/build-libusb-hidapi.sh libusb "${arch}"
 "$script_dir"/build-libusb-hidapi.sh hidapi "${arch}"
 
