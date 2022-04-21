@@ -113,6 +113,7 @@ EOF
 printf "\n### Building %s...\n" "$library"
 
 docker build \
+       --build-arg=BUILDKIT_INLINE_CACHE=1 \
        --cache-from "$tmp_image" \
        -t "$tmp_image" \
        "$tmp_dir"

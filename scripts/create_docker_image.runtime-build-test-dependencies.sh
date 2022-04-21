@@ -18,7 +18,9 @@ echo "### (includes: additional ocaml dependencies, python, nodejs)"
 echo
 
 docker build \
-       -f runtime-build-test-dependencies.Dockerfile \
-       --build-arg BUILD_IMAGE="${runtime_build_dependencies_image}" \
-       -t "$image_name:$image_version" \
+       --file=runtime-build-test-dependencies.Dockerfile \
+       "${DOCKER_BUILD_CACHE:-}" \
+       "${DOCKER_BUILD_CACHE_FROM:-}" \
+       --build-arg=BUILD_IMAGE="${runtime_build_dependencies_image}" \
+       --tag="$image_name:$image_version" \
        "$repo_dir"

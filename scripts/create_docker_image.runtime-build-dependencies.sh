@@ -18,7 +18,9 @@ echo "### (includes: rust dependencies, ocaml dependencies)"
 echo
 
 docker build \
-       -f runtime-build-dependencies.Dockerfile \
-       --build-arg BUILD_IMAGE="${runtime_prebuild_dependencies_image}" \
-       -t "$image_name:$image_version" \
+       --file=runtime-build-dependencies.Dockerfile \
+       "${DOCKER_BUILD_CACHE:-}" \
+       "${DOCKER_BUILD_CACHE_FROM:-}" \
+       --build-arg=BUILD_IMAGE="${runtime_prebuild_dependencies_image}" \
+       --tag="$image_name:$image_version" \
        "$repo_dir"

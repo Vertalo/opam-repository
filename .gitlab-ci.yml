@@ -31,6 +31,11 @@ stages:
     DOCKER_IMAGE_TAG_SUFFIX: ""
   script:
     - . ./scripts/version.sh
+    # Pull docker image for cache layers
+    #- ./scripts/docker_cache.sh
+    # TODO: remove
+    # https://gitlab.com/tezos/opam-repository/-/pipelines/522603469
+    - ./scripts/docker_cache.sh registry.gitlab.com/tezos/opam-repository b4a386711dc6190303572dd3772c8e6fea170c1f
     # Build docker images
     - ./scripts/create_docker_image.sh "${CI_REGISTRY_IMAGE}" "${DOCKER_IMAGE_TAG_SUFFIX}" "${ARCH}" "${TARGETARCH}"
     # Push docker images
@@ -63,31 +68,31 @@ build-amd64:
 
 # Build docker images for arm64/v8
 # Only on Nomadic Labs' repositories and arm64 runners
-build-arm64:
-  <<: *build-definition
-  variables:
-    ARCH: "aarch64"
-    TARGETARCH: "arm64"
-    DOCKER_IMAGE_TAG_SUFFIX: "--${TARGETARCH}--${CI_COMMIT_SHA}"
-  only:
-    - //@tezos/opam-repository
-    - //@nomadic-labs/opam-repository
-  tags:
-    - arm64
+#build-arm64:
+#  <<: *build-definition
+#  variables:
+#    ARCH: "aarch64"
+#    TARGETARCH: "arm64"
+#    DOCKER_IMAGE_TAG_SUFFIX: "--${TARGETARCH}--${CI_COMMIT_SHA}"
+#  only:
+#    - //@tezos/opam-repository
+#    - //@nomadic-labs/opam-repository
+#  tags:
+#    - arm64
 
 # Merge manifests from jobs build-amd64 and build-arm64
 # Only on Nomadic Labs' repositories
 # (Forks don't have the capacity to build arm64 images and thus they don't have the
 # capacity to merge the manifest either)
-manifest:
-  stage: publish
-  extends:
-    - .image_template__docker
-  script:
-    - ./scripts/docker_merge_manifests.sh "${CI_REGISTRY_IMAGE}"
-  only:
-    - //@tezos/opam-repository
-    - //@nomadic-labs/opam-repository
+#manifest:
+#  stage: publish
+#  extends:
+#    - .image_template__docker
+#  script:
+#    - ./scripts/docker_merge_manifests.sh "${CI_REGISTRY_IMAGE}"
+#  only:
+#    - //@tezos/opam-repository
+#    - //@nomadic-labs/opam-repository
 
 # Mirror Docker image from Gitlab container registry @GCP to private ECR @AWS,
 # closer to GitLab runners/executors. Requires environment variables to be set
@@ -113,6 +118,7 @@ build:
     - name: docker:20-dind
       command: ["--experimental"]
   variables:
+    DOCKER_BUILDKIT: 1
     ARCH: "x86_64"
     # this variable is empty as we don't want to merge any manifest
     DOCKER_IMAGE_TAG_SUFFIX: ""

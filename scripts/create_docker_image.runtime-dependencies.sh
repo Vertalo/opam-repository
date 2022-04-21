@@ -17,8 +17,10 @@ echo "### (includes: alpine, runtime-linked libraries)"
 echo
 
 docker build \
-       -f runtime-dependencies.Dockerfile \
-       --build-arg BUILD_IMAGE="alpine:${alpine_version}" \
-       --build-arg IMAGE_VERSION="${image_tag}" \
-       -t "$image_name:$image_tag" \
+       --file=runtime-dependencies.Dockerfile \
+       "${DOCKER_BUILD_CACHE:-}" \
+       "${DOCKER_BUILD_CACHE_FROM:-}" \
+       --build-arg=BUILD_IMAGE="alpine:${alpine_version}" \
+       --build-arg=IMAGE_VERSION="${image_tag}" \
+       --tag="$image_name:$image_tag" \
        "$repo_dir"

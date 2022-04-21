@@ -10,6 +10,28 @@ tag_suffix="${2:-}"
 arch="${3:-x86_64}"
 targetarch="${4:-amd64}"
 
+# https://docs.docker.com/engine/reference/commandline/build/#specifying-external-cache-sources
+
+# TODO: remove
+# if [ "${CI_PROJECT_NAMESPACE:-}" = 'tezos' ] && [ "${CI_COMMIT_BRANCH:-}" = 'master' ]
+if [ "${CI_PROJECT_NAMESPACE:-}" = 'tezos' ] && [ "${CI_COMMIT_BRANCH:-}" = 'davdumas@cache' ]
+then
+  # default branch Docker images to be used with --cache-from option
+  echo '### Build with argument BUILDKIT_INLINE_CACHE set'
+  export DOCKER_BUILD_CACHE='--build-arg=BUILDKIT_INLINE_CACHE=1'
+
+  # Merge Requests or local builds using default branch Docker images as cache
+  cache_image_name=$("${script_dir}/docker_cache.sh")
+
+  # TODO: remove
+  # https://gitlab.com/tezos/opam-repository/-/pipelines/522603469
+  cache_image_name='registry.gitlab.com/tezos/opam-repository:runtime-build-test-dependencies--amd64--b4a386711dc6190303572dd3772c8e6fea170c1f'
+
+  echo "### Build with cache from ${cache_image_name}"
+  export DOCKER_BUILD_CACHE_FROM="--cache-from=${cache_image_name}"
+  #docker pull "${cache_image_name}"
+fi
+
 "$script_dir"/create_docker_image.runtime-dependencies.sh \
              "$image_name" \
              "runtime-dependencies$tag_suffix"
