@@ -37,6 +37,7 @@ COPY remote-files.sha256 .
 RUN apk --no-cache add \
     autoconf=2.71-r0 \
     automake=1.16.3-r0 \
+    coreutils=8.32-r2 \
     bash=5.1.16-r0 \
     binutils=2.35.2-r2 \
     build-base=0.5-r2 \
