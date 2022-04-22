@@ -17,8 +17,6 @@ ARG BUILD_IMAGE
 # hadolint ignore=DL3006
 FROM ${BUILD_IMAGE}
 
-ARG PYTHON_VERSION
-
 # use alpine /bin/ash and set pipefail.
 # see https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run
 SHELL ["/bin/ash", "-o", "pipefail", "-c"]

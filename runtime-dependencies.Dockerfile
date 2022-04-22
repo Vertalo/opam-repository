@@ -9,8 +9,8 @@
 
 ARG BUILD_IMAGE
 
-# hadolint ignore=DL3006
-FROM ${BUILD_IMAGE}
+# alpine:3.14 pinned 2022-04-21
+FROM alpine@sha256:06b5d462c92fc39303e6363c65e074559f8d6b1363250027ed5053557e3398c5
 
 # Metadata
 LABEL org.label-schema.vendor="Nomadic Labs" \
@@ -21,12 +21,11 @@ LABEL org.label-schema.vendor="Nomadic Labs" \
       org.label-schema.docker.schema-version="1.0" \
       distro.style="apk" \
       distro="alpine" \
-      distro.long="alpine-$alpine_version" \
+      distro.long="alpine-3.14" \
       operatingsystem="linux"
 
 USER root
 
-# hadolint ignore=DL3018
 RUN apk --no-cache add \
     gcc=10.3.1_git20210424-r2 \
     gmp=6.2.1-r1 \
@@ -48,5 +47,4 @@ RUN adduser -S tezos && \
 
 USER tezos
 ENV USER=tezos
-
 WORKDIR /home/tezos

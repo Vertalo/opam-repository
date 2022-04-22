@@ -30,7 +30,6 @@ stages:
     TARGETARCH: ""               # Docker build argument for architecture specific instructions
     DOCKER_IMAGE_TAG_SUFFIX: ""
   script:
-    - . ./scripts/version.sh
     # Build docker images
     - ./scripts/create_docker_image.sh "${CI_REGISTRY_IMAGE}" "${DOCKER_IMAGE_TAG_SUFFIX}" "${ARCH}" "${TARGETARCH}"
     # Push docker images

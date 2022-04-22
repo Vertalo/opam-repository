@@ -14,8 +14,6 @@ ARG BUILD_IMAGE
 # hadolint ignore=DL3006
 FROM ${BUILD_IMAGE}
 
-ARG OCAML_VERSION
-ARG RUST_VERSION
 # Automatically set if you use Docker buildx
 ARG TARGETARCH
 
@@ -36,7 +34,6 @@ WORKDIR /tmp
 # To verify remote files checksum (prevent tampering)
 COPY remote-files.sha256 .
 
-# hadolint ignore=DL3018
 RUN apk --no-cache add \
     autoconf=2.71-r0 \
     automake=1.16.3-r0 \
@@ -80,9 +77,6 @@ RUN apk --no-cache add \
  && chmod 755 /usr/local/bin/upx \
  && rm -rf /tmp/*
 
-# Check versions of other interpreters/compilers
-RUN test "$(rustc --version | cut -d' ' -f2)" = ${RUST_VERSION}
-
 USER tezos
 WORKDIR /home/tezos
 
@@ -94,6 +88,7 @@ RUN mkdir ~/.ssh && \
     # https://github.com/git/git/blob/master/Documentation/RelNotes/2.30.3.txt
     git config --global --add safe.directory /builds/tezos/tezos
 
+# FIXME: Optimize layers, make a single COPY
 COPY --chown=tezos:nogroup repo opam-repository/
 COPY --chown=tezos:nogroup packages opam-repository/packages
 COPY --chown=tezos:nogroup \
@@ -109,14 +104,14 @@ COPY --chown=tezos:nogroup \
 
 WORKDIR /home/tezos/opam-repository
 
-# hadolint ignore=SC2046
+ARG OCAML_VERSION='4.12.1'
 RUN opam init --disable-sandboxing --no-setup --yes \
               --compiler ocaml-base-compiler.${OCAML_VERSION} \
               tezos /home/tezos/opam-repository && \
     opam admin cache && \
     opam update && \
     opam install opam-depext && \
-    opam depext --update --yes $(opam list --all --short | grep -v ocaml-option-) && \
+    opam depext --update --yes "$(opam list --all --short | grep -v ocaml-option-)" && \
     opam clean
 
 ENTRYPOINT [ "opam", "exec", "--" ]
