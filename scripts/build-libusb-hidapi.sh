@@ -3,8 +3,7 @@
 # This script downloads, modify and build libusb and hidapi.
 # This script will no longer be needed once the upstream patches
 # (which add static binaries) are available in Alpine.
-# Those patches are already merged and will be available in the
-# next version of Alpine.
+# Those patches are already merged and will be available in Alpine 3.15
 
 # fail in case of error
 set -eu
@@ -13,9 +12,6 @@ script_dir="$(cd "$(dirname "$0")" && echo "$(pwd -P)/")"
 repo_dir="$(dirname "$script_dir")"
 
 cd "$repo_dir"
-
-# shellcheck source=scripts/version.sh
-. "$script_dir/version.sh"
 
 alpine_version='3.14'
 
