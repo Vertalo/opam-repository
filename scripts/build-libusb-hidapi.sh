@@ -13,8 +13,6 @@ repo_dir="$(dirname "$script_dir")"
 
 cd "$repo_dir"
 
-alpine_version='3.14'
-
 # cleanup in case of error
 cleanup () {
     set +e
@@ -45,25 +43,27 @@ tmp_dir=$(mktemp -dt "tezos.$library.XXXXXXXX")
 
 # /!\ Too quick queries to alpinelinux.org will result in rate limiting errors '429 Too Many Requests'
 
+alpine_aports_version='3.14'
+
 if [ "$library" = "libusb" ]; then
 
   # download package description
   curl -fsSL \
-    "https://git.alpinelinux.org/aports/plain/main/$library/APKBUILD?h=$alpine_version-stable" \
+    "https://git.alpinelinux.org/aports/plain/main/$library/APKBUILD?h=$alpine_aports_version-stable" \
     -o "${tmp_dir}/APKBUILD.$library"
 
   sleep 3
 
   # download associated patch 1
   curl -fsSL \
-    "https://git.alpinelinux.org/aports/plain/main/libusb/f38f09da98acc63966b65b72029b1f7f81166bef.patch?h=$alpine_version-stable" \
+    "https://git.alpinelinux.org/aports/plain/main/libusb/f38f09da98acc63966b65b72029b1f7f81166bef.patch?h=$alpine_aports_version-stable" \
     -o "${tmp_dir}/f38f09da98acc63966b65b72029b1f7f81166bef.patch"
 
   sleep 3
 
   # download associated patch 2
   curl -fsSL \
-    "https://git.alpinelinux.org/aports/plain/main/libusb/f6d2cb561402c3b6d3627c0eb89e009b503d9067.patch?h=$alpine_version-stable" \
+    "https://git.alpinelinux.org/aports/plain/main/libusb/f6d2cb561402c3b6d3627c0eb89e009b503d9067.patch?h=$alpine_aports_version-stable" \
     -o "${tmp_dir}/f6d2cb561402c3b6d3627c0eb89e009b503d9067.patch"
 
   #shellcheck disable=SC2016
@@ -78,14 +78,14 @@ if [ "$library" = "hidapi" ]; then
 
   # download package description
   curl -fsSL \
-    "https://git.alpinelinux.org/aports/plain/community/hidapi/APKBUILD?h=$alpine_version-stable" \
+    "https://git.alpinelinux.org/aports/plain/community/hidapi/APKBUILD?h=$alpine_aports_version-stable" \
     -o "${tmp_dir}/APKBUILD.$library"
 
   sleep 3
 
   # download associated patch 1
   curl -fsSL \
-    "https://git.alpinelinux.org/aports/plain/community/hidapi/autoconf-270.patch?h=$alpine_version-stable" \
+    "https://git.alpinelinux.org/aports/plain/community/hidapi/autoconf-270.patch?h=$alpine_aports_version-stable" \
     -o "${tmp_dir}/autoconf-270.patch"
 
   #shellcheck disable=SC2016
