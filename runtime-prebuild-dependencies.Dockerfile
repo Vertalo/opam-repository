@@ -105,13 +105,14 @@ COPY --chown=tezos:nogroup \
 WORKDIR /home/tezos/opam-repository
 
 ARG OCAML_VERSION='4.12.1'
+# hadolint ignore=SC2046
 RUN opam init --disable-sandboxing --no-setup --yes \
               --compiler ocaml-base-compiler.${OCAML_VERSION} \
               tezos /home/tezos/opam-repository && \
     opam admin cache && \
     opam update && \
     opam install opam-depext && \
-    opam depext --update --yes "$(opam list --all --short | grep -v ocaml-option-)" && \
+    opam depext --update --yes $(opam list --all --short | grep -v ocaml-option-) && \
     opam clean
 
 ENTRYPOINT [ "opam", "exec", "--" ]
