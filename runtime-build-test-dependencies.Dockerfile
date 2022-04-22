@@ -28,7 +28,7 @@ WORKDIR /tmp
 # To verify remote files checksum (prevent tampering)
 COPY remote-files.sha256 .
 
-# hadolint ignore=DL3018,SC2046
+# hadolint ignore=SC2046
 RUN apk --no-cache add \
         libffi-dev=3.3-r2 \
         py3-pip=20.3.4-r1 \
