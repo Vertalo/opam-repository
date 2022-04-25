@@ -25,7 +25,7 @@ then
 
   # TODO: remove
   # https://gitlab.com/tezos/opam-repository/-/pipelines/522603469
-  cache_image_name='registry.gitlab.com/tezos/opam-repository:runtime-build-test-dependencies--amd64--b4a386711dc6190303572dd3772c8e6fea170c1f'
+  cache_image_name='registry.gitlab.com/tezos/opam-repository:runtime-build-test-dependencies--amd64--6f7c23ea1c34c3e1d444e0ececb33f8db4f33402'
 
   echo "### Build with cache from ${cache_image_name}"
   export DOCKER_BUILD_CACHE_FROM="--cache-from=${cache_image_name}"
