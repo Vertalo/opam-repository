@@ -87,13 +87,10 @@ RUN test "$(rustc --version | cut -d' ' -f2)" = ${RUST_VERSION}
 USER tezos
 WORKDIR /home/tezos
 
-RUN mkdir ~/.ssh && \
-    chmod 700 ~/.ssh && \
+RUN mkdir /home/tezos/.ssh && \
+    chmod 700 /home/tezos/.ssh && \
     git config --global user.email "ci@tezos.com" && \
-    git config --global user.name "Tezos CI" && \
-    # FIXME: Bypass CVE-2022-24765 fixed in git 2.30.3, 2.31.2, 2.32.1, 2.34.2, 2.35.2 and later versions
-    # https://github.com/git/git/blob/master/Documentation/RelNotes/2.30.3.txt
-    git config --global --add safe.directory /builds/tezos/tezos
+    git config --global user.name "Tezos CI"
 
 COPY --chown=tezos:nogroup repo opam-repository/
 COPY --chown=tezos:nogroup packages opam-repository/packages

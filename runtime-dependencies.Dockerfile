@@ -26,6 +26,14 @@ LABEL org.label-schema.vendor="Nomadic Labs" \
 
 USER root
 
+RUN adduser -S -D -u 1000 -g nogroup tezos && \
+    mkdir -pv /etc/sudoers.d && \
+    echo 'tezos ALL=(ALL:ALL) NOPASSWD:ALL' > /etc/sudoers.d/tezos && \
+    chmod 440 /etc/sudoers.d/tezos && \
+    sed -i 's/^Defaults.*requiretty//g' /etc/sudoers && \
+    mkdir -pv /var/run/tezos/node /var/run/tezos/client && \
+    chown -R tezos /var/run/tezos
+
 COPY ./zcash-params/sapling-output.params ./zcash-params/sapling-spend.params /usr/share/zcash-params/
 
 # hadolint ignore=DL3018
@@ -37,14 +45,6 @@ RUN apk --no-cache add \
     libev \
     libffi \
     sudo
-
-RUN adduser -S tezos && \
-    echo 'tezos ALL=(ALL:ALL) NOPASSWD:ALL' > /etc/sudoers.d/tezos && \
-    chmod 440 /etc/sudoers.d/tezos && \
-    chown root:root /etc/sudoers.d/tezos && \
-    sed -i.bak 's/^Defaults.*requiretty//g' /etc/sudoers && \
-    mkdir -p /var/run/tezos/node /var/run/tezos/client && \
-    chown -R tezos /var/run/tezos
 
 USER tezos
 ENV USER=tezos
