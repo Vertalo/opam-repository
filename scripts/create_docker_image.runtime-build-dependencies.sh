@@ -17,6 +17,9 @@ echo "### Building runtime-build-dependencies image"
 echo "### (includes: rust dependencies, ocaml dependencies)"
 echo
 
+# TODO: remove
+export DOCKER_BUILD_CACHE_FROM='--cache-from=registry.gitlab.com/tezos/opam-repository:runtime-build-dependencies--amd64--6f7c23ea1c34c3e1d444e0ececb33f8db4f33402'
+
 docker build \
        --file=runtime-build-dependencies.Dockerfile \
        "${DOCKER_BUILD_CACHE:-}" \

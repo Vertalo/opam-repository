@@ -21,14 +21,14 @@ then
   export DOCKER_BUILD_CACHE='--build-arg=BUILDKIT_INLINE_CACHE=1'
 
   # Merge Requests or local builds using default branch Docker images as cache
-  cache_image_name=$("${script_dir}/docker_cache.sh")
+  #cache_image_name=$("${script_dir}/docker_cache.sh")
 
   # TODO: remove
   # https://gitlab.com/tezos/opam-repository/-/pipelines/522603469
-  cache_image_name='registry.gitlab.com/tezos/opam-repository:runtime-build-test-dependencies--amd64--6f7c23ea1c34c3e1d444e0ececb33f8db4f33402'
+  #cache_image_name='registry.gitlab.com/tezos/opam-repository:runtime-build-test-dependencies--amd64--6f7c23ea1c34c3e1d444e0ececb33f8db4f33402'
 
-  echo "### Build with cache from ${cache_image_name}"
-  export DOCKER_BUILD_CACHE_FROM="--cache-from=${cache_image_name}"
+  #echo "### Build with cache from ${cache_image_name}"
+  #export DOCKER_BUILD_CACHE_FROM="--cache-from=${cache_image_name}"
   #docker pull "${cache_image_name}"
 fi
 
