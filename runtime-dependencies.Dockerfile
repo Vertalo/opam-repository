@@ -30,7 +30,6 @@ RUN adduser -S -D -u 1000 -g nogroup tezos && \
     mkdir -pv /etc/sudoers.d && \
     echo 'tezos ALL=(ALL:ALL) NOPASSWD:ALL' > /etc/sudoers.d/tezos && \
     chmod 440 /etc/sudoers.d/tezos && \
-    sed -i 's/^Defaults.*requiretty//g' /etc/sudoers && \
     mkdir -pv /var/run/tezos/node /var/run/tezos/client && \
     chown -R tezos /var/run/tezos
 
