@@ -5,13 +5,11 @@ license:      "ISC"
 homepage:     "https://github.com/mirage/irmin"
 bug-reports:  "https://github.com/mirage/irmin/issues"
 dev-repo:     "git+https://github.com/mirage/irmin.git"
-
 build: [
  ["dune" "subst"] {dev}
  ["dune" "build" "-p" name "-j" jobs]
  ["dune" "runtest" "-p" name "-j" jobs] {with-test}
 ]
-
 depends: [
   "ocaml"        {>= "4.08.0"}
   "dune"         {>= "2.9.0"}
@@ -29,7 +27,6 @@ depends: [
   "astring"      {with-test}
   "alcotest"     {with-test}
 ]
-
 synopsis: "Irmin backend which stores values in a pack file"
 url {
   src:

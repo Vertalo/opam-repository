@@ -3,11 +3,9 @@ maintainer: "contact@nomadic-labs.com"
 authors: ["Nomadic-labs <contact@nomadic-labs.com>"]
 homepage: "https://gitlab.com/nomadic-labs/ctypes_stubs_js"
 synopsis: "Js_of_ocaml Javascript stubs for the OCaml ctypes library"
-
 license: "MIT"
 bug-reports: "https://gitlab.com/nomadic-labs/ctypes_stubs_js/issues"
 dev-repo: "git+https://gitlab.com/nomadic-labs/ctypes_stubs_js.git"
-
 build: [
   ["dune" "build" "-p" name "-j" jobs]
 ]

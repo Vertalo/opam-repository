@@ -4,13 +4,11 @@ homepage: "https://github.com/mirage/irmin"
 bug-reports: "https://github.com/mirage/irmin/issues"
 license: "ISC"
 dev-repo: "git+https://github.com/mirage/irmin.git"
-
 build: [
   ["dune" "subst"] {dev}
   ["dune" "build" "-p" name "-j" jobs]
   ["dune" "runtest" "-p" name "-j" jobs] {with-test}
 ]
-
 depends: [
   "ocaml" {>= "4.10.0"}
   "dune" {>= "2.9.0"}
@@ -20,7 +18,6 @@ depends: [
   "fmt" {with-test & >= "0.8.0"}
   "bisect_ppx" {dev & >= "2.5.0"}
 ]
-
 synopsis: "PPX deriver for Irmin type representations"
 authors: "Craig Ferguson <craig@tarides.com>"
 url {

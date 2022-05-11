@@ -6,7 +6,6 @@ dev-repo: "git+https://github.com/mmottl/postgresql-ocaml.git"
 license: "PD"
 build: [["pg_config"]]
 bug-reports: "https://github.com/ocaml/opam-repository/issues"
-
 depexts: [
   ["libpq-dev"] {os-family = "debian"}
   ["libpq-devel"] {os-distribution = "centos" & os-version >= "8"}

@@ -24,7 +24,6 @@ conflicts: [
    "cmdliner" {< "0.9.8"}
    "js_of_ocaml" { < "3.3.0" }
 ]
-
 build: [[
   "ocaml" "pkg/pkg.ml" "build"
           "--pinned" "%{pinned}%"
@@ -34,7 +33,6 @@ build: [[
           "--with-lwt" "%{lwt:installed}%"
           "--with-base-threads" "%{base-threads:installed}%"
 ]]
-
 synopsis: """Logging infrastructure for OCaml"""
 description: """\
 

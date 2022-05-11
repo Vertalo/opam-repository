@@ -7,11 +7,9 @@ authors:      ["David Kaloper <dk505@cam.ac.uk>" "Hannes Mehnert <hannes@mehnert
 maintainer:   "Hannes Mehnert <hannes@mehnert.org>"
 license:      "ISC"
 synopsis:     "A cryptographically secure PRNG"
-
 build: [ ["dune" "subst"] {dev}
          ["dune" "build" "-p" name "-j" jobs ]
          ["dune" "runtest" "-p" name "-j" jobs] {with-test} ]
-
 depends: [
   "ocaml" {>= "4.08.0"}
   "dune" {>= "2.6"}

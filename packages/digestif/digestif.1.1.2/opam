@@ -25,7 +25,6 @@ We provides implementation of:
  * BLAKE2S
  * RIPEMD160
 """
-
 build: [
   [ "dune" "build" "-p" name "-j" jobs ]
   [ "ocaml" "./install/install.ml" ]
@@ -35,7 +34,6 @@ install:  [
   [ "dune" "install" "-p" name ] {with-test}
   [ "ocaml" "./test/test_runes.ml" ] {with-test}
 ]
-
 depends: [
   "ocaml"           {>= "4.08.0"}
   "dune"            {>= "2.6.0"}
@@ -52,7 +50,6 @@ depends: [
 depopts: [
   "ocaml-freestanding"
 ]
-
 conflicts: [
   "mirage-xen" {< "6.0.0"}
   "ocaml-freestanding" {< "0.6.0"}

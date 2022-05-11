@@ -11,13 +11,11 @@ homepage:     "https://github.com/mirage/index"
 bug-reports:  "https://github.com/mirage/index/issues"
 dev-repo:     "git+https://github.com/mirage/index.git"
 doc:          "https://mirage.github.io/index/"
-
 build: [
  ["dune" "subst"] {dev}
  ["dune" "build" "-p" name "-j" jobs]
  ["dune" "runtest" "-p" name "-j" jobs] {with-test}
 ]
-
 depends: [
   "ocaml"   {>= "4.08.0"}
   "dune"    {>= "2.7.0"}

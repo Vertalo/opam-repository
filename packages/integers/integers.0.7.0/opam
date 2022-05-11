@@ -8,13 +8,11 @@ homepage: "https://github.com/ocamllabs/ocaml-integers"
 bug-reports: "https://github.com/ocamllabs/ocaml-integers/issues"
 dev-repo: "git+https://github.com/ocamllabs/ocaml-integers.git"
 license: "MIT"
-
 build: [
   ["dune" "subst"] {dev}
   ["dune" "build" "-p" name "-j" jobs]
   ["dune" "runtest" "-p" name "-j" jobs] {with-test}
 ]
-
 depends: [
   "ocaml" {>= "4.03"}
   "dune" {>= "1.0"}

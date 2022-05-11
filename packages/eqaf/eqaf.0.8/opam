@@ -10,13 +10,11 @@ synopsis:     "Constant-time equal function on string"
 description: """
 This package provides an equal function on string in constant-time to avoid timing-attack with crypto stuff.
 """
-
 build: [
   [ "dune" "subst" ] {dev}
   [ "dune" "build" "-p" name "-j" jobs ]
   [ "dune" "runtest" "-p" name "-j" "1" "--no-buffer" "--verbose" ] {with-test}
 ]
-
 depends: [
   "ocaml"          {>= "4.07.0"}
   "dune"           {>= "2.0"}

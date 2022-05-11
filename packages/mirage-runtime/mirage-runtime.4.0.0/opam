@@ -9,13 +9,11 @@ dev-repo:     "git+https://github.com/mirage/mirage.git"
 license:      "ISC"
 tags:         ["org:mirage" "org:xapi-project"]
 doc:          "https://mirage.github.io/mirage/"
-
 build: [
   ["dune" "subst"] {dev}
   ["dune" "build" "-p" name "-j" jobs]
   ["dune" "runtest" "-p" name "-j" jobs] {with-test}
 ]
-
 depends: [
   "ocaml" {>= "4.08.0"}
   "dune" {>= "2.9.0"}

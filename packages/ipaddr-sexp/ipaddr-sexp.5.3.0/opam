@@ -5,7 +5,6 @@ synopsis: "A library for manipulation of IP address representations using sexp"
 description: """
 Sexp convertions for ipaddr
 """
-
 license: "ISC"
 tags: ["org:mirage" "org:xapi-project"]
 homepage: "https://github.com/mirage/ocaml-ipaddr"

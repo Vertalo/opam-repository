@@ -20,7 +20,6 @@ Features:
  * `Macaddr` is a `Map.OrderedType`
  * All types have sexplib serializers/deserializers
 """
-
 license: "ISC"
 tags: ["org:mirage" "org:xapi-project"]
 homepage: "https://github.com/mirage/ocaml-ipaddr"

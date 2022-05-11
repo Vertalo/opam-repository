@@ -3,4 +3,3 @@ maintainer: "https://github.com/ocaml/opam-repository/issues"
 description: """
 Bigarray library distributed with the OCaml compiler
 """
-
