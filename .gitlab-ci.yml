@@ -14,7 +14,7 @@ stages:
 # https://docs.gitlab.com/ee/ci/docker/using_docker_build.html#use-docker-socket-binding
 .image_template__docker:
   # https://gitlab.com/tezos/docker-images/ci-docker
-  image: "${CI_REGISTRY}/tezos/docker-images/ci-docker:v1.4.0"
+  image: "${CI_REGISTRY}/tezos/docker-images/ci-docker:v1.6.0"
   before_script:
     # Credentials for Docker registries
     - ./scripts/docker_registry_auth.sh
@@ -102,7 +102,7 @@ mirror:
     - ./scripts/mirror_to_ecr.sh "${CI_REGISTRY_IMAGE}" "${AWS_ECR_IMAGE}"
   only:
     variables:
-      # Only available on protected branches @nomadic-labs/opam-repository
+      # Only available on protected branches @tezos/opam-repository
       - $AWS_ACCESS_KEY_ID && $AWS_SECRET_ACCESS_KEY && $AWS_ECR
 
 # Duplicated job to allow forks to build x86_64/amd64 images
