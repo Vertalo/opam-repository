@@ -27,7 +27,7 @@ SHELL ["/bin/ash", "-o", "pipefail", "-c"]
 # in `runtime-prebuild-dependencies` image.
 WORKDIR /
 COPY _docker_build/keys /etc/apk/keys/
-COPY _docker_build/*/*.apk /tmp
+COPY _docker_build/*/*.apk /tmp/
 
 USER root
 
