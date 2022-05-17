@@ -108,7 +108,7 @@ mirror:
 # Duplicated job to allow forks to build x86_64/amd64 images
 build:
   <<: *build-definition
-  image: docker:20
+  image: "${CI_REGISTRY}/tezos/docker-images/ci-docker:v1.6.0"
   services:
     - name: docker:20-dind
       command: ["--experimental"]
