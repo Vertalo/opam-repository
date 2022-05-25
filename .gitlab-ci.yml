@@ -17,7 +17,7 @@ stages:
 # https://docs.gitlab.com/ee/ci/docker/using_docker_build.html#use-docker-socket-binding
 .image_template__docker:
   # https://gitlab.com/tezos/docker-images/ci-docker
-  image: "${CI_REGISTRY}/tezos/docker-images/ci-docker:v1.6.0"
+  image: "${CI_REGISTRY}/tezos/docker-images/ci-docker:v1.7.0"
   before_script:
     # Credentials for Docker registries
     - ./scripts/docker_registry_auth.sh
@@ -111,7 +111,7 @@ mirror:
 # Duplicated job to allow forks to build x86_64/amd64 images
 build:
   <<: *build-definition
-  image: "${CI_REGISTRY}/tezos/docker-images/ci-docker:v1.6.0"
+  image: "${CI_REGISTRY}/tezos/docker-images/ci-docker:v1.7.0"
   services:
     - name: docker:20-dind
       command: ["--experimental"]
