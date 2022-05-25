@@ -17,11 +17,11 @@ ARG BUILD_IMAGE
 # hadolint ignore=DL3006
 FROM ${BUILD_IMAGE}
 
-ARG PYTHON_VERSION
+LABEL org.opencontainers.image.title="runtime-build-test-dependencies"
 
-# use alpine /bin/ash and set pipefail.
-# see https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run
-SHELL ["/bin/ash", "-o", "pipefail", "-c"]
+# SHELL already set in runtime-dependencies
+
+ARG PYTHON_VERSION
 
 USER root
 
@@ -32,9 +32,10 @@ COPY remote-files.sha256 .
 
 # hadolint ignore=DL3018,SC2046
 RUN apk --no-cache add \
-        py3-pip python3 python3-dev  \
-        py3-sphinx py3-sphinx_rtd_theme \
-        libffi-dev \
+        python3-dev \
+        py3-pip \
+        py3-sphinx \
+        py3-sphinx_rtd_theme \
  # Install shellcheck manually to get current multi-arch release
  # https://www.shellcheck.net/
  && curl -fsSL https://github.com/koalaman/shellcheck/releases/download/v0.8.0/shellcheck-v0.8.0.linux.$(arch).tar.xz \
@@ -48,32 +49,31 @@ RUN apk --no-cache add \
 USER tezos
 WORKDIR /home/tezos
 
-### Begin Javascript env setup as tezos user
-COPY nodejs nodejs
-RUN bash nodejs/install-nvm.sh
-### End Javascript env setup
+### Javascript env setup as tezos user
 
-### Begin Python setup
+COPY --chown=tezos:tezos nodejs/install-nvm.sh /tmp/install-nvm.sh
+RUN /tmp/install-nvm.sh \
+ && rm -rf /tmp/*
+
+### Python setup
+
 # Deactivate rust-crypto build until we update rust
 ENV CRYPTOGRAPHY_DONT_BUILD_RUST=1
-# Install poetry (https://github.com/python-poetry/poetry)
-RUN pip3 --no-cache-dir install --user poetry==1.0.10
-
 # Required to have poetry in the path in the CI
 ENV PATH="/home/tezos/.local/bin:${PATH}"
 
 # Copy poetry files to install the dependencies in the docker image
-COPY poetry.lock poetry.lock
-COPY pyproject.toml pyproject.toml
+COPY --chown=tezos:tezos ./poetry.lock ./pyproject.toml ./
 
-# Poetry will create the virtual environment in $(pwd)/.venv.
-# The containers running this image can load the virtualenv with
-# $(pwd)/.venv/bin/activate and do not require to run `poetry install`
-# It speeds up the Tezos CI and simplifies the .gitlab-ci.yml file
-# by avoiding duplicated poetry setup checks.
-RUN poetry config virtualenvs.in-project true && \
-    poetry install
-### End Python setup
+# Install poetry (https://github.com/python-poetry/poetry)
+RUN pip3 --no-cache-dir install --user poetry==1.0.10 && \
+    # Poetry will create the virtual environment in $(pwd)/.venv.
+    # The containers running this image can load the virtualenv with
+    # $(pwd)/.venv/bin/activate and do not require to run `poetry install`
+    # It speeds up the Tezos CI and simplifies the .gitlab-ci.yml file
+    # by avoiding duplicated poetry setup checks.
+    poetry config virtualenvs.in-project true && \
+    poetry install && \
+    rm -rf /tmp/*
 
-ENTRYPOINT [ "opam", "exec", "--" ]
-CMD [ "/bin/sh" ]
+# ENTRYPOINT and CMD already set in runtime-prebuild-dependencies

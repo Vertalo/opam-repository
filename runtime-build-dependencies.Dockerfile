@@ -15,9 +15,9 @@ ARG BUILD_IMAGE
 # hadolint ignore=DL3006
 FROM ${BUILD_IMAGE}
 
-# use alpine /bin/ash and set pipefail.
-# see https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run
-SHELL ["/bin/ash", "-o", "pipefail", "-c"]
+LABEL org.opencontainers.image.title="runtime-build-dependencies"
+
+# SHELL already set in runtime-dependencies
 
 USER tezos
 WORKDIR /home/tezos
@@ -28,5 +28,7 @@ WORKDIR /home/tezos
 # https://gitlab.com/dannywillems/ocaml-bls12-381/-/merge_requests/135/
 ENV BLST_PORTABLE=yes
 
-# hadolint ignore=SC2046
+# hadolint ignore=SC2046,DL4006
 RUN opam install --yes $(opam list --all --short | grep -v ocaml-option-)
+
+# ENTRYPOINT and CMD already set in runtime-prebuild-dependencies

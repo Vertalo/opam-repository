@@ -14,24 +14,23 @@ ARG BUILD_IMAGE
 # hadolint ignore=DL3006
 FROM ${BUILD_IMAGE}
 
+LABEL org.opencontainers.image.title="runtime-prebuild-dependencies"
+
+USER root
+
+# SHELL already set in runtime-dependencies
+
 ARG OCAML_VERSION
 ARG RUST_VERSION
 # Automatically set if you use Docker buildx
 ARG TARGETARCH
 
-# use alpine /bin/ash and set pipefail.
-# see https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run
-SHELL ["/bin/ash", "-o", "pipefail", "-c"]
+WORKDIR /tmp
 
 # Adds static packages of hidapi and libusb built by `scripts/libusb-hidapi.sh`
 # in `runtime-prebuild-dependencies` image.
-WORKDIR /
 COPY _docker_build/keys /etc/apk/keys/
 COPY _docker_build/*/*.apk /tmp/
-
-USER root
-
-WORKDIR /tmp
 
 # To verify remote files checksum (prevent tampering)
 COPY remote-files.sha256 .
@@ -41,7 +40,6 @@ RUN apk --no-cache add \
     autoconf \
     automake \
     bash \
-    binutils \
     build-base \
     ca-certificates \
     cargo \
@@ -49,7 +47,10 @@ RUN apk --no-cache add \
     curl \
     eudev-dev \
     git \
+    gmp-dev \
     jq \
+    libev-dev \
+    libffi-dev \
     libtool \
     linux-headers \
     m4 \
@@ -59,12 +60,13 @@ RUN apk --no-cache add \
     openssl-dev \
     patch \
     perl \
+    postgresql-dev \
     rsync \
-    sudo \
     tar \
     unzip \
     wget \
     xz \
+    zlib-dev \
     zlib-static \
     # Custom packages from `scripts/build-libusb-hidapi.sh`
     hidapi-0.9.0-r2.apk \
@@ -82,22 +84,15 @@ RUN apk --no-cache add \
  && rm -rf /tmp/*
 
 # Check versions of other interpreters/compilers
+# hadolint ignore=DL4006
 RUN test "$(rustc --version | cut -d' ' -f2)" = ${RUST_VERSION}
 
 USER tezos
 WORKDIR /home/tezos
 
-RUN mkdir ~/.ssh && \
-    chmod 700 ~/.ssh && \
-    git config --global user.email "ci@tezos.com" && \
-    git config --global user.name "Tezos CI" && \
-    # FIXME: Bypass CVE-2022-24765 fixed in git 2.30.3, 2.31.2, 2.32.1, 2.34.2, 2.35.2 and later versions
-    # https://github.com/git/git/blob/master/Documentation/RelNotes/2.30.3.txt
-    git config --global --add safe.directory "*"
-
-COPY --chown=tezos:nogroup repo opam-repository/
-COPY --chown=tezos:nogroup packages opam-repository/packages
-COPY --chown=tezos:nogroup \
+COPY --chown=tezos:tezos repo opam-repository/
+COPY --chown=tezos:tezos packages opam-repository/packages
+COPY --chown=tezos:tezos \
       packages/ocaml \
       packages/ocaml-config \
       packages/ocaml-base-compiler \
@@ -110,7 +105,7 @@ COPY --chown=tezos:nogroup \
 
 WORKDIR /home/tezos/opam-repository
 
-# hadolint ignore=SC2046
+# hadolint ignore=SC2046,DL4006
 RUN opam init --disable-sandboxing --no-setup --yes \
               --compiler ocaml-base-compiler.${OCAML_VERSION} \
               tezos /home/tezos/opam-repository && \
