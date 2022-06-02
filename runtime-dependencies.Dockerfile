@@ -19,7 +19,6 @@ SHELL ["/bin/ash", "-euo", "pipefail", "-c"]
 # Open Container Initiative
 # https://github.com/opencontainers/image-spec/blob/main/annotations.md
 LABEL org.opencontainers.image.authors="contact@nomadic-labs.com" \
-      org.opencontainers.image.base.name="alpine:3.14" \
       org.opencontainers.image.description="Octez - GitLab CI docker image" \
       org.opencontainers.image.documentation="https://tezos.gitlab.io/" \
       org.opencontainers.image.licenses="MIT" \

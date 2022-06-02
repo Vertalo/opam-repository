@@ -19,6 +19,6 @@ echo
 docker build \
        -f runtime-dependencies.Dockerfile \
        --build-arg BUILD_IMAGE="alpine:${alpine_version}" \
-       --build-arg IMAGE_VERSION="${image_tag}" \
+       --label "org.opencontainers.image.base.name=alpine:${alpine_version}" \
        -t "$image_name:$image_tag" \
        "$repo_dir"
