@@ -11,14 +11,13 @@ cd "$repo_dir"
 image_name="${1:-tezos/opam-repository}"
 image_tag="${2:-runtime-prebuild-dependencies}"
 runtime_dependencies_image="${3:-tezos/opam-repository:runtime-dependencies}"
-arch="${4:-x86_64}"
-targetarch="${5:-amd64}"
+targetarch="${4:-amd64}"
 
-"$script_dir"/build-libusb-hidapi.sh libusb "${arch}"
-"$script_dir"/build-libusb-hidapi.sh hidapi "${arch}"
+"$script_dir"/build-libusb-hidapi.sh libusb
+"$script_dir"/build-libusb-hidapi.sh hidapi
 
 echo
-echo "### Building runtime-prebuild-dependencies image $arch"
+echo "### Building runtime-prebuild-dependencies image"
 echo "### (includes: non-opam deps, cache of not-installed opam deps)"
 echo
 

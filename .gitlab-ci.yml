@@ -29,13 +29,12 @@ stages:
   extends:
     - .image_template__docker
   variables:
-    ARCH: ""                     # Used by `scripts/build-libusb-hidapi.sh` to build static packages
     TARGETARCH: ""               # Docker build argument for architecture specific instructions
     DOCKER_IMAGE_TAG_SUFFIX: ""
   script:
     - . ./scripts/version.sh
     # Build docker images
-    - ./scripts/create_docker_image.sh "${CI_REGISTRY_IMAGE}" "${DOCKER_IMAGE_TAG_SUFFIX}" "${ARCH}" "${TARGETARCH}"
+    - ./scripts/create_docker_image.sh "${CI_REGISTRY_IMAGE}" "${DOCKER_IMAGE_TAG_SUFFIX}" "${TARGETARCH}"
     # Push docker images
     - ./scripts/docker_push_all.sh "${CI_REGISTRY_IMAGE}" "${DOCKER_IMAGE_TAG_SUFFIX}"
 
@@ -57,7 +56,6 @@ shellcheck:
 build-amd64:
   <<: *build-definition
   variables:
-    ARCH: "x86_64"
     TARGETARCH: "amd64"
     DOCKER_IMAGE_TAG_SUFFIX: "--${TARGETARCH}--${CI_COMMIT_SHA}"
   only:
@@ -69,7 +67,6 @@ build-amd64:
 build-arm64:
   <<: *build-definition
   variables:
-    ARCH: "aarch64"
     TARGETARCH: "arm64"
     DOCKER_IMAGE_TAG_SUFFIX: "--${TARGETARCH}--${CI_COMMIT_SHA}"
   only:
@@ -116,7 +113,6 @@ build:
     - name: docker:20-dind
       command: ["--experimental"]
   variables:
-    ARCH: "x86_64"
     # this variable is empty as we don't want to merge any manifest
     DOCKER_IMAGE_TAG_SUFFIX: ""
   except:

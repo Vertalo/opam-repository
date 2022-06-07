@@ -7,8 +7,7 @@ cd "$repo_dir"
 
 image_name="${1:-tezos/opam-repository}"
 tag_suffix="${2:-}"
-arch="${3:-x86_64}"
-targetarch="${4:-amd64}"
+targetarch="${3:-amd64}"
 
 "$script_dir"/create_docker_image.runtime-dependencies.sh \
              "$image_name" \
@@ -18,7 +17,6 @@ targetarch="${4:-amd64}"
              "$image_name" \
              "runtime-prebuild-dependencies$tag_suffix" \
              "$image_name:runtime-dependencies$tag_suffix" \
-             "$arch" \
              "$targetarch"
 
 "$script_dir"/create_docker_image.runtime-build-dependencies.sh \

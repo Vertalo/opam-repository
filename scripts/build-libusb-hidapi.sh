@@ -32,7 +32,6 @@ trap cleanup EXIT
 
 # these are the script arguments
 library="${1}"
-arch="${2}"
 
 # if build_dir is not defined _docker_build is used as default.
 build_dir="${build_dir:-_docker_build}"
@@ -122,4 +121,4 @@ mkdir -p "$build_dir"
 # we copy the result of the compilation outside of the container
 container=$(docker create "$tmp_image")
 docker cp -L "$container:/etc/apk/keys" "$build_dir"
-docker cp -L "$container:/home/builder/packages/home/$arch/" "$build_dir"
+docker cp -L "$container:/home/builder/packages/home/$(arch)/" "$build_dir"
