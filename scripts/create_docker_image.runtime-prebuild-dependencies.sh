@@ -25,7 +25,6 @@ docker build \
        -f runtime-prebuild-dependencies.Dockerfile \
        --build-arg BUILD_IMAGE="${runtime_dependencies_image}" \
        --build-arg OCAML_VERSION="${ocaml_version}" \
-       --build-arg RUST_VERSION="${rust_version}" \
        --build-arg TARGETARCH="${targetarch}" \
        -t "$image_name:$image_tag" \
        "$repo_dir"

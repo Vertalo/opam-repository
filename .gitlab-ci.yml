@@ -35,6 +35,8 @@ stages:
     - . ./scripts/version.sh
     # Build docker images
     - ./scripts/create_docker_image.sh "${CI_REGISTRY_IMAGE}" "${DOCKER_IMAGE_TAG_SUFFIX}" "${TARGETARCH}"
+    # Verify we packed expected software versions
+    - ./scripts/check_versions.sh "${CI_REGISTRY_IMAGE}" "${DOCKER_IMAGE_TAG_SUFFIX}"
     # Push docker images
     - ./scripts/docker_push_all.sh "${CI_REGISTRY_IMAGE}" "${DOCKER_IMAGE_TAG_SUFFIX}"
 

@@ -13,15 +13,12 @@
 # - running the CI tests of tezos
 
 ARG BUILD_IMAGE
-
 # hadolint ignore=DL3006
 FROM ${BUILD_IMAGE}
 
 LABEL org.opencontainers.image.title="runtime-build-test-dependencies"
 
 # SHELL already set in runtime-dependencies
-
-ARG PYTHON_VERSION
 
 USER root
 

@@ -10,7 +10,6 @@
 # - building the runtime-build-dependencies and runtime-build-test-dependencies image
 
 ARG BUILD_IMAGE
-
 # hadolint ignore=DL3006
 FROM ${BUILD_IMAGE}
 
@@ -20,11 +19,6 @@ USER root
 
 # SHELL already set in runtime-dependencies
 
-ARG OCAML_VERSION
-ARG RUST_VERSION
-# Automatically set if you use Docker buildx
-ARG TARGETARCH
-
 WORKDIR /tmp
 
 # Adds static packages of hidapi and libusb built by `scripts/libusb-hidapi.sh`
@@ -32,6 +26,8 @@ WORKDIR /tmp
 COPY _docker_build/keys /etc/apk/keys/
 COPY _docker_build/*/*.apk /tmp/
 
+# Automatically set if you use Docker buildx
+ARG TARGETARCH
 # hadolint ignore=DL3018
 RUN apk --no-cache add \
     autoconf \
@@ -80,10 +76,6 @@ RUN apk --no-cache add \
  && chmod 755 /usr/local/bin/upx \
  && rm -rf /tmp/*
 
-# Check versions of other interpreters/compilers
-# hadolint ignore=DL4006
-RUN test "$(rustc --version | cut -d' ' -f2)" = ${RUST_VERSION}
-
 USER tezos
 WORKDIR /home/tezos
 
@@ -102,6 +94,7 @@ COPY --chown=tezos:tezos \
 
 WORKDIR /home/tezos/opam-repository
 
+ARG OCAML_VERSION
 # hadolint ignore=SC2046,DL4006
 RUN opam init --disable-sandboxing --no-setup --yes \
               --compiler ocaml-base-compiler.${OCAML_VERSION} \

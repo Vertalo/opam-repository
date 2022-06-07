@@ -11,7 +11,6 @@
 # - building the runtime-build-test-dependencies image
 
 ARG BUILD_IMAGE
-
 # hadolint ignore=DL3006
 FROM ${BUILD_IMAGE}
 
