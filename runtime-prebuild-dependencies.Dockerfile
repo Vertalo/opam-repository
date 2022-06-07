@@ -32,9 +32,6 @@ WORKDIR /tmp
 COPY _docker_build/keys /etc/apk/keys/
 COPY _docker_build/*/*.apk /tmp/
 
-# To verify remote files checksum (prevent tampering)
-COPY remote-files.sha256 .
-
 # hadolint ignore=DL3018
 RUN apk --no-cache add \
     autoconf \
@@ -77,7 +74,7 @@ RUN apk --no-cache add \
 # https://upx.github.io/
  && curl -fsSL https://github.com/upx/upx/releases/download/v3.96/upx-3.96-${TARGETARCH}_linux.tar.xz \
     -o upx-3.96-${TARGETARCH}_linux.tar.xz \
- && sha256sum --check --ignore-missing remote-files.sha256 \
+ && sha512sum --check --ignore-missing /home/tezos/remote-files.sha512 \
  && tar -xf upx-3.96-${TARGETARCH}_linux.tar.xz \
  && mv upx-3.96-${TARGETARCH}_linux/upx /usr/local/bin/upx \
  && chmod 755 /usr/local/bin/upx \

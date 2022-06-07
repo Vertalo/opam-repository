@@ -27,9 +27,6 @@ USER root
 
 WORKDIR /tmp
 
-# To verify remote files checksum (prevent tampering)
-COPY remote-files.sha256 .
-
 # hadolint ignore=DL3018,SC2046
 RUN apk --no-cache add \
         python3-dev \
@@ -40,7 +37,7 @@ RUN apk --no-cache add \
  # https://www.shellcheck.net/
  && curl -fsSL https://github.com/koalaman/shellcheck/releases/download/v0.8.0/shellcheck-v0.8.0.linux.$(arch).tar.xz \
     -o shellcheck-v0.8.0.linux.$(arch).tar.xz \
- && sha256sum --check --ignore-missing remote-files.sha256 \
+ && sha512sum --check --ignore-missing /home/tezos/remote-files.sha512 \
  && tar -xf shellcheck-v0.8.0.linux.$(arch).tar.xz \
  && mv shellcheck-v0.8.0/shellcheck /usr/local/bin/shellcheck \
  && chmod 755 /usr/local/bin/shellcheck \

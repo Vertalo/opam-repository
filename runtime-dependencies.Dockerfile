@@ -30,7 +30,7 @@ LABEL org.opencontainers.image.authors="contact@nomadic-labs.com" \
 USER root
 
 # Create a static system group and system user (no password + login shell)
-# Prepare sudo, ssh and git configuration
+# Prepare sudo, ssh and run
 RUN echo 'tezos:x:1000:tezos' >> /etc/group \
  && echo 'tezos:x:1000:1000:tezos:/home/tezos:/bin/sh' >> /etc/passwd \
  && echo 'tezos:!::0:::::' >> /etc/shadow \
@@ -41,9 +41,11 @@ RUN echo 'tezos:x:1000:tezos' >> /etc/group \
  && echo 'tezos ALL=(ALL:ALL) NOPASSWD:ALL' > /etc/sudoers.d/tezos \
  && chmod 440 /etc/sudoers.d/tezos
 
-COPY --chown=tezos:tezos tezos.gitconfig /home/tezos/.gitconfig
-
 COPY ./zcash-params/sapling-output.params ./zcash-params/sapling-spend.params /usr/share/zcash-params/
+
+# Git configuration
+# Verify remote files checksum (prevent tampering)
+COPY --chown=tezos:tezos .gitconfig remote-files.sha512 /home/tezos/
 
 # hadolint ignore=DL3018
 RUN apk --no-cache add \
