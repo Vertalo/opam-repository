@@ -10,19 +10,17 @@ build: [
   [ "dune" "build" "-p" name "-j" jobs ]
 ]
 depends: [
-  "ocaml" { >= "4.08" }
+  "ocaml" { >= "4.10" }
   "dune" { >= "1.11" }
-  "uri" {>= "1.9.0" }
-  "resto-cohttp" {= version }
+  "resto-directory" {= version }
   "cohttp-lwt" { >= "1.0.0" }
-  "lwt" { >= "3.0.0" & < "6.0.0" }
 ]
 url {
   src:
-    "https://gitlab.com/nomadic-labs/resto/-/archive/v0.6.1/resto-v0.6.1.tar.gz"
+    "https://gitlab.com/nomadic-labs/resto/-/archive/v0.8/resto-v0.8.tar.gz"
   checksum: [
-    "md5=aaa32ff0f0b78d2ab231e8bc5227bead"
-    "sha512=f362893693e75df8021365a7b3291874ad38f928054e16fc48f9040545d7dcfc60f9c19bd7f00f8e89b3c2c72bea916a425d769b41331da08a222a81968954e9"
-    "sha256=d58cd951ac3e65e2e35520134f8d8c9f441d30017c0af22b049338eb7862e644"
+    "md5=0f2a4c07a71d78b783eb69f2c720494b"
+    "sha512=6f2bb07f8546d86788f32372879ea6af5a18d9715f64a0e7ff5f28b5db6ddcb7fa691936af387a880a1dc9f320b7b9224670fbdcfe1841890b8144ff0f9e66a2"
+    "sha256=0387ec08e66b0862952556234dd770908cd90d9d48f13a462d0654dedd6ac19e"
   ]
 }
