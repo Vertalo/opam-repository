@@ -27,10 +27,9 @@ check() {
 
 echo "### Distro info"
 
-cat /etc/os-release
+eval "${run} cat /etc/os-release"
 
 echo "### Important packages version"
-
 
 current_cargo_version=$(${run} cargo --version | awk 'NF>1{print $NF}')
 check cargo "${current_cargo_version}" "${cargo_version}"
