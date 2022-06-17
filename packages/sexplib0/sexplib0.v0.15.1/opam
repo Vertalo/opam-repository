@@ -10,7 +10,7 @@ build: [
   ["dune" "build" "-p" name "-j" jobs]
 ]
 depends: [
-  "ocaml" {>= "4.04.2"}
+  "ocaml" {>= "4.08"}
   "dune"  {>= "2.0.0"}
 ]
 synopsis: "Library containing the definition of S-expressions and some base converters"
@@ -22,9 +22,10 @@ largest industrial user of OCaml.
 "
 url {
   src:
-    "https://ocaml.janestreet.com/ocaml-core/v0.15/files/sexplib0-v0.15.0.tar.gz"
+    "https://github.com/janestreet/sexplib0/archive/refs/tags/v0.15.1.tar.gz"
   checksum: [
-    "sha256=94462c00416403d2778493ac01ced5439bc388a68ac4097208159d62434aefba"
-    "sha512=6f8b11422ce066a3c48338deea6aedfc44d365de6128bf926b0da3a51e9c0d839d84f92388b0a84c25ef875ea9d48e521e3cba53d8db85be30d67ad78e7ff450"
+    "md5=ab8fd6273f35a792cad48cbb3024a7f9"
+    "sha256=e8cd817eb3bc3f84a2065fa0255ab2b986a24baf1cc329d05627c516464267b3"
+    "sha512=3f15e011b180cccd96882b6b3d3922c13622151713080261a9646d8df896635a6a85e2df6a5d332784678d0d1cae7eccb190769ac4d9bd68b040bc3b41362056"
   ]
 }

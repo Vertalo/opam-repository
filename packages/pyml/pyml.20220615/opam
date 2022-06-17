@@ -19,7 +19,6 @@ build: [
     "@doc" {with-doc}
   ]
 ]
-run-test: [make "test"]
 synopsis: "OCaml bindings for Python"
 description: "OCaml bindings for Python 2 and Python 3"
 depends: [
@@ -33,9 +32,9 @@ depends: [
 depopts: ["utop"]
 url {
   src:
-    "https://github.com/thierry-martinez/pyml/releases/download/20220325/pyml-20220325.tar.gz"
+    "https://github.com/thierry-martinez/pyml/releases/download/20220615/pyml-20220615.tar.gz"
   checksum: [
-    "sha512=462f86478a0131248805cc13d7eb4e5b4259241d9074e5ab00221018b7fe2d023a12ebf7ffcb81211ffca689fb6b065f251bd900e1925c481f98169e652ab6fa"
-    "sha256=bd16dee0267a675abf7719d98a45324234bb6b69d21c1a80e0194adfd4da5d92"
+    "sha512=8ad6b6c92ca1c2cdaae4a0fbc0baca75e80c95239731e56537b7c78c613ce0e0f2e13aa7a976631a324d4faf8291bc5f2f48cc8956e7c5623fb858d8a483e0b5"
+    "sha256=495c30bc0b3384b22b8b5b8b766cc3166d086bc5e2549f69b179fc934e4aeee1"
   ]
 }

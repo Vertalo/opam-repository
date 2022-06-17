@@ -25,17 +25,17 @@ homepage: "https://github.com/mirage/prometheus"
 doc: "https://mirage.github.io/prometheus/"
 bug-reports: "https://github.com/mirage/prometheus/issues"
 depends: [
-  "ocaml" {>= "4.02.3"}
-  "dune" {>= "1.0"}
+  "ocaml" {>= "4.08"}
+  "dune" {>= "2.3"}
   "prometheus" {= version}
-  "fmt"
-  "re" {>= "1.5.0"}
-  "cohttp" {>= "1.0.0"}
-  "cohttp-lwt"
-  "cohttp-lwt-unix"
+  "fmt" {>= "0.8.7"}
+  "re" {>= "1.8.0"}
+  "cohttp-lwt" {>= "4.0.0"}
+  "cohttp-lwt-unix" {>= "4.0.0"}
   "lwt" {>= "2.5.0"}
   "cmdliner"
   "alcotest" {with-test}
+  "alcotest-lwt" {with-test}
   "asetmap"
   "astring"
   "logs" {>= "0.6.0"}
@@ -45,12 +45,12 @@ build: [
   ["dune" "runtest" "-p" name "-j" jobs] {with-test}
 ]
 dev-repo: "git+https://github.com/mirage/prometheus.git"
-x-commit-hash: "4a85699fa5e37975484fc99bdf3ff944a315a1ed"
 url {
   src:
-    "https://github.com/mirage/prometheus/releases/download/v1.1/prometheus-v1.1.tbz"
+    "https://github.com/mirage/prometheus/releases/download/v1.2/prometheus-1.2.tbz"
   checksum: [
-    "sha256=fbcf8bb28c02bfe4f61d2494bc2b70fdedd62f2b41fd1343e6f73d583bf599e4"
-    "sha512=9cf49689f6d33138cf41eca585e0d15bd17f670a3334b8235a52cc6c210fdc763fb967b19a91a110759a206aa9223cca1c7064e0eb2e2e6d3d13957ec7a38201"
+    "sha256=83643a029a6b6de71d14034eee2e94feff1d08755c4a41d583dc1530ab555bcb"
+    "sha512=bbec7f0728b850b991ec50e76ef2c999341a9469ceaa11b68180f060150c4fe62f3dca87c13914ac331b3d7ef6e46256ae11466b607ecb60d00b8f284cab86b9"
   ]
 }
+x-commit-hash: "d1669d0e0d7e44b104755a0fd9700ae87e140f34"
