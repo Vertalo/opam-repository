@@ -8,20 +8,6 @@ stages:
   - publish
   - mirror
 
-.rules_template__nomadic:
-  rules:
-    - if: '$CI_PROJECT_NAMESPACE == "tezos" && $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
-      when: on_success
-    - if: '$CI_PROJECT_NAMESPACE == "tezos" && $CI_PIPELINE_SOURCE == "merge_request_event"'
-      when: on_success
-    - when: never  # default
-
-.rules_template__fork:
-  rules:
-    - if: '$CI_PROJECT_NAMESPACE != "nomadic-labs" && $CI_PROJECT_NAMESPACE != "tezos"'
-      when: on_success
-    - when: never  # default
-
 # Match GitLab executors Docker version and directly use the Docker socket
 # The Docker daemon is already configured, experimental features are enabled
 # The following environment variables are already set:
@@ -38,7 +24,7 @@ stages:
 
 # Template used by all Docker image build jobs
 # Variables needs to be set properly
-.build_template:
+.build-template: &build-definition
   stage: build
   extends:
     - .image_template__docker
@@ -56,8 +42,6 @@ stages:
 
 # Dockerfile linter
 hadolint:
-  extends:
-    - .rules_template__nomadic
   image: hadolint/hadolint:v2.10.0-debian
   stage: lint
   script:
@@ -65,8 +49,6 @@ hadolint:
 
 # POSIX shell scripts linter
 shellcheck:
-  extends:
-    - .rules_template__nomadic
   image: koalaman/shellcheck-alpine:v0.8.0
   stage: lint
   script:
@@ -74,24 +56,26 @@ shellcheck:
 
 # Build docker images for x86_64/amd64
 build-amd64:
-  extends:
-    - .build_template
-    - .rules_template__nomadic
+  <<: *build-definition
   variables:
     TARGETARCH: "amd64"
     DOCKER_IMAGE_TAG_SUFFIX: "--${TARGETARCH}--${CI_COMMIT_SHA}"
-  tags: [amd64]
+  only:
+    - //@tezos/opam-repository
+    - //@nomadic-labs/opam-repository
 
 # Build docker images for arm64/v8
 # Only on Nomadic Labs' repositories and arm64 runners
 build-arm64:
-  extends:
-    - .build_template
-    - .rules_template__nomadic
+  <<: *build-definition
   variables:
     TARGETARCH: "arm64"
     DOCKER_IMAGE_TAG_SUFFIX: "--${TARGETARCH}--${CI_COMMIT_SHA}"
-  tags: [arm64]
+  only:
+    - //@tezos/opam-repository
+    - //@nomadic-labs/opam-repository
+  tags:
+    - arm64
 
 # Merge manifests from jobs build-amd64 and build-arm64
 # Only on Nomadic Labs' repositories
@@ -101,30 +85,38 @@ manifest:
   stage: publish
   extends:
     - .image_template__docker
-    - .rules_template__nomadic
   script:
     - ./scripts/docker_merge_manifests.sh "${CI_REGISTRY_IMAGE}"
+  only:
+    - //@tezos/opam-repository
+    - //@nomadic-labs/opam-repository
 
-# Mirror Docker image from Gitlab container registry @GCP to private ECR @AWS, closer to
-# GitLab runners/executors. Requires the following environment variables to be set:
-# - AWS_ECR
-# - AWS_ACCESS_KEY_ID
-# - AWS_SECRET_ACCESS_KEY
+# Mirror Docker image from Gitlab container registry @GCP to private ECR @AWS,
+# closer to GitLab runners/executors. Requires environment variables to be set
+# with AWS credentials and AWS_ECR.
 mirror:
   stage: mirror
   extends:
     - .image_template__docker
-    - .rules_template__nomadic
   variables:
     AWS_ECR_IMAGE: "${AWS_ECR}/${CI_PROJECT_PATH}"
   script:
     - ./scripts/mirror_to_ecr.sh "${CI_REGISTRY_IMAGE}" "${AWS_ECR_IMAGE}"
+  only:
+    variables:
+      # Only available on protected branches @tezos/opam-repository
+      - $AWS_ACCESS_KEY_ID && $AWS_SECRET_ACCESS_KEY && $AWS_ECR
 
-# Duplicated job to allow forks to build images using defaults
+# Duplicated job to allow forks to build x86_64/amd64 images
 build:
-  extends:
-    - .build_template
-    - .rules_template__fork
+  <<: *build-definition
+  image: "${CI_REGISTRY}/tezos/docker-images/ci-docker:v1.7.0"
   services:
     - name: docker:20-dind
       command: ["--experimental"]
+  variables:
+    # this variable is empty as we don't want to merge any manifest
+    DOCKER_IMAGE_TAG_SUFFIX: ""
+  except:
+    - //@tezos/opam-repository
+    - //@nomadic-labs/opam-repository
