@@ -4,6 +4,5 @@ depends: [
   "ocaml-variants" {post & >= "4.12.0~"}
 ]
 conflicts: ["ocaml-option-musl"]
-available: os = "linux" & arch = "x86_64"
 maintainer: "platform@lists.ocaml.org"
 flags: compiler
