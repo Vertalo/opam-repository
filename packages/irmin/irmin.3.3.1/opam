@@ -50,10 +50,10 @@ to browsers and Xen unikernels.
 """
 url {
   src:
-    "https://github.com/mirage/irmin/releases/download/3.2.2/irmin-3.2.2.tbz"
+    "https://github.com/mirage/irmin/releases/download/3.3.1/irmin-3.3.1.tbz"
   checksum: [
-    "sha256=fde223f91b7adb0118698f210356c9965b4a7ae87f61d19c7f2892d1a2d0bcb9"
-    "sha512=02ad3dbe6646640271e721105abcb58f00b06255fe36f378545acd2fb7c9647952ee50247e1508f417fa8c3de713bf9bd213840081af37650ee524170a2e36bc"
+    "sha256=535254ca443858bfc9e540535977fed63e9206d4b78c5cac0239d1e6657b5c78"
+    "sha512=fa18557fcf808121a0495de707c6f7bff4a69197b310480816648adafd4a659b5673a1f5bbf4574f517b7d93253735ef7798b0c365d87afac60675007ef19b54"
   ]
 }
-x-commit-hash: "8a03cc4b2939ba2f600ca6ff956ebc779d42a315"
+x-commit-hash: "a22b6213b6c0933b878bc14d0c497f7119b5f8eb"
