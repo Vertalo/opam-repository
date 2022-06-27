@@ -99,12 +99,15 @@ mirror:
   extends:
     - .image_template__docker
   variables:
-    AWS_ECR_IMAGE: "${AWS_ECR}/${CI_PROJECT_PATH}"
+    AWS_ACCESS_KEY_ID: "${PROD_AWS_ACCESS_KEY_ID}"
+    AWS_SECRET_ACCESS_KEY: "${PROD_AWS_SECRET_ACCESS_KEY}"
+    AWS_ECR: "${PROD_AWS_ECR}"
+    AWS_ECR_IMAGE: "${PROD_AWS_ECR}/${CI_PROJECT_PATH}"
   script:
     - ./scripts/mirror_to_ecr.sh "${CI_REGISTRY_IMAGE}" "${AWS_ECR_IMAGE}"
   only:
     variables:
-      # Only available on protected branches @tezos/opam-repository
+      # Only available in @tezos/opam-repository
       - $AWS_ACCESS_KEY_ID && $AWS_SECRET_ACCESS_KEY && $AWS_ECR
 
 # Duplicated job to allow forks to build x86_64/amd64 images
