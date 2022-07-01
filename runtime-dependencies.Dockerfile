@@ -40,22 +40,39 @@ RUN echo 'tezos:x:1000:tezos' >> /etc/group \
  && echo 'tezos ALL=(ALL:ALL) NOPASSWD:ALL' > /etc/sudoers.d/tezos \
  && chmod 440 /etc/sudoers.d/tezos
 
+# Sapling parameters
 COPY ./zcash-params/sapling-output.params ./zcash-params/sapling-spend.params /usr/share/zcash-params/
+
+# To allow installing custom Nomadic APKs
+COPY ./apk/nomadic.rsa.pub /etc/apk/keys/
 
 # Git configuration
 # Verify remote files checksum (prevent tampering)
 COPY --chown=tezos:tezos .gitconfig remote-files.sha512 /home/tezos/
 
-# hadolint ignore=DL3018
-RUN apk --no-cache add \
+WORKDIR /tmp
+
+# Automatically set if you use Docker buildx
+ARG TARGETARCH
+COPY ./apk/${TARGETARCH}/ .
+
+# hadolint ignore=DL3018,DL3003
+RUN apk add --no-cache \
     binutils \
+    ca-certificates \
+    coreutils \
+    libusb-dev \
     gcc \
-    gmp \
-    hidapi \
+    gmp-dev \
     libc-dev \
-    libev \
-    libffi \
-    sudo
+    libev-dev \
+    libffi-dev \
+    sudo \
+ # Custom hidapi-dev APK with both shared and static libaries
+    ./hidapi-0.11.2-r1.apk \
+    ./hidapi-dev-0.11.2-r1.apk \
+ # Cleanup
+ && rm -rf /tmp/*
 
 USER tezos
 ENV USER=tezos

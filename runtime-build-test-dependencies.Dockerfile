@@ -60,14 +60,14 @@ ENV PATH="/home/tezos/.local/bin:${PATH}"
 COPY --chown=tezos:tezos ./poetry.lock ./pyproject.toml ./
 
 # Install poetry (https://github.com/python-poetry/poetry)
-RUN pip3 --no-cache-dir install --user poetry==1.0.10 && \
+RUN pip3 --no-cache-dir install --user poetry==1.0.10 \
     # Poetry will create the virtual environment in $(pwd)/.venv.
     # The containers running this image can load the virtualenv with
     # $(pwd)/.venv/bin/activate and do not require to run `poetry install`
     # It speeds up the Tezos CI and simplifies the .gitlab-ci.yml file
     # by avoiding duplicated poetry setup checks.
-    poetry config virtualenvs.in-project true && \
-    poetry install && \
-    rm -rf /tmp/*
+ && poetry config virtualenvs.in-project true \
+ && poetry install \
+ && rm -rf /tmp/*
 
 # ENTRYPOINT and CMD already set in runtime-prebuild-dependencies

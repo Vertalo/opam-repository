@@ -11,7 +11,8 @@ targetarch="${3:-amd64}"
 
 "$script_dir"/create_docker_image.runtime-dependencies.sh \
              "$image_name" \
-             "runtime-dependencies$tag_suffix"
+             "runtime-dependencies$tag_suffix" \
+             "$targetarch"
 
 "$script_dir"/create_docker_image.runtime-prebuild-dependencies.sh \
              "$image_name" \
