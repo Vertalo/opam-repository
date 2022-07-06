@@ -48,10 +48,10 @@ The useful opam packages available that extend this library are:
 """
 url {
   src:
-    "https://github.com/mirage/ocaml-conduit/releases/download/v5.1.0/conduit-5.1.0.tbz"
+    "https://github.com/mirage/ocaml-conduit/releases/download/v5.1.1/conduit-5.1.1.tbz"
   checksum: [
-    "sha256=e51c8c3e879cbbe9e09989b00595093832dc86642088072e03e5a59a2a2391cd"
-    "sha512=ffe4ca1e372a94db999f51fe4903f4a8f2f3ddb079cd0470c499dbd61109674df8de968e535c1c6f5bd7b00a6aed2c6b6d193c8dcf370102e27150903646a73e"
+    "sha256=89edc2d27f5f8fea44b1f8f9939bd792164eeba2e59744968479df9149de71be"
+    "sha512=7ae788320411c23e163fb13ed23235df923eeada15edf696e6c5ddc71eb28ea18d127f398ff90977a8cf232dd68436e2a69bae8569f2b042fb3047ef10630a96"
   ]
 }
-x-commit-hash: "033cfd416f612095a3b6e67fedbc1dc779543201"
+x-commit-hash: "5c10995df6732509b2af2b173b336c6fe2082845"
