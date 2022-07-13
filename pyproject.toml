@@ -34,8 +34,6 @@ pytest-timeout = "1.4.2"
 requests = "2.26.0"
 types-requests = "^2.27.16"
 openapi-spec-validator = "0.2.9"
-# tests_python/tests_*/test_crypto.py dependencies
-pycryptodome = "3.9.7"
 
 # docs/ dependencies
 recommonmark = "0.7.1"
