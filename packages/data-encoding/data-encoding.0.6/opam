@@ -16,22 +16,23 @@ depends: [
   "json-data-encoding-bson" { = "0.11" }
   "alcotest" { with-test }
   "crowbar" { >= "0.2" & with-test }
+  "ppx_expect" { with-test }
   "either"
-  "ocamlformat" { = "0.20.1" & with-doc } # not technically a doc dep; modify when with-dev becomes available
+  "ppx_hash"
   "odoc" { with-doc }
   "js_of_ocaml-compiler" { with-test }
 ]
 build: [
   ["dune" "build" "-p" name "-j" jobs]
-  ["dune" "runtest" "-p" name "-j" jobs] {with-test & arch != "arm32" & arch != "x86_32"}
+  ["dune" "runtest" "-p" name "-j" jobs] {with-test}
 ]
 synopsis: "Library of JSON and binary encoding combinators"
 url {
   src:
-    "https://gitlab.com/nomadic-labs/data-encoding/-/archive/v0.5.3/data-encoding-v0.5.3.tar.gz"
+    "https://gitlab.com/nomadic-labs/data-encoding/-/archive/v0.6/data-encoding-v0.6.tar.gz"
   checksum: [
-    "md5=391d89f561ff496a15ad1c8a79b8bd5d"
-    "sha512=a66487f000e9ebb8abc655d6cf830b1d4877d00023541e61f1067df3480ec5fc31bbca5e2b46503f964511341176b3aeb51a4e1603764ad7d6591b3c709cf088"
-    "sha256=5d9951967a7224afba669b6e229dfcbf525a7d8c8fcb13f0df4e20f661b4f5bd"
+    "md5=c0c288d30b791a83a2c6fde0e2282cc0"
+    "sha512=443f3e4e53c26b87ba519affc43692385f413112aeac04ddc3ff39ef555a6218439eefe1d3d0e472f3fba20f19b79b3b0ca0794f2716b663b795eff6b1de938b"
+    "sha256=3dc353252bd763407060119122354c300f8eaf4f7b33a4db4704378e16b47f73"
   ]
 }
