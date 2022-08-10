@@ -30,10 +30,10 @@ A bundle of useful runtime functions for applications built with MirageOS
 """
 url {
   src:
-    "https://github.com/mirage/mirage/releases/download/v4.1.1/mirage-4.1.1.tbz"
+    "https://github.com/mirage/mirage/releases/download/v4.2.0/mirage-4.2.0.tbz"
   checksum: [
-    "sha256=3ace4c8fd3326e95a0f2b7eb7ab07b1d9f36e37de1b0066cae27d36b4fc58715"
-    "sha512=e61d786e131f099d5fd2bc0b1e86de865749b677eb674f80977d028624e157d5eb81cc2662fdb1c26def7baa78487e0892e0779bb1cdbd5bde7c1e57d72a3cc2"
+    "sha256=ad9f72f3ec1b0e3aa3635b31f93992a11e36854291306a5e842091d9c1206eff"
+    "sha512=84db845343a91bd536e924b2a2ffcbc71979f05416a8515f3587a1af1f2adc1c56c50da3a7fe659230c341e61ae3de41f70a4763b07b041762e79dbe6f294712"
   ]
 }
-x-commit-hash: "4b170eb6ae2a2ad6eed0636c07b599f854933e4f"
+x-commit-hash: "134271f1bb1aa418da2b06aab4954ee66504f667"
