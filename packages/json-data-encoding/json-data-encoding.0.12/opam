@@ -12,17 +12,19 @@ build: [
 ]
 depends: [
   "ocaml" {>= "4.10"}
-  "dune" {>= "1.7"}
+  "dune" {>= "2.0"}
   "uri" {>= "1.9.0" }
   "crowbar" { with-test }
   "alcotest" { with-test }
+  "ocamlformat" { = "0.20.1" & with-doc } # not technically a doc dep; modify when with-dev becomes available
+  "odoc" { with-doc }
 ]
 url {
   src:
-    "https://gitlab.com/nomadic-labs/json-data-encoding/-/archive/0.11/json-data-encoding-0.11.tar.gz"
+    "https://gitlab.com/nomadic-labs/json-data-encoding/-/archive/0.12/json-data-encoding-0.12.tar.gz"
   checksum: [
-    "md5=80dd53c56b44d5696d8542ac7013a768"
-    "sha512=63894b9fa49b450445bbe125f81e0336dd0e59e23e6875cab4344c727ef454ee126b4344815d653332ccca7e8b9e80b0f272e5d407091d0b4f59426dc46a7994"
-    "sha256=f13ab39c36099d301f21077af6c806c710b4420c6145d110676d0b148c9d0cde"
+    "md5=2f3252c51185fcb2f17b1437b5264c37"
+    "sha512=d413d23b679aab898cce4138c60cf484a4be7272dcd802fd8dfaa03f17ff9d19584976d8b957f60fd5c8abdc3d55d6d62b70ae2d4716bf0c6645b69350678ec5"
+    "sha256=83e58b8b7235ad56a497307d8b0b1e35ac4881a76129f95ca07815ec4da54e54"
   ]
 }
