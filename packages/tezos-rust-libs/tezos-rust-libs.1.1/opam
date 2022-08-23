@@ -7,17 +7,17 @@ homepage: "https://www.tezos.com/"
 bug-reports: "https://gitlab.com/tezos/tezos-rust-libs/issues"
 depends: ["conf-rust"]
 build: [
-  ["mkdir" ".cargo"]
-  ["mv" "cargo-config" ".cargo/config"]
   ["cargo" "build" "--target-dir" "target" "--release"]
 ]
 dev-repo: "git+https://gitlab.com/tezos/tezos-rust-libs.git"
 url {
   src:
-    "https://gitlab.com/tezos/tezos-rust-libs/-/archive/v1.1/tezos-rust-libs-v1.1.zip"
+    # "https://gitlab.com/tezos/tezos-rust-libs/-/archive/v1.1/tezos-rust-libs-v1.1.zip"
+    "https://gitlab.com/tezos/tezos-rust-libs/-/archive/ole@wasmer/tezos-rust-libs-ole@wasmer.zip"
   checksum: [
-    "md5=a8a2720ba70306fdb6d0297f4d9bf95a"
-    "sha512=3aaf61288547df2ab6c9b7b092abe507316732da627bc76afda516becd36f02f029ddb96e85470bc58bf5ef703146a633fb0df21b705480dbf4f6f21b08d54eb"
-    "sha256=749497c82f323b7445f247bda5b761f22e760a01f3cad9e26a81e5542d7e7024"
+    # "md5=a8a2720ba70306fdb6d0297f4d9bf95a"
+    # "sha512=3aaf61288547df2ab6c9b7b092abe507316732da627bc76afda516becd36f02f029ddb96e85470bc58bf5ef703146a633fb0df21b705480dbf4f6f21b08d54eb"
+    # "sha256=749497c82f323b7445f247bda5b761f22e760a01f3cad9e26a81e5542d7e7024"
+    "sha256=57d7c3eb5b6444f32fa172e3aebbf3ca36ed18195ff2005769d81bee44fff239"
   ]
 }
