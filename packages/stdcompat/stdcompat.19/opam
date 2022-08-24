@@ -8,20 +8,21 @@ license: "BSD-2-Clause"
 homepage: "https://github.com/thierry-martinez/stdcompat"
 bug-reports: "https://github.com/thierry-martinez/stdcompat/issues"
 depends: [
-  "ocaml" {>= "3.08"}
+  "ocaml" {>= "3.07"}
+  "dune" {>= "2.0"}
 ]
 depopts: [ "result" "seq" "uchar" "ocamlfind" ]
 build: [
-  ["./configure" "--prefix=%{prefix}%"]
-  [make "all" "test" {with-test}]
+  ["dune" "subst"] {dev}
+  ["dune" "build" "-p" name "-j" jobs]
+  ["dune" "runtest" "-p" name "-j" jobs] {with-test}
 ]
-install: [make "install"]
 dev-repo: "git+https://github.com/thierry-martinez/stdcompat.git"
 url {
   src:
-    "https://github.com/thierry-martinez/stdcompat/releases/download/v18/stdcompat-18.tar.gz"
+    "https://github.com/thierry-martinez/stdcompat/releases/download/v19/stdcompat-19.tar.gz"
   checksum: [
-    "sha512=4323a43d906121951f62ee8da4dec2c3be30540bbdca114096fa3ca655ba05342b429343d0b51df6e8173541e255e3bfe57a047147b27bca1f6bb22a15ce0013"
-    "sha256=483a8d526eb19709a1a3092fb8978302e3a9d3bb783d807fb9ee53d96c3ec607"
+    "sha512=25582731170f2f80eed281c48af4904d1d00ef88a38d1b17853395c19a326d7b11e42c17b69f639402c467ff6f9b83a2e9d4dbab7255ac25d466b85a55674bd0"
+    "sha256=0ca4067789e720de923e5b3a85c03fd89bdcee2bd836978c53aad8b157350a55"
   ]
 }
