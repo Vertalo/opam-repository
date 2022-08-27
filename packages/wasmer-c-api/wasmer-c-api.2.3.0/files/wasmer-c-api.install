@@ -1,0 +1,5 @@
+lib: [
+  "lib/c-api/wasm.h"
+  "lib/c-api/wasmer.h"
+  "target/release/libwasmer.a"
+]

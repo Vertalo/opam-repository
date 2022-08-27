@@ -1,0 +1,25 @@
+opam-version: "2.0"
+synopsis: "Wasmer C API"
+license: "MIT"
+depends: ["conf-rust"]
+build: [
+  [
+    "cargo"
+    "build"
+    "--target-dir" "target"
+    "--release"
+    "--package" "wasmer-c-api"
+    "--no-default-features"
+    "--features" "singlepass,wat,compiler,middlewares,universal"
+  ]
+]
+url {
+  src: "https://github.com/wasmerio/wasmer/archive/refs/tags/2.3.0.zip"
+  checksum: [
+    "sha512=48e7207efe33e0553efe4118311c20f4516579df6f68ae1c670a1f8b8694f4a969e980b6a8250b20b461803c1b0c6b47e8968ab30258a701358d871ec5ce5d03"
+    "sha256=36683385229f2c31cff1982a8a040bdb21af4debcd45816d5b4a4c1f1be6ba2d"
+  ]
+}
+extra-files: [
+  ["wasmer-c-api.install" "sha256=e692d5376e495dd867c5ed2ad5a02a70add1ef503bfd95c58ca6d17c7f8f0143"]
+]
