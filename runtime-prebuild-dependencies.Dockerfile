@@ -21,7 +21,7 @@ USER root
 
 WORKDIR /tmp
 
-# Adds static packages of hidapi and libusb built by `scripts/libusb-hidapi.sh`
+# Adds static packages of hidapi built by `scripts/build-extra-apk.sh`
 # in `runtime-prebuild-dependencies` image.
 COPY _docker_build/keys /etc/apk/keys/
 COPY _docker_build/*/*.apk /tmp/
@@ -65,9 +65,9 @@ RUN apk update \
     zlib-dev \
     zlib-static \
     libusb-dev \
-    # Custom packages from `scripts/build-libusb-hidapi.sh`
-    hidapi-0.9.0-r2.apk \
-    hidapi-dev-0.9.0-r2.apk \
+    # Custom packages from `scripts/build-extra-apk.sh`
+    hidapi-0.11.2-r1.apk \
+    hidapi-dev-0.11.2-r1.apk \
 # Install UPX manually to get current multi-arch release
 # https://upx.github.io/
  && curl -fsSL https://github.com/upx/upx/releases/download/v3.96/upx-3.96-${TARGETARCH}_linux.tar.xz \

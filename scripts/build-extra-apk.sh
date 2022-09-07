@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# This script downloads, modify and build libusb and hidapi.
+# This script build hidapi including the static library.
 # This script will no longer be needed once the upstream patches
 # (which add static binaries) are available in Alpine.
 # Those patches are already merged and will be available in the
@@ -41,45 +41,22 @@ build_dir="${build_dir:-_docker_build}"
 tmp_image="tezos/opam-repository:$library"
 tmp_dir=$(mktemp -dt "tezos.$library.XXXXXXXX")
 
-# since we want to recreate the same packages as in the distribution
-# we also have to download the associated patches that are referred in
-# package description.
-
-# the only different is to add `--enable-static` to the build command.
-
-# /!\ Too quick queries to alpinelinux.org will result in rate limiting errors '429 Too Many Requests'
-
-if [ "$library" = "hidapi" ]; then
-#shellcheck disable=SC2154
-#alpine-version is declared in version.sh
-
-  # download package description
-  curl -fsSL \
-    "https://git.alpinelinux.org/aports/plain/community/hidapi/APKBUILD?h=$alpine_version-stable" \
-    -o "${tmp_dir}/APKBUILD.$library"
-
-  sleep 3
-
-  # download associated patch 1
-  curl -fsSL \
-    "https://git.alpinelinux.org/aports/plain/community/hidapi/autoconf-270.patch?h=$alpine_version-stable" \
-    -o "${tmp_dir}/autoconf-270.patch"
-
-  #shellcheck disable=SC2016
-  sed 's/--disable-static/--enable-static/' \
-    "${tmp_dir}/APKBUILD.$library" > "${tmp_dir}/APKBUILD"
-
-fi
+# the only difference with upstream file is to add `static` build commands.
+cp "apk/$library/APKBUILD" "${tmp_dir}/APKBUILD"
 
 # we use a docker to compile the alpine package
-# alpinelinux/docker-abuild contains the entire compilation toolchain.
 cat << EOF > "$tmp_dir/Dockerfile"
-FROM alpinelinux/docker-abuild
+FROM alpine:${alpine_version}
 ENV PACKAGER "Tezos <ci@tezos.com>"
+RUN apk --no-cache add alpine-sdk sudo \
+    && apk update \
+    && adduser --disabled-password builder \
+    && echo 'builder ALL=(ALL:ALL) NOPASSWD:ALL' > /etc/sudoers.d/builder \
+    && addgroup builder abuild
+USER builder
 WORKDIR /home/builder/
-RUN abuild-keygen -a -i
 COPY * ./
-RUN abuild -r
+RUN abuild-keygen -a -i -n && abuild -r
 EOF
 
 printf "\n### Building %s...\n" "$library"
