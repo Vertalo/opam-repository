@@ -27,7 +27,9 @@ WORKDIR /home/tezos
 # https://gitlab.com/dannywillems/ocaml-bls12-381/-/merge_requests/135/
 ENV BLST_PORTABLE=yes
 
+# Opam does not "see" the custom hidapi apk installed.
+# That's the reason why --assume-depexts.
 # hadolint ignore=SC2046,DL4006
-RUN opam install --yes $(opam list --all --short | grep -v ocaml-option-)
+RUN opam install --assume-depexts --yes $(opam list --all --short | grep -v ocaml-option-)
 
 # ENTRYPOINT and CMD already set in runtime-prebuild-dependencies
