@@ -28,8 +28,11 @@ COPY _docker_build/*/*.apk /tmp/
 
 # Automatically set if you use Docker buildx
 ARG TARGETARCH
-# hadolint ignore=DL3018
-RUN apk --no-cache add \
+# hadolint ignore=DL3018,DL3019
+RUN apk update \
+# Do not use apk --no-cache here because opam needs the cache.
+# See https://github.com/ocaml/opam/issues/5186
+ && apk add \
     autoconf \
     automake \
     bash \
@@ -53,7 +56,7 @@ RUN apk --no-cache add \
     openssl-dev \
     patch \
     perl \
-    postgresql-dev \
+    postgresql14-dev \
     rsync \
     tar \
     unzip \
@@ -61,11 +64,10 @@ RUN apk --no-cache add \
     xz \
     zlib-dev \
     zlib-static \
+    libusb-dev \
     # Custom packages from `scripts/build-libusb-hidapi.sh`
     hidapi-0.9.0-r2.apk \
     hidapi-dev-0.9.0-r2.apk \
-    libusb-1.0.24-r2.apk \
-    libusb-dev-1.0.24-r2.apk \
 # Install UPX manually to get current multi-arch release
 # https://upx.github.io/
  && curl -fsSL https://github.com/upx/upx/releases/download/v3.96/upx-3.96-${TARGETARCH}_linux.tar.xz \
@@ -101,8 +103,6 @@ RUN opam init --disable-sandboxing --no-setup --yes \
               tezos /home/tezos/opam-repository && \
     opam admin cache && \
     opam update && \
-    opam install opam-depext && \
-    opam depext --update --yes $(opam list --all --short | grep -v ocaml-option-) && \
     opam clean
 
 ENTRYPOINT [ "opam", "exec", "--" ]

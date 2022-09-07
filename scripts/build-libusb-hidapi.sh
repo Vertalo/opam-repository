@@ -49,33 +49,6 @@ tmp_dir=$(mktemp -dt "tezos.$library.XXXXXXXX")
 
 # /!\ Too quick queries to alpinelinux.org will result in rate limiting errors '429 Too Many Requests'
 
-if [ "$library" = "libusb" ]; then
-
-  # download package description
-  curl -fsSL \
-    "https://git.alpinelinux.org/aports/plain/main/$library/APKBUILD?h=$alpine_version-stable" \
-    -o "${tmp_dir}/APKBUILD.$library"
-
-  sleep 3
-
-  # download associated patch 1
-  curl -fsSL \
-    "https://git.alpinelinux.org/aports/plain/main/libusb/f38f09da98acc63966b65b72029b1f7f81166bef.patch?h=$alpine_version-stable" \
-    -o "${tmp_dir}/f38f09da98acc63966b65b72029b1f7f81166bef.patch"
-
-  sleep 3
-
-  # download associated patch 2
-  curl -fsSL \
-    "https://git.alpinelinux.org/aports/plain/main/libusb/f6d2cb561402c3b6d3627c0eb89e009b503d9067.patch?h=$alpine_version-stable" \
-    -o "${tmp_dir}/f6d2cb561402c3b6d3627c0eb89e009b503d9067.patch"
-
-  #shellcheck disable=SC2016
-  sed 's/--disable-static/--enable-static/' \
-    "${tmp_dir}/APKBUILD.$library" > "${tmp_dir}/APKBUILD"
-
-fi
-
 if [ "$library" = "hidapi" ]; then
 #shellcheck disable=SC2154
 #alpine-version is declared in version.sh

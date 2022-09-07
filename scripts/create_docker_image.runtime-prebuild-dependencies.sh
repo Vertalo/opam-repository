@@ -13,7 +13,6 @@ image_tag="${2:-runtime-prebuild-dependencies}"
 runtime_dependencies_image="${3:-tezos/opam-repository:runtime-dependencies}"
 targetarch="${4:-amd64}"
 
-"$script_dir"/build-libusb-hidapi.sh libusb
 "$script_dir"/build-libusb-hidapi.sh hidapi
 
 echo

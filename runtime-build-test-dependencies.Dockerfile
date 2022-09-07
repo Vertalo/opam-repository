@@ -27,6 +27,7 @@ WORKDIR /tmp
 # hadolint ignore=DL3018,SC2046
 RUN apk --no-cache add \
         python3-dev \
+	poetry \
         py3-pip \
         py3-sphinx \
         py3-sphinx_rtd_theme \
@@ -51,22 +52,18 @@ RUN /tmp/install-nvm.sh \
 
 ### Python setup
 
-# Deactivate rust-crypto build until we update rust
-ENV CRYPTOGRAPHY_DONT_BUILD_RUST=1
 # Required to have poetry in the path in the CI
 ENV PATH="/home/tezos/.local/bin:${PATH}"
 
 # Copy poetry files to install the dependencies in the docker image
 COPY --chown=tezos:tezos ./poetry.lock ./pyproject.toml ./
 
-# Install poetry (https://github.com/python-poetry/poetry)
-RUN pip3 --no-cache-dir install --user poetry==1.0.10 && \
-    # Poetry will create the virtual environment in $(pwd)/.venv.
-    # The containers running this image can load the virtualenv with
-    # $(pwd)/.venv/bin/activate and do not require to run `poetry install`
-    # It speeds up the Tezos CI and simplifies the .gitlab-ci.yml file
-    # by avoiding duplicated poetry setup checks.
-    poetry config virtualenvs.in-project true && \
+# Poetry will create the virtual environment in $(pwd)/.venv.
+# The containers running this image can load the virtualenv with
+# $(pwd)/.venv/bin/activate and do not require to run `poetry install`
+# It speeds up the Tezos CI and simplifies the .gitlab-ci.yml file
+# by avoiding duplicated poetry setup checks.
+RUN poetry config virtualenvs.in-project true && \
     poetry install && \
     rm -rf /tmp/*
 
