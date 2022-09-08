@@ -21,13 +21,16 @@ USER root
 
 WORKDIR /tmp
 
+# Automatically set if you use Docker buildx
+ARG TARGETARCH
+
 # Adds static packages of hidapi built by `scripts/build-extra-apk.sh`
 # in `runtime-prebuild-dependencies` image.
 COPY _docker_build/keys /etc/apk/keys/
-COPY _docker_build/*/*.apk /tmp/
+COPY _docker_build/*/*.apk .
+# TODO: use COPY _docker_build/${TARGETARCH_ALPINE_NAME}/*.apk .
+# (x86_64 for what docker calls amd64, aarch64 for arm64, ...)
 
-# Automatically set if you use Docker buildx
-ARG TARGETARCH
 # hadolint ignore=DL3018,DL3019
 RUN apk update \
 # Do not use apk --no-cache here because opam needs the cache.
@@ -76,11 +79,13 @@ RUN apk update \
  && tar -xf upx-3.96-${TARGETARCH}_linux.tar.xz \
  && mv upx-3.96-${TARGETARCH}_linux/upx /usr/local/bin/upx \
  && chmod 755 /usr/local/bin/upx \
+# Cleanup
  && rm -rf /tmp/*
 
 USER tezos
 WORKDIR /home/tezos
 
+# TODO: Use a single COPY instruction and avoid duplicates files
 COPY --chown=tezos:tezos repo opam-repository/
 COPY --chown=tezos:tezos packages opam-repository/packages
 COPY --chown=tezos:tezos \
@@ -100,10 +105,10 @@ ARG OCAML_VERSION
 # hadolint ignore=SC2046,DL4006
 RUN opam init --disable-sandboxing --no-setup --yes \
               --compiler ocaml-base-compiler.${OCAML_VERSION} \
-              tezos /home/tezos/opam-repository && \
-    opam admin cache && \
-    opam update && \
-    opam clean
+              tezos /home/tezos/opam-repository \
+ && opam admin cache \
+ && opam update \
+ && opam clean
 
 ENTRYPOINT [ "opam", "exec", "--" ]
 CMD [ "/bin/sh" ]

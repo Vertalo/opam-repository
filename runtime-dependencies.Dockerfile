@@ -40,6 +40,7 @@ RUN echo 'tezos:x:1000:tezos' >> /etc/group \
  && echo 'tezos ALL=(ALL:ALL) NOPASSWD:ALL' > /etc/sudoers.d/tezos \
  && chmod 440 /etc/sudoers.d/tezos
 
+# Sapling parameters
 COPY ./zcash-params/sapling-output.params ./zcash-params/sapling-spend.params /usr/share/zcash-params/
 
 # Git configuration

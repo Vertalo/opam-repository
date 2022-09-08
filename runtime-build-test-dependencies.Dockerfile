@@ -63,8 +63,8 @@ COPY --chown=tezos:tezos ./poetry.lock ./pyproject.toml ./
 # $(pwd)/.venv/bin/activate and do not require to run `poetry install`
 # It speeds up the Tezos CI and simplifies the .gitlab-ci.yml file
 # by avoiding duplicated poetry setup checks.
-RUN poetry config virtualenvs.in-project true && \
-    poetry install && \
-    rm -rf /tmp/*
+RUN poetry config virtualenvs.in-project true \
+ && poetry install \
+ && rm -rf /tmp/*
 
 # ENTRYPOINT and CMD already set in runtime-prebuild-dependencies
