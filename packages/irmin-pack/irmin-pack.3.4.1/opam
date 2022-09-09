@@ -30,10 +30,10 @@ depends: [
 synopsis: "Irmin backend which stores values in a pack file"
 url {
   src:
-    "https://github.com/mirage/irmin/releases/download/3.4.0/irmin-3.4.0.tbz"
+    "https://github.com/mirage/irmin/releases/download/3.4.1/irmin-3.4.1.tbz"
   checksum: [
-    "sha256=9e72efdc13324602d8da46e0492b1f4e09ad524149845e1a9106882f60ad6e1f"
-    "sha512=ae9cb4b086c7b93962aafc2ea339ac85c6d66bdf769f70a16f62fa5c74d9b194e12ac00b510be5ffac5adff3aa20fd69c4ca4067dcc966767fefcf5c02bc9969"
+    "sha256=922836116c30ec68068a38694a09bba521cf47edd0e4ae44e076b9b4963da180"
+    "sha512=30f6833157cab53cc285093d7f6a82492b9a3709c860160278b1e7b665a7640a0a4c6a0415df0c8127b3967a60146a6cbb99f1151476736afde6e2cf50a56890"
   ]
 }
-x-commit-hash: "9b2324763b754af9f823ee98c0b5b557cd102b9d"
+x-commit-hash: "e77a9fc948b8dd0220a312af9f7aaa1e2b9f2d6d"

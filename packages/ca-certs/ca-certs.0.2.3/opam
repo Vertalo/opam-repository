@@ -26,7 +26,9 @@ depends: [
   "alcotest" {with-test}
   "fmt" {with-test & >= "0.8.7"}
 ]
-conflicts: [ "result" {< "1.5"} ]
+conflicts: [
+  "result" {< "1.5"}
+]
 dev-repo: "git+https://github.com/mirage/ca-certs.git"
 build: [
   ["dune" "subst"] {dev}
@@ -48,10 +50,10 @@ depexts: [
 ]
 url {
   src:
-    "https://github.com/mirage/ca-certs/releases/download/v0.2.2/ca-certs-v0.2.2.tbz"
+    "https://github.com/mirage/ca-certs/releases/download/v0.2.3/ca-certs-0.2.3.tbz"
   checksum: [
-    "sha256=4f1e77cc125e99987738387ff22cda8710e826f5ef3452f2000f0b30cd668652"
-    "sha512=70e564a5bb69a66018ff3387bf7b4b6af2ec1507d9f2f140f2aa8519e405920ec1469e56d1fa2aa8b452d05531a35f22df2c1ac08071f9a322525e95de8e3e1f"
+    "sha256=d2d8d6457d915ef6d783def82f3be5ec2f56f92e20214f58edd63c9c2fc60e9c"
+    "sha512=e945112be3b2f1fbcaeb95aebb600cd5119f1f05583ebcc0a4a20dd159d8cfec5adc3443aae678ee159c0e0c32b1d7c0ba3ba4405e3483e3f565e4d29d3da0f7"
   ]
 }
-x-commit-hash: "20c2d4ed91bc7cd76a1bc289ad8dcc5a80006cc6"
+x-commit-hash: "9ee07b8ab77eb9ec8b6d84f98359e45e1beb9b9d"

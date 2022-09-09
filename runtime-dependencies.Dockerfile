@@ -54,7 +54,6 @@ RUN apk --no-cache add \
     hidapi \
     libc-dev \
     libev \
-    libffi \
     sudo
 
 USER tezos

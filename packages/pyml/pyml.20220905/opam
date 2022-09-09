@@ -21,6 +21,7 @@ build: [
 ]
 synopsis: "OCaml bindings for Python"
 description: "OCaml bindings for Python 2 and Python 3"
+available: arch != "s390x"
 depends: [
   "ocaml" {>= "3.12.1"}
   "dune" {>= "2.8.0"}
@@ -32,9 +33,9 @@ depends: [
 depopts: ["utop"]
 url {
   src:
-    "https://github.com/thierry-martinez/pyml/releases/download/20220615/pyml-20220615.tar.gz"
+    "https://github.com/thierry-martinez/pyml/releases/download/20220905/pyml.20220905.tar.gz"
   checksum: [
-    "sha512=8ad6b6c92ca1c2cdaae4a0fbc0baca75e80c95239731e56537b7c78c613ce0e0f2e13aa7a976631a324d4faf8291bc5f2f48cc8956e7c5623fb858d8a483e0b5"
-    "sha256=495c30bc0b3384b22b8b5b8b766cc3166d086bc5e2549f69b179fc934e4aeee1"
+    "sha512=7c3a37f9f396e02529769b3db824fc1e8ad63064a1abeaac52f7fbbc4ef698f8a56643e80afc446667f4e885c5a28a8b7e5f695aad126477e895be26eb30b005"
+    "sha256=bd44a4c660b9c5d9797aedf1be452bb60e1813532a0c7d606521eae6848f01e5"
   ]
 }
