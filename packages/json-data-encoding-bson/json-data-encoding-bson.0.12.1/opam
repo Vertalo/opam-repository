@@ -17,10 +17,10 @@ depends: [
 ]
 url {
   src:
-    "https://gitlab.com/nomadic-labs/json-data-encoding/-/archive/0.12/json-data-encoding-0.12.tar.gz"
+    "https://gitlab.com/nomadic-labs/json-data-encoding/-/archive/0.12.1/json-data-encoding-0.12.1.tar.gz"
   checksum: [
-    "md5=2f3252c51185fcb2f17b1437b5264c37"
-    "sha512=d413d23b679aab898cce4138c60cf484a4be7272dcd802fd8dfaa03f17ff9d19584976d8b957f60fd5c8abdc3d55d6d62b70ae2d4716bf0c6645b69350678ec5"
-    "sha256=83e58b8b7235ad56a497307d8b0b1e35ac4881a76129f95ca07815ec4da54e54"
+    "md5=f70939e5bcaae19f5996e05d3baf5536"
+    "sha512=891f3bc6aa12e9968bec9a18fdc594fd435a67b9291a9246cb4e6b9bc030181d5bab7a07a36632e492cbfebab3ad6ad65e9358fb3e41f26027eefb7a3337d0a9"
+    "sha256=361e84daa7419806b91538bbeb00d15e653c55bdbd5778b2f14ac2511a026215"
   ]
 }

@@ -20,7 +20,7 @@ depends: [
   "base64" {>= "3.3.0"}
   "mirage-crypto"
   "mirage-crypto-pk"
-  "mirage-crypto-ec" {>= "0.10.0"}
+  "mirage-crypto-ec" {>= "0.10.7"}
   "mirage-crypto-rng"
   "fmt" {>= "0.8.7"}
   "alcotest" {with-test}
@@ -50,10 +50,10 @@ namely PKCS 1, PKCS 5, PKCS 7, PKCS 8, PKCS 9, PKCS 10, and PKCS 12.
 """
 url {
   src:
-    "https://github.com/mirleft/ocaml-x509/releases/download/v0.16.0/x509-0.16.0.tbz"
+    "https://github.com/mirleft/ocaml-x509/releases/download/v0.16.1/x509-0.16.1.tbz"
   checksum: [
-    "sha256=67a6727fb4c38b919334eef2f8ef4eac0237029a439ff981d408eca8b9833595"
-    "sha512=c9b4cf55d16d8b1e6b6faa18fc9ac08065fa09937f07a3447d4b637539b37bea6374c98d184eba159a8ba8eba860303a78563097e47ef30529fedaaf722115c6"
+    "sha256=bc6c5edd8b92871dfb8866a4d60153dc2b9864ab99877690b83af04b8cfa313b"
+    "sha512=830ad6ad28a9ee5fbd24206362d552be166a0aac7de73616e790713b4a2edb07c8225d21eeaa148b202f2cdf2713d0098ac96f0b0a42dbeb07ee61137441d735"
   ]
 }
-x-commit-hash: "e87d4baef3faedc05e1e4f2e36e16a4def5894ff"
+x-commit-hash: "849a4a4ae28428ef5e31120c086c6bcf941c123b"
