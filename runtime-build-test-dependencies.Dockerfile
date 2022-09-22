@@ -36,6 +36,7 @@ RUN apk --no-cache add \
  && curl -fsSL https://github.com/koalaman/shellcheck/releases/download/v0.8.0/shellcheck-v0.8.0.linux.$(arch).tar.xz \
     -o shellcheck-v0.8.0.linux.$(arch).tar.xz \
  && sha512sum --check --ignore-missing /home/tezos/remote-files.sha512 \
+ && rm /home/tezos/remote-files.sha512 \
  && tar -xf shellcheck-v0.8.0.linux.$(arch).tar.xz \
  && mv shellcheck-v0.8.0/shellcheck /usr/local/bin/shellcheck \
  && chmod 755 /usr/local/bin/shellcheck \
