@@ -43,10 +43,6 @@ RUN echo 'tezos:x:1000:tezos' >> /etc/group \
 # Sapling parameters
 COPY ./zcash-params/sapling-output.params ./zcash-params/sapling-spend.params /usr/share/zcash-params/
 
-# Git configuration
-# Verify remote files checksum (prevent tampering)
-COPY --chown=tezos:tezos .gitconfig remote-files.sha512 /home/tezos/
-
 # hadolint ignore=DL3018
 RUN apk --no-cache add \
     binutils \

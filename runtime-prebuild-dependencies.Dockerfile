@@ -31,6 +31,10 @@ COPY _docker_build/*/*.apk .
 # TODO: use COPY _docker_build/${TARGETARCH_ALPINE_NAME}/*.apk .
 # (x86_64 for what docker calls amd64, aarch64 for arm64, ...)
 
+# Verify remote files checksum (prevent tampering)
+# why the git config???
+COPY --chown=tezos:tezos .gitconfig remote-files.sha512 /home/tezos/
+
 # hadolint ignore=DL3018,DL3019
 RUN apk update \
 # Do not use apk --no-cache here because opam needs the cache.
