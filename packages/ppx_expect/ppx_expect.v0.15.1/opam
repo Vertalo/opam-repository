@@ -10,7 +10,7 @@ build: [
   ["dune" "build" "-p" name "-j" jobs]
 ]
 depends: [
-  "ocaml"           {>= "4.08.0" & < "5.0"}
+  "ocaml"           {>= "4.08.0"}
   "base"            {>= "v0.15" & < "v0.16"}
   "ppx_here"        {>= "v0.15" & < "v0.16"}
   "ppx_inline_test" {>= "v0.15" & < "v0.16"}
@@ -25,9 +25,9 @@ Part of the Jane Street's PPX rewriters collection.
 "
 url {
   src:
-    "https://ocaml.janestreet.com/ocaml-core/v0.15/files/ppx_expect-v0.15.0.tar.gz"
+    "https://github.com/janestreet/ppx_expect/archive/refs/tags/v0.15.1.tar.gz"
   checksum: [
-    "sha256=06315a45b43da72f96719bcb183c0177b5198beae8c3ddce357e180a32f9ca7b"
-    "sha512=05ebf29d011ca1d4da2753d98a577b222e9d134519b71a52af846e689ce84041adcb095d98573a555e9f1f08e01e6778e50c493e11e570e2e14bf82349825e31"
+    "sha256=dd3eaa86e921501414dac6b2f68238ff5455a0f7bec13f851dc51eba2f9a2097"
+    "sha512=483c320dcfa628a1140d727e63fe4c5e2b298d9c58ab9975f8b3b5fcfbb3348f04a901d8b4a8d8288b14959fddbf2578a8b48de7352e4ce90439e26a27026780"
   ]
 }
