@@ -16,6 +16,7 @@ depends: [
   "dune" {>= "2.0"}
   "odoc" {with-doc}
   "postgresql" {>= "5.0.0"}
+  "uri" {>= "4.0.0"}
 ]
 build: [
   ["dune" "build" "-p" name "-j" jobs]
@@ -26,10 +27,10 @@ dev-repo: "git+https://github.com/paurkedal/ocaml-caqti.git"
 synopsis: "PostgreSQL driver for Caqti based on C bindings"
 url {
   src:
-    "https://github.com/paurkedal/ocaml-caqti/releases/download/v1.9.0/caqti-v1.9.0.tbz"
+    "https://github.com/paurkedal/ocaml-caqti/releases/download/v1.9.1/caqti-v1.9.1.tbz"
   checksum: [
-    "sha256=e1f580848faf3a54f23174067f2c75f77f6a2fe50ca8bc923428d0e1841192c5"
-    "sha512=7a11edfcfbbe4855347b066e222cf6bf46d1afedcd4978661b9a2b3931921faa1768a6bc24031fd3afa84537fe2adc8b139399deb77120461bee8fb394d68e82"
+    "sha256=3d0060241371dc8704ebfbf23487f6e9adb14ad536d8b0617dff1e33a50f689e"
+    "sha512=5350f540c8b24a0a0e7a615b05cdb769793d0d742bd7c1a9c2c92ff7e72248f2d2ee36a9dad6919466ab2df96c886f17d454477880c56fa267a29439b384680b"
   ]
 }
-x-commit-hash: "55ab7a2851694f08c62cbb6438c681ebb565636d"
+x-commit-hash: "cba1047b9e318bc450be72ab9dfb302aac8e4a78"
