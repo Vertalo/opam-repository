@@ -4,7 +4,7 @@ synopsis: "Inotify bindings for OCaml"
 description: "Inotify bindings for OCaml"
 maintainer: ["whitequark <whitequark@whitequark.org>"]
 authors: ["whitequark <whitequark@whitequark.org>"]
-license: "LGPL-2.1"
+license: "LGPL-2.1-only WITH OCaml-LGPL-linking-exception"
 homepage: "https://github.com/whitequark/ocaml-inotify"
 doc: "https://whitequark.github.io/ocaml-inotify"
 bug-reports: "https://github.com/whitequark/ocaml-inotify/issues"
@@ -38,10 +38,10 @@ build: [
 ]
 dev-repo: "git+https://github.com/whitequark/ocaml-inotify.git"
 url {
-  src: "https://github.com/whitequark/ocaml-inotify/archive/v2.4.tar.gz"
+  src: "https://github.com/whitequark/ocaml-inotify/archive/v2.4.1.tar.gz"
   checksum: [
-    "md5=6f8c4363528ab10b31f66d18ce095ac1"
-    "sha512=d164ab997517008671fdd60ab219cf1539f75928334838f416e31799a2c5198a97eb9d795225c3bb40cc41ac8431022c26b7c8b78ad2d45673158a5e2e554997"
-    "sha256=91eee822a42c94448e5724c088fbb8bcdf87d55d127226f79765b400109a0516"
+    "md5=5bb1c5754d305acf9c1f10611f49aae2"
+    "sha512=3e114ee0e8b5b9c7c996df0d2cd8f03e0efdfb9837c1990f98c256868c0e2ad275f91be1adcfbbbcf1bdab801f18e82efa483510d2566e0d12cb303dfc91e4e5"
+    "sha256=63c093054b46f259607148c082f2a37bfbdeb301f17ac87e65de23ba2781ebae"
   ]
 }

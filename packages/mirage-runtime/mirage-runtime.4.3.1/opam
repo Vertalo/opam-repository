@@ -24,16 +24,17 @@ depends: [
   "lwt" {>= "4.0.0"}
   "alcotest" {with-test}
 ]
+conflicts: [ "result" {< "1.5"} ]
 synopsis: "The base MirageOS runtime library, part of every MirageOS unikernel"
 description: """
 A bundle of useful runtime functions for applications built with MirageOS
 """
 url {
   src:
-    "https://github.com/mirage/mirage/releases/download/v4.3.0/mirage-4.3.0.tbz"
+    "https://github.com/mirage/mirage/releases/download/v4.3.1/mirage-4.3.1.tbz"
   checksum: [
-    "sha256=6794212f3351ba3aacdcc4ef1752f97d8049795ffb2df714feb9f0f890f9ad8d"
-    "sha512=43a23e45372e289cb007d98fdfc91d8a54c655d5f7b4cea8cb60fb2c0e7b4e79e412f4eacc780892ec490ade68368207b7e4fe29ca706e5dc02bf0f8bf088ba4"
+    "sha256=7fff351b8f2e45f8875ecf8efe4e109c2352e5c8a9dfde56b057382e26f4bf8b"
+    "sha512=9b62cdbc3ba390883339327cdcd077176715b9139ba42412bd6c4430187acc3cd87b09298d0d8746fc418bf761054f666c532a2e6027c09f3ac27407379e2bb8"
   ]
 }
-x-commit-hash: "fc13da4fe27419bb15792803e46defd76a6cc0da"
+x-commit-hash: "e12efc5865e52aa85d0a2e15897357695856a8fc"
