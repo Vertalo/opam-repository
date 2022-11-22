@@ -27,7 +27,7 @@ WORKDIR /tmp
 # hadolint ignore=DL3018,SC2046
 RUN apk --no-cache add \
         python3-dev \
-	poetry \
+        poetry \
         py3-pip \
         py3-sphinx \
         py3-sphinx_rtd_theme \
