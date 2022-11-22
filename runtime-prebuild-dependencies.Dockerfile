@@ -46,6 +46,7 @@ RUN apk update \
     build-base \
     ca-certificates \
     cargo \
+    cmake \
     coreutils \
     curl \
     eudev-dev \
