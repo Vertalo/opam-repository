@@ -28,9 +28,6 @@ WORKDIR /tmp
 RUN apk --no-cache add \
         python3-dev \
         poetry \
-        py3-pip \
-        py3-sphinx \
-        py3-sphinx_rtd_theme \
  # Install shellcheck manually to get current multi-arch release
  # https://www.shellcheck.net/
  && curl -fsSL https://github.com/koalaman/shellcheck/releases/download/v0.8.0/shellcheck-v0.8.0.linux.$(arch).tar.xz \
