@@ -1,22 +1,19 @@
 opam-version: "2.0"
-synopsis: "Library to write arithmetic circuits for Plonk"
-maintainer: "privacy-team@nomadic-labs.com"
-authors: "Nomadic Labs Privacy Team"
+synopsis: "Polynomials over BLS12-381 finite field"
+maintainer: ["privacy-team@nomadic-labs.com"]
+authors: ["Nomadic Labs Privacy Team"]
 license: "MIT"
 homepage: "https://gitlab.com/nomadic-labs/privacy-team"
 bug-reports: "https://gitlab.com/nomadic-labs/privacy-team/-/issues"
 depends: [
   "dune" {>= "2.8"}
   "ocaml" {>= "4.12.0"}
-  "hacl-star" {>= "0.4.0"}
   "bls12-381" {>= "4.0.0"}
-  "tezos-bls12-381-polynomial" {= version}
-  "data-encoding"
-  "hex"
-  "stdint"
-  "ff"
-  "mec" {= "0.1.0"}
+  "ppx_repr"
+  "bigstringaf" {>= "0.5.0"}
   "alcotest" {with-test & >= "1.1.0"}
+  "qcheck-alcotest" {with-test}
+  "polynomial" {with-test & >= "0.4.0" & < "0.5.0"}
   "bisect_ppx" {with-test}
   "odoc" {with-doc}
 ]
@@ -30,10 +27,11 @@ build: [
     "-j"
     jobs
     "@install"
+    "@runtest" {with-test}
     "@doc" {with-doc}
   ]
 ]
-dev-repo: "git+https://gitlab.com/nomadic-labs/privacy-team.git"
+dev-repo: "git+https://gitlab.com/nomadic-labs/cryptography/privacy-team#vdum@release"
 url {
   src:
     "https://gitlab.com/nomadic-labs/privacy-team/-/archive/v0.1.3/privacy-team-v0.1.3.tar.gz"

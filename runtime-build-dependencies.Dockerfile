@@ -30,6 +30,9 @@ ENV BLST_PORTABLE=yes
 # Opam does not "see" the custom hidapi apk installed.
 # That's the reason why --assume-depexts.
 # hadolint ignore=SC2046,DL4006
-RUN opam install --assume-depexts --yes $(opam list --all --short | grep -v ocaml-option-)
+RUN opam pin add --yes --no-action tezos-bls12-381-polynomial "git+https://gitlab.com/nomadic-labs/cryptography/privacy-team#vdum@release" &&\
+  opam pin add --yes --no-action tezos-plompiler "git+https://gitlab.com/nomadic-labs/cryptography/privacy-team#vdum@release" &&\
+  opam pin add --yes --no-action tezos-plonk "git+https://gitlab.com/nomadic-labs/cryptography/privacy-team#vdum@release" &&\
+  opam install --assume-depexts --yes $(opam list --all --short | grep -v ocaml-option-)
 
 # ENTRYPOINT and CMD already set in runtime-prebuild-dependencies
