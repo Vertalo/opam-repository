@@ -48,9 +48,11 @@ RUN apk --no-cache add \
     binutils \
     gcc \
     gmp \
+    libgmpxx \
     hidapi \
     libc-dev \
     libev \
+    libffi \
     sudo
 
 USER tezos
