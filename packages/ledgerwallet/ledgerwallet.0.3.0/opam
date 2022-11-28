@@ -1,5 +1,5 @@
 opam-version: "2.0"
-authors: "Vincent Bernardoff <vb@luminar.eu.org>"
+authors: [ "Vincent Bernardoff <vb@luminar.eu.org>" "Nomadic Labs" ]
 maintainer: "Vincent Bernardoff <vb@luminar.eu.org>"
 license: "ISC"
 homepage: "https://github.com/vbmithr/ocaml-ledger-wallet"
@@ -18,10 +18,9 @@ synopsis: "Ledger wallet library for OCaml"
 description: """Library to communicate with Ledger hardware wallets
 """
 url {
-  src: "https://github.com/vbmithr/ocaml-ledger-wallet/archive/0.2.1.tar.gz"
+  src: "https://github.com/vbmithr/ocaml-ledger-wallet/archive/0.3.0.tar.gz"
   checksum: [
-    "md5=52e4364268bdfd5ab1e49d6ebcf71dff"
-    "sha512=927338a9e47735777d1544c5a25316896a994aab90af1ae9940b83cf463ef7015ae5949bc846b4d5c308970e1e2625ba5c662e1576cf83a2fa4771dd0ff18027"
-    "sha256=0ce3126b4696139f791c7b82fa75969726123803b31a61856d66939346ea5a30"
+    "sha256=36cbd59f7773cdc6a269ad3d399d8ad958b56c3502509f60092d5d2503f64641"
+    "sha512=d95aa986383a8d50307680bcc197bcb5cb6a1a42d5a94df9a8019de31062285a266eabdfd5940324adbc19bc4828d03dfd459a9bcab676d13758438bbce6eb15"
   ]
 }
