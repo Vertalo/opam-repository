@@ -18,7 +18,7 @@ under the ISC license.
 
 [rfc3339]: http://tools.ietf.org/html/rfc3339
 
-Home page: http://erratique.ch/software/ptime"""
+Home page: <http://erratique.ch/software/ptime>"""
 maintainer: "Daniel Bünzli <daniel.buenzl i@erratique.ch>"
 authors: "The ptime programmers"
 license: "ISC"
@@ -35,9 +35,9 @@ depends: [
 build: ["ocaml" "pkg/pkg.ml" "build" "--dev-pkg" "%{dev}%"]
 dev-repo: "git+https://erratique.ch/repos/ptime.git"
 url {
-  src: "https://erratique.ch/software/ptime/releases/ptime-1.0.0.tbz"
+  src: "https://erratique.ch/software/ptime/releases/ptime-1.1.0.tbz"
   checksum: [
-    "sha512=df2410d9cc25a33083fe968a584b8fb4d68ad5c077f3356da0a20427e6cd8756a5b946b921e5cf8ed4097f2c506e93345d9dca63b113be644d5a7cc0753d1534"
-    "sha256=441c838c0162c83751f06ebadff33169bb921d34eec159fbbabb70ed9de2110b"
+    "sha512=309b8383f61b58840e58a82802ec8fbc61b7cc95a4590d38ad427e484cbaaf66f03fa8e6484b5b6855468a87e745aed103bf6f1041ec05062230a9fa5fb86cc6"
+    "sha256=cbf5b15454fb27105e2c334023e1e11d8f939d7178870f5cbe8ed26df7013eb1"
   ]
 }
