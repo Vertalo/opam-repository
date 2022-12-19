@@ -19,9 +19,11 @@ depends: [
   "fmt"
   "logs"
   "lwt"          {>= "5.4.0"}
-  "mtime"
+  "mtime"        {< "2.0.0"}
   "cmdliner"
   "optint"       {>= "0.1.0"}
+  "checkseum"
+  "rusage"
   "irmin-test"   {with-test & = version}
   "alcotest-lwt" {with-test}
   "astring"      {with-test}
@@ -30,10 +32,10 @@ depends: [
 synopsis: "Irmin backend which stores values in a pack file"
 url {
   src:
-    "https://github.com/mirage/irmin/releases/download/3.4.3/irmin-3.4.3.tbz"
+    "https://github.com/mirage/irmin/releases/download/3.5.0/irmin-3.5.0.tbz"
   checksum: [
-    "sha256=6e430cf44aee5ffdc94f6bfad8dbc401e3ea036ed1fbcf2a8697198ecbf6d412"
-    "sha512=b969d0913f0776384fafc4f138cb5187a921e827fd9940d0b350601e1913bdecdfc5acc62ec0ff7c6906e230950a68b39bd886ba3fe37be52e1c6117ddce1791"
+    "sha256=9a0d8b07b828f5c24495c879c5b4f6f34b4da508ab40f33a94fef2944364b823"
+    "sha512=4006dafe8dcd43388e372cb3bbfa5dba558b397c2ffb4eea2996e70ba0cfdb533b61874cf5b3db62ae53033c30ee797778d9eebfb03a7d8c8bba117a1c85dc91"
   ]
 }
-x-commit-hash: "2a2b23e1364c6fd09c2a5a01149d6edbeec9e16a"
+x-commit-hash: "f3ca299b70115aa8f99979c61eef0f76e0188a67"
