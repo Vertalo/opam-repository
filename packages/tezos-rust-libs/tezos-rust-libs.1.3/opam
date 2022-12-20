@@ -21,7 +21,7 @@ build:[
     "--release"
     "--package" "wasmer-c-api"
     "--no-default-features"
-    "--features" "singlepass,cranelift,wat,middlewares,universal"
+    "--features" "singlepass,cranelift,llvm,wat,middlewares,universal,dylib,staticlib"
   ]
 ]
 dev-repo: "git+https://gitlab.com/tezos/tezos-rust-libs.git"
