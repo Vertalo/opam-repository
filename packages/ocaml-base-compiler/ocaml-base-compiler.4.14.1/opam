@@ -1,5 +1,5 @@
 opam-version: "2.0"
-synopsis: "Official release 4.14.0"
+synopsis: "Official release 4.14.1"
 maintainer: "platform@lists.ocaml.org"
 license: "LGPL-2.1-or-later WITH OCaml-LGPL-linking-exception"
 authors: "Xavier Leroy and many contributors"
@@ -7,7 +7,7 @@ homepage: "https://ocaml.org"
 bug-reports: "https://github.com/ocaml/opam-repository/issues"
 dev-repo: "git+https://github.com/ocaml/ocaml"
 depends: [
-  "ocaml" {= "4.14.0" & post}
+  "ocaml" {= "4.14.1" & post}
   "base-unix" {post}
   "base-bigarray" {post}
   "base-threads" {post}
@@ -29,10 +29,10 @@ build: [
 ]
 install: [make "install"]
 url {
-  src: "https://github.com/ocaml/ocaml/archive/4.14.0.tar.gz"
+  src: "https://github.com/ocaml/ocaml/archive/4.14.1.tar.gz"
   checksum: [
-    "sha256=39f44260382f28d1054c5f9d8bf4753cb7ad64027da792f7938344544da155e8"
-    "sha512=3c5e5b9f00bb109dd99b5f7b0078cf8663d4247e548f3e601d6b2a55582e04bb20f6de85005c4cf2f78ae9aaa449f5ca6f2bab2f6ce83eeb3aeb386e3f2fcc32"
+    "sha256=776006e6f0b9bcfb6d9d74381c588e587432ca85562fde93bb80472a5145b028"
+    "sha512=6340e145c7d11a1ee9fa1699fc6a8a6785f14ff9c05dca708cf278194642ec9b7c562d744d8b38e5dab74b88fa3a5760035e214f5f8fab8b233a344b035db8fb"
   ]
 }
 extra-files: ["ocaml-base-compiler.install" "md5=3e969b841df1f51ca448e6e6295cb451"]

@@ -13,7 +13,7 @@ export rust_version='1.60.0'
 export opam_version='2.1.2'
 
 # Installed via opam in runtime-prebuild-dependencies.Dockerfile
-export ocaml_version='4.14.0'
+export ocaml_version='4.14.1'
 
 # Installed via apk python3-dev in runtime-build-test-dependencies.Dockerfile
 export python_version='3.10.9'
