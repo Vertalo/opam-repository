@@ -20,5 +20,6 @@ echo
 docker build \
        -f runtime-build-test-dependencies.Dockerfile \
        --build-arg BUILD_IMAGE="${runtime_build_dependencies_image}" \
+       --build-arg NODE_VERSION="${node_version}" \
        -t "$image_name:$image_version" \
        "$repo_dir"

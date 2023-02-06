@@ -44,9 +44,20 @@ WORKDIR /home/tezos
 
 ### Javascript env setup as tezos user
 
-COPY --chown=tezos:tezos nodejs/install-nvm.sh /tmp/install-nvm.sh
+COPY --chown=tezos:tezos nodejs /tmp
+
+ARG NODE_VERSION
+
+# hadolint ignore=SC1091
 RUN /tmp/install-nvm.sh \
+ && recommended_node_version=${NODE_VERSION} \
+ && . /tmp/install_build_deps.js.sh \
+ && npm install -g eth-cli@2.0.2 \
  && rm -rf /tmp/*
+
+ENV PATH "$HOME/.nvm/versions/node/${NODE_VERSION}/bin:$PATH"
+
+RUN eth -v
 
 ### Python setup
 
