@@ -61,7 +61,7 @@ nvm_get_arch() {
   nvm_echo "${NVM_ARCH}"
 }
 
-nvm install "$NODE_VERSION"
+nvm install --default "$NODE_VERSION"
 nvm use --delete-prefix "$NODE_VERSION"
 
 echo "Check versions"
