@@ -6,7 +6,7 @@ set -eu
 current_dir=$(cd "$(dirname "${0}")" && pwd)
 
 image_name="${1:-tezos/opam-repository}"
-image_tag="runtime-build-test-dependencies${2:-}"
+image_tag="runtime-build-test-e2etest-dependencies${2:-}"
 
 run="docker run --rm ${image_name}:${image_tag}"
 
