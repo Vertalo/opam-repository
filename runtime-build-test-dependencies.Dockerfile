@@ -28,6 +28,7 @@ WORKDIR /tmp
 RUN apk --no-cache add \
         python3-dev \
         poetry \
+        npm \
  # Install shellcheck manually to get current multi-arch release
  # https://www.shellcheck.net/
  && curl -fsSL https://github.com/koalaman/shellcheck/releases/download/v0.8.0/shellcheck-v0.8.0.linux.$(arch).tar.xz \
@@ -37,16 +38,12 @@ RUN apk --no-cache add \
  && tar -xf shellcheck-v0.8.0.linux.$(arch).tar.xz \
  && mv shellcheck-v0.8.0/shellcheck /usr/local/bin/shellcheck \
  && chmod 755 /usr/local/bin/shellcheck \
+ # Install eth-cli
+ && npm install -g eth-cli@2.0.2 \
  && rm -rf /tmp/*
 
 USER tezos
 WORKDIR /home/tezos
-
-### Javascript env setup as tezos user
-
-COPY --chown=tezos:tezos nodejs/install-nvm.sh /tmp/install-nvm.sh
-RUN /tmp/install-nvm.sh \
- && rm -rf /tmp/*
 
 ### Python setup
 
