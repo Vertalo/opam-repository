@@ -34,9 +34,9 @@ COPY --chown=tezos:tezos nodejs/install_build_deps.js.sh /tmp
 
 ARG NODE_VERSION
 
-# hadolint ignore=SC1091
+# hadolint ignore=SC1091,SC2034
 RUN recommended_node_version=${NODE_VERSION} \
- && /tmp/install_build_deps.js.sh \
+ && . /tmp/install_build_deps.js.sh \
  && npm install -g eth-cli@2.0.2 \
  && rm -rf /tmp/*
 
