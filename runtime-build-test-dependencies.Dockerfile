@@ -44,6 +44,10 @@ WORKDIR /home/tezos
 
 ### Javascript env setup as tezos user
 
+# TODO: https://gitlab.com/tezos/tezos/-/issues/5026
+# The js dependencies could be downloaded from tezos/tezos and installed
+# here.
+
 COPY --chown=tezos:tezos nodejs/install-nvm.sh /tmp/install-nvm.sh
 RUN /tmp/install-nvm.sh \
  && rm -rf /tmp/*
