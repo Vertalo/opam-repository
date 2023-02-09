@@ -17,6 +17,7 @@ of [Tezos](https://gitlab.com/tezos/tezos)
 - `runtime-prebuild-dependencies.Dockerfile`
 - `runtime-build-dependencies.Dockerfile`
 - `runtime-build-test-dependencies.Dockerfile`
+- `runtime-build-test-e2etest-dependencies.Dockerfile`
 
 ## Poetry files
 

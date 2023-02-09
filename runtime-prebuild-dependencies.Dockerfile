@@ -27,7 +27,7 @@ ARG TARGETARCH
 # Adds static packages of hidapi built by `scripts/build-extra-apk.sh`
 # in `runtime-prebuild-dependencies` image.
 COPY _docker_build/keys /etc/apk/keys/
-COPY _docker_build/*/*.apk .
+COPY _docker_build/*/*.apk ./
 # TODO: use COPY _docker_build/${TARGETARCH_ALPINE_NAME}/*.apk .
 # (x86_64 for what docker calls amd64, aarch64 for arm64, ...)
 

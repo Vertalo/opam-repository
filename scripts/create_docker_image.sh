@@ -28,3 +28,8 @@ targetarch="${3:-amd64}"
              "$image_name" \
              "runtime-build-test-dependencies$tag_suffix" \
              "$image_name:runtime-build-dependencies$tag_suffix"
+
+"$script_dir"/create_docker_image.runtime-build-e2etest-dependencies.sh \
+             "$image_name" \
+             "runtime-build-e2etest-dependencies$tag_suffix" \
+             "$image_name:runtime-build-test-dependencies$tag_suffix"

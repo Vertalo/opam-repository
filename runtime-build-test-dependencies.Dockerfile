@@ -12,9 +12,9 @@
 # This image is intended for
 # - running the CI tests of tezos
 
-ARG BUILD_IMAGE
+ARG BASE_IMAGE
 # hadolint ignore=DL3006
-FROM ${BUILD_IMAGE}
+FROM ${BASE_IMAGE}
 
 LABEL org.opencontainers.image.title="runtime-build-test-dependencies"
 
