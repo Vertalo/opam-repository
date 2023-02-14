@@ -10,10 +10,10 @@ homepage: "http://github.com/igarnier/prbnmcn-stats"
 bug-reports: "http://github.com/igarnier/prbnmcn-stats"
 depends: [
   "dune" {>= "2.8"}
-  "ocaml" {>= "4.12.0"}
+  "ocaml" {>= "4.14"}
   "qcheck" {>= "0.17" & with-test}
+  "ocamlgraph" {>= "2.0.0" & with-test}
   "prbnmcn-basic-structures" {= "0.0.1"}
-  "prbnmcn-linalg" {= "0.0.1"}
   "odoc" {with-doc}
 ]
 build: [
@@ -32,10 +32,11 @@ build: [
 ]
 dev-repo: "git+https://github.com/igarnier/prbnmcn-stats"
 url {
-  src: "https://github.com/igarnier/prbnmcn-stats/archive/0.0.4.tar.gz"
+  src:
+    "https://github.com/igarnier/prbnmcn-stats/archive/refs/tags/0.0.6.tar.gz"
   checksum: [
-    "md5=c16dc635ca63bf0596671847d3e8a319"
-    "sha512=e22b6b425fe6518dfbc653a4894be42a8ef3b35b3982497e3aa426b2d22407b2019b0122cfc4abe0ab5a98060409379c5b349a74c26101c3b597aaa92a5b5285"
-    "sha256=29989b06079e0acaffcc4e8181b51f19ff8d2305881bc9af1677e9612630bd92"
+    "md5=9de4cb85c65ca355cbdf20266433051a"
+    "sha512=cd68f313ce045bfbe94e9b16346c52174842fd719b1a5f79ca4d752a3e18f97717781223a215799b82c862ced495565a24971317a1dd101eb612ea70e9a570d9"
+    "sha256=91b01a46cf9bd942b781589c485a21539e714ba75ae2d772ae9b81b583a27fe4"
   ]
 }
