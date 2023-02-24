@@ -46,10 +46,10 @@ install: [
 dev-repo: "git+https://gitlab.com/tezos/tezos-rust-libs.git"
 url {
   src:
-    "https://gitlab.com/tezos/tezos-rust-libs/-/archive/v1.4/tezos-rust-libs-v1.4.zip"
+    "https://gitlab.com/tezos/tezos-rust-libs/-/archive/v1.5/tezos-rust-libs-v1.5.zip"
   checksum: [
-    "md5=0579c5b9be4c526f5a30586c1f80a864"
-    "sha512=387f6382e1eb8ea1a52abc02ffec50c61b1d18a7b6b9268a977763593ca0fbe28c24ba1076fcae36e963e3ce62aa78cd21e23223f8ab6a22b73fe09fdb4b9cfa"
-    "sha256=d3d75675c57df3c62e54d471e65ac591a71e028877aab7bc3c80464ab601aa37"
+    "md5=e6b78c9928d9e581c09ac040d217cdc9"
+    "sha512=94deea6f1cbc5390545d7997449514661a0920aee7f78774fef70bc65a70367cb8fad9f6af0786a451f0295edc32ead6503d6f2558fe6c5035e082a9736629a3"
+    "sha256=51b64f91593a331d720590abc8b4b155571bf7d248a70e37362d823eeb810260"
   ]
 }
