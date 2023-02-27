@@ -19,6 +19,6 @@ echo
 
 docker build \
        -f runtime-build-e2etest-dependencies.Dockerfile \
-       --build-arg BASE_IMAGE="${runtime_test_dependencies_image}" \
+       --build-arg BUILD_IMAGE="${runtime_test_dependencies_image}" \
        -t "$image_name:$image_version" \
        "$repo_dir"
