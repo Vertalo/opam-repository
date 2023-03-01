@@ -24,10 +24,9 @@ USER root
 
 WORKDIR /tmp
 
-COPY --chown=tezos:tezos nodejs/install-npm.sh /tmp/install-npm.sh
-# hadolint ignore=DL3018
-RUN /tmp/install-npm.sh \
- && rm -rf /tmp/* \
+# hadolint ignore=DL3018,SC1091
+RUN . "$HOME/.nvm/nvm.sh" \
+ && nvm install node \
  && npm install -g eth-cli@2.0.2
 
 USER tezos
