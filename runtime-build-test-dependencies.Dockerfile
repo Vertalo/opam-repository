@@ -5,7 +5,7 @@
 # - non-opam build-dependencies (rust dependencies)
 # - cache for opam build-dependencies
 # - opam build-dependencies
-# - opam test-dependencies (aclotest, crowbar, etc.)
+# - opam test-dependencies (alcotest, etc.)
 # - python and python libraries for tests executed in python
 # - nvm for javascript backend testing
 #
