@@ -24,12 +24,10 @@ USER root
 
 WORKDIR /tmp
 
-# Removes nvm installed in runtime-build-test-dependencies and install npm
-# via apk.
-
+COPY --chown=tezos:tezos nodejs/install-npm.sh /tmp/install-npm.sh
 # hadolint ignore=DL3018
-RUN rm -rf "$HOME/.nvm" \
- && apk add --no-cache npm \
+RUN /tmp/install-npm.sh \
+ && rm -rf /tmp/* \
  && npm install -g eth-cli@2.0.2
 
 USER tezos
