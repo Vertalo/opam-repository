@@ -29,6 +29,9 @@ WORKDIR /tmp
 # In the meantime, removes nvm installed in runtime-build-test-dependencies and
 # install npm via apk.
 
+# Fixing some ipv6 issues on the runner. Always prioritizing ipv4
+ENV NODE_OPTIONS="--dns-result-order=ipv4first"
+
 # hadolint ignore=DL3018
 RUN rm -rf "$HOME/.nvm" \
  && apk add --no-cache npm \
