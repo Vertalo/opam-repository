@@ -26,14 +26,14 @@ build: [
   [make "-C" "hacl-star-raw" "build-bindings"]
 ]
 install: [make "-C" "hacl-star-raw" "install"]
-dev-repo: "git+https://github.com/cryspen/hacl-packages.git"
+dev-repo: "git+https://github.com/Vertalo/hacl-packages.git"
 url {
   src:
-    "https://github.com/cryspen/hacl-packages/releases/download/ocaml-v0.6.2/hacl-star.0.6.2.tar.gz"
+    "https://github.com/Vertalo/hacl-packages/releases/download/ocaml-v0.6.2/hacl-star.0.6.2.tar.gz"
   checksum: [
-    "md5=1d8449a395cf9f0ade232da306b2316f"
-    "sha512=0aa0afc951b30164aca98100ad528f13129566957a3db26bac3c1975c264c4dece01c2b918ad2f9d1b8b563b13044c85ecfdcbced13aee915e4b9d61bff25bf5"
-    "sha256=f2a0e585da467b7c36a8eba7cf19558d0f31d30b610b6e4e2a81c24fadcdf636"
+    "md5=22f08d019998cf23e1ccd6fff81c31e5"
+    "sha512=ef032e419e8e54db00c0a5d2d56965ea9f6268a3d3de301b117786fda680259b9d4c96e3ceebdf48997a9531be1d573ddec586849d1ad36935aaad65f6dfaabe"
+    "sha256=6ce8aa761418477dc7da12032fdbbf0294ddf95894effe24190a047e66ce8b8d"
   ]
 }
 x-ci-accept-failures: ["centos-7" "oraclelinux-7"]
