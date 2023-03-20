@@ -43,13 +43,13 @@ install: [
   ]
   ["cp" "librustzcash/include/rust/types.h" "%{lib}%/tezos-rust-libs/rust"]
 ]
-dev-repo: "git+https://gitlab.com/tezos/tezos-rust-libs.git"
+dev-repo: "git+https://github.com/Vertalo/tezos-rust-libs.git"
 url {
   src:
-    "https://gitlab.com/tezos/tezos-rust-libs/-/archive/v1.5/tezos-rust-libs-v1.5.zip"
+    "https://github.com/Vertalo/tezos-rust-libs/archive/refs/tags/v1.5.zip"
   checksum: [
-    "md5=e6b78c9928d9e581c09ac040d217cdc9"
-    "sha512=94deea6f1cbc5390545d7997449514661a0920aee7f78774fef70bc65a70367cb8fad9f6af0786a451f0295edc32ead6503d6f2558fe6c5035e082a9736629a3"
-    "sha256=51b64f91593a331d720590abc8b4b155571bf7d248a70e37362d823eeb810260"
+    "md5=4bdc0e846e81abdb744b1e495a911008"
+    "sha512=0e434e135c12d29a776b81cdf3d14cb93253b86dc1b5e6a4472cb7d7a296aa59e0ba492923f5a36a1514a007bb164aab949f0c503962d01747f42a9f7618714c"
+    "sha256=41af4781c9e229a42a3d90bf2fb8ffab61b8cc0bf1a6d481f93c272f2da2cb3a"
   ]
 }
