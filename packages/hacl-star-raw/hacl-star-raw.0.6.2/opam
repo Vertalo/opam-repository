@@ -31,9 +31,9 @@ url {
   src:
     "https://github.com/Vertalo/hacl-packages/releases/download/ocaml-v0.6.2/hacl-star.0.6.2.tar.gz"
   checksum: [
-    "md5=f1d1af2cfb7e9f7d0a6c44117dd7ab4d"
-    "sha512=23e9e2c97a20f2e06e7d5adc44c4b506b315a6c982bec1f9703513a01d99aaa4fc79611e13b436230a3023aa1850b633b50d8c9f5c5b1278b40e7608afb90909"
-    "sha256=2ba5b5f6492cfffc2cdbba1bc4ae1a07cf97e0756d2ab8e60abce6f553f921ae"
+    "md5=b204c086aaa8652fb046a4f6a3405d54"
+    "sha512=3cdf6a04c53684f2ca7179c4ffc7fb330845468fe4dcb392dc22781b357f6149ce21ddc208ea08ab6aab6eafc8393e98a3bcc4a207ff11992711fbc0e4bf338f"
+    "sha256=34416af828407e1b6ae604da91dfcecb246c6291fafa0c7c3985e5417b5df9de"
   ]
 }
 x-ci-accept-failures: ["centos-7" "oraclelinux-7"]
