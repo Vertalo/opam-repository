@@ -16,6 +16,9 @@ depends: [
   "zarith"
   "cppo" {build}
   "alcotest" {with-test & >= "1.1.0"}
+  "qcheck-core" {with-test & >= "0.20"}
+  "secp256k1-internal" {with-test}
+  "cstruct" {with-test}
   "odoc" {with-doc}
 ]
 available: os = "freebsd" | os-family != "bsd"
@@ -36,10 +39,10 @@ build: [
 dev-repo: "git+https://github.com/cryspen/hacl-packages.git"
 url {
   src:
-    "https://github.com/cryspen/hacl-packages/releases/download/ocaml-v0.6.2/hacl-star.0.6.2.tar.gz"
+    "https://github.com/cryspen/hacl-packages/releases/download/ocaml-v0.7.0/hacl-star.0.7.0.tar.gz"
   checksum: [
-    "md5=1d8449a395cf9f0ade232da306b2316f"
-    "sha512=0aa0afc951b30164aca98100ad528f13129566957a3db26bac3c1975c264c4dece01c2b918ad2f9d1b8b563b13044c85ecfdcbced13aee915e4b9d61bff25bf5"
-    "sha256=f2a0e585da467b7c36a8eba7cf19558d0f31d30b610b6e4e2a81c24fadcdf636"
+    "md5=7025737929629b3b48618fd6eea8b5df"
+    "sha512=76052c875eff2cb3cfeeb337c92f3b270a55c538ac4574dd9dfaa8d6a18d2ad1bed1a3a632e1b800f3edcc4c10467ababcb6f33fd1ec36678d16900110eb8ced"
+    "sha256=f0af13d6f599e08653bc951b43b1492fabc88fa669c4c3518ac65b9266958140"
   ]
 }
