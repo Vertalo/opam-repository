@@ -14,7 +14,7 @@ depends: [
   "base"     {>= "v0.15" & < "v0.16"}
   "time_now" {>= "v0.15" & < "v0.16"}
   "dune"     {>= "2.0.0"}
-  "ppxlib"   {>= "0.23.0" & < "0.29.0"}
+  "ppxlib"   {>= "0.23.0"}
 ]
 synopsis: "Syntax extension for writing in-line tests in ocaml code"
 description: "
@@ -22,9 +22,10 @@ Part of the Jane Street's PPX rewriters collection.
 "
 url {
   src:
-    "https://ocaml.janestreet.com/ocaml-core/v0.15/files/ppx_inline_test-v0.15.0.tar.gz"
+    "https://github.com/janestreet/ppx_inline_test/archive/refs/tags/v0.15.1.tar.gz"
   checksum: [
-    "sha256=3f78d141abc4a8e2ff69354299f8b2215ad33aa79a36a7f7fb82635e4ea1871b"
-    "sha512=4b413b495aa26fa14d4350e1454d1342477038ee9d85a33dc6ac6c413d08b8fe61292424d2879db2f77a8f7790313319f31839a72217aaec2fccbf3063f9378b"
+    "md5=91d1cf7489d35864381d9a435b46bb64"
+    "sha512=27dd4a4b9f0e8f7b22a7de4016ab0b8733e1ad4fe9e9e19cd98d321c071dd8662830a4e83579a2595d53b0a47c2ba03c1165df95312d6effc46c8aa13c0324b6"
+    "sha256=8a338b06972ccb4a1ba304479ad9cb4c1f111832b2e62356aeaa6d22ba6851b7"
   ]
 }
