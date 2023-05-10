@@ -62,7 +62,7 @@ check_version_in_test_dependency_image() {
   current_python_version=$(${run} python3 --version | awk 'NF>1{print $NF}')
   check_version python "${current_python_version}" "${python_version}"
 
-  current_poetry_version=$(${run} poetry --version | awk 'NF>1{print $NF}')
+  current_poetry_version=$(${run} poetry --version | sed -E 's/^Poetry\s+\(version\s+([0-9\.]+)\)$/\1/')
   check_version poetry "${current_poetry_version}" "${poetry_version}"
 
   die_if_error
