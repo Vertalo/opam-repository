@@ -6,7 +6,6 @@ This repository contains different artefacts used in
 - `packages/` contains specific OPAM packages
 - `zcash-params/` contains the Sapling parameters
 - `scripts/` contains miscellaneous scripts
-- `apk/` contains custom Alpine packages
 
 ## Dockerfiles
 
@@ -26,8 +25,3 @@ scripts used in Tezos. They must not be modified independently from
 the ones provided in the Tezos repo. They are used to build the
 virtual environment the CI jobs will use. They are useful to speed up
 the jobs.
-
-## Custom Alpine packages
-
-To get both shared and static libraries of
-https://github.com/libusb/hidapi

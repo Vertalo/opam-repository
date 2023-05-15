@@ -13,8 +13,6 @@ image_tag="${2:-runtime-prebuild-dependencies}"
 runtime_dependencies_image="${3:-tezos/opam-repository:runtime-dependencies}"
 targetarch="${4:-amd64}"
 
-"$script_dir"/build-extra-apk.sh hidapi
-
 echo
 echo "### Building runtime-prebuild-dependencies image"
 echo "### (includes: non-opam deps, cache of not-installed opam deps)"

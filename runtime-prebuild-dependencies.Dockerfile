@@ -24,13 +24,6 @@ WORKDIR /tmp
 # Automatically set if you use Docker buildx
 ARG TARGETARCH
 
-# Adds static packages of hidapi built by `scripts/build-extra-apk.sh`
-# in `runtime-prebuild-dependencies` image.
-COPY _docker_build/keys /etc/apk/keys/
-COPY _docker_build/*/*.apk .
-# TODO: use COPY _docker_build/${TARGETARCH_ALPINE_NAME}/*.apk .
-# (x86_64 for what docker calls amd64, aarch64 for arm64, ...)
-
 # Verify remote files checksum (prevent tampering)
 # why the git config???
 COPY --chown=tezos:tezos .gitconfig remote-files.sha512 /home/tezos/
@@ -73,9 +66,7 @@ RUN apk update \
     zlib-dev \
     zlib-static \
     libusb-dev \
-    # Custom packages from `scripts/build-extra-apk.sh`
-    hidapi-0.11.2-r1.apk \
-    hidapi-dev-0.11.2-r1.apk \
+    hidapi-dev \
 # Install UPX manually to get current multi-arch release
 # https://upx.github.io/
  && curl -fsSL https://github.com/upx/upx/releases/download/v3.96/upx-3.96-${TARGETARCH}_linux.tar.xz \
