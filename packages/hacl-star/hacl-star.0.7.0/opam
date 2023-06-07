@@ -39,10 +39,10 @@ build: [
 dev-repo: "git+https://github.com/cryspen/hacl-packages.git"
 url {
   src:
-    "https://github.com/cryspen/hacl-packages/releases/download/ocaml-v0.7.0/hacl-star.0.7.0.tar.gz"
+    "https://github.com/Vertalo/hacl-packages/releases/download/ocaml-v0.7.0/hacl-star.0.7.0.tar.gz"
   checksum: [
-    "md5=7025737929629b3b48618fd6eea8b5df"
-    "sha512=76052c875eff2cb3cfeeb337c92f3b270a55c538ac4574dd9dfaa8d6a18d2ad1bed1a3a632e1b800f3edcc4c10467ababcb6f33fd1ec36678d16900110eb8ced"
-    "sha256=f0af13d6f599e08653bc951b43b1492fabc88fa669c4c3518ac65b9266958140"
+    "md5=a74916b43678a35cb9248a9e5413cd75"
+    "sha512=11e6a1b8ca16f8de825c9f59cc7873c9ba0b853e7557aab19d2c272edbf0d72114868ccad1855b7bacf6a11493f3cbcdb4f7c397d3195ec899461cbf43d0070c"
+    "sha256=a7166b46b6874597e73744024dd2374a2c6c6d8db6a328aa49bbcc3efc77cf6b"
   ]
 }
