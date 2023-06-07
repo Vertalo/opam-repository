@@ -40,11 +40,11 @@ dev-repo:
   "git+https://gitlab.com/nomadic-labs/cryptography/ocaml-bls12-381.git"
 url {
   src:
-    "https://gitlab.com/nomadic-labs/cryptography/ocaml-bls12-381/-/archive/6.1.0/ocaml-bls12-381-6.1.0.tar.gz"
+    "https://github.com/Vertalo/ocaml-bls12-381/releases/download/6.1.0/ocaml-bls12-381-6.1.0.tar.gz"
   checksum: [
-    "md5=999c150ef33f33ab2d040308a810a527"
-    "sha512=6afbbbaa6bd855db643d54999af1ec5972c20c303db24f337171b5bee3a1c06ee11ff5d2184d087bd1596a667b74a43ffaa5c287747406518e08e97d85796cba"
-    "sha256=a045e54addac23a8f5aca21b95412cb890126e5bc05d2ac35e28292aafb3c8ae"
+    "md5=9cf3ba0b0e40d9269a105f54e8dde956"
+    "sha512=a2e8fc833faee4442dad1a94b7da1f1204620e71c2ffa8eab6ff1087de2e4ee7fe2cb203c4af05cefe5a8845a3d0efd3884179e2b4548340f6891143d0c40f14"
+    "sha256=260f442cae5e85e7a03f3be88d754cfe9636572d0e99fb997538dd8ffc2b125f"
   ]
 }
 x-ci-accept-failures: ["centos-7" "oraclelinux-7"]
