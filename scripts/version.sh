@@ -16,7 +16,7 @@ export opam_version='2.1.3'
 export ocaml_version='4.14.1'
 
 # Installed via apk python3-dev in runtime-build-test-dependencies.Dockerfile
-export python_version='3.10.11'
+export python_version='3.10.12'
 
 # Installed via apk in runtime-build-test-dependencies.Dockerfile
 export poetry_version='1.2.2'
