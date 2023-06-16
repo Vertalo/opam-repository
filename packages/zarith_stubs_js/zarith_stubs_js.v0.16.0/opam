@@ -10,10 +10,9 @@ build: [
   ["dune" "build" "-p" name "-j" jobs]
 ]
 depends: [
-  "ocaml" {>= "4.04.2"}
+  "ocaml" {>= "4.14.0"}
   "dune"  {>= "2.0.0"}
 ]
-conflicts: "zarith" {< "1.12"}
 synopsis: "Javascripts stubs for the Zarith library"
 description: "
 This library contains no ocaml code, but instead implements
@@ -21,9 +20,9 @@ all of the Zarith C stubs in Javascript for use in Js_of_ocaml
 "
 url {
   src:
-    "https://ocaml.janestreet.com/ocaml-core/v0.15/files/zarith_stubs_js-v0.15.0.tar.gz"
+    "https://ocaml.janestreet.com/ocaml-core/v0.16/files/zarith_stubs_js-v0.16.0.tar.gz"
   checksum: [
-    "sha256=fa5e32f883d677e2a84eed124ed17f078fe28217238009c8c1fd7123b922530f"
-    "sha512=2376031fd0e5adf8e3e77ce0ade4adfc15eb1ec9b13a6508a65ba83954151cb144b5f2740e9b5060a128d023adb8bb411dfb2de3bfd690c3511a7c8edbdd3d36"
+    "sha256=d82391d892472355b992656a39fb01a9f6b8a6bd4feef3f286b4709cda255020"
+    "sha512=72a91eaa55419f6f43dbcf4bcb7c91e4df565f5f5c9e5d79e268457d8465e609fb043571d46181f9ca34601f7681375ef1e114cc38dec7a2adaf0d8ec33ede86"
   ]
 }
