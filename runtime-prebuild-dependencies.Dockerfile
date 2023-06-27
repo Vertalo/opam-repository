@@ -67,6 +67,7 @@ RUN apk update \
     zlib-static \
     libusb-dev \
     hidapi-dev \
+    sccache \
 # Install UPX manually to get current multi-arch release
 # https://upx.github.io/
  && curl -fsSL https://github.com/upx/upx/releases/download/v3.96/upx-3.96-${TARGETARCH}_linux.tar.xz \
