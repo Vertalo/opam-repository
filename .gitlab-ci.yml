@@ -63,11 +63,12 @@ stages:
   variables:
     TARGETARCH: ""               # Docker build argument for architecture specific instructions
     DOCKER_IMAGE_TAG_SUFFIX: ""
+    DOCKER_IMAGE_TAG_CACHE_SUFFIX: ""
     DOCKER_IMAGE_FAMILY: ""
   script:
     - . ./scripts/version.sh
     # Build docker images
-    - ./scripts/create_docker_image.sh "${CI_REGISTRY_IMAGE}" "${DOCKER_IMAGE_TAG_SUFFIX}" "${TARGETARCH}" "${DOCKER_IMAGE_FAMILY}"
+    - ./scripts/create_docker_image.sh "${CI_REGISTRY_IMAGE}" "${DOCKER_IMAGE_TAG_SUFFIX}" "${DOCKER_IMAGE_TAG_CACHE_SUFFIX}" "${TARGETARCH}" "${DOCKER_IMAGE_FAMILY}"
     # Verify we packed expected software versions
     - ./scripts/check_versions.sh "${CI_REGISTRY_IMAGE}" "${DOCKER_IMAGE_TAG_SUFFIX}" "${DOCKER_IMAGE_FAMILY}"
     # Push docker images
@@ -95,6 +96,7 @@ build-runtime-amd64:
   variables:
     TARGETARCH: "amd64"
     DOCKER_IMAGE_TAG_SUFFIX: "--${TARGETARCH}--${CI_COMMIT_SHA}"
+    DOCKER_IMAGE_TAG_CACHE_SUFFIX: "--${TARGETARCH}--${CI_MERGE_REQUEST_DIFF_BASE_SHA}"
     DOCKER_IMAGE_FAMILY: "runtime"
 
 # Build runtime family Docker images for arm64/v8
@@ -106,6 +108,7 @@ build-runtime-arm64:
   variables:
     TARGETARCH: "arm64"
     DOCKER_IMAGE_TAG_SUFFIX: "--${TARGETARCH}--${CI_COMMIT_SHA}"
+    DOCKER_IMAGE_TAG_CACHE_SUFFIX: "--${TARGETARCH}--${CI_MERGE_REQUEST_DIFF_BASE_SHA}"
     DOCKER_IMAGE_FAMILY: "runtime"
   tags:
     - arm64
@@ -118,6 +121,7 @@ build-rust-toolchain:
   variables:
     TARGETARCH: ""
     DOCKER_IMAGE_TAG_SUFFIX: "--${CI_COMMIT_SHA}"
+    DOCKER_IMAGE_TAG_CACHE_SUFFIX: "--${CI_MERGE_REQUEST_DIFF_BASE_SHA}"
     DOCKER_IMAGE_FAMILY: "rust-toolchain"
 
 # Merge manifests from jobs build-runtime-amd64 and build-runtime-arm64

@@ -9,16 +9,20 @@ cd "$repo_dir"
 . "$script_dir"/version.sh
 
 image_name="${1:-tezos/opam-repository}"
-image_version="${2:-runtime-build-test-dependencies}"
-runtime_build_dependencies_image="${3:-tezos/opam-repository:runtime-build-dependencies}"
+image_tag="${2:-runtime-build-test-dependencies}"
+image_tag_cache="${3:-}"
+runtime_build_dependencies_image="${4:-tezos/opam-repository:runtime-build-dependencies}"
 
 echo
 echo "### Building runtime-build-test-dependencies image"
 echo "### (includes: additional ocaml dependencies, python, nodejs)"
+echo "### (cache from: $image_name:$image_tag_cache)"
 echo
 
 docker build \
        -f runtime-build-test-dependencies.Dockerfile \
+       --cache-from="$image_name:$image_tag_cache" \
+       --build-arg=BUILDKIT_INLINE_CACHE=1 \
        --build-arg BUILD_IMAGE="${runtime_build_dependencies_image}" \
-       -t "$image_name:$image_version" \
+       -t "$image_name:$image_tag" \
        "$repo_dir"

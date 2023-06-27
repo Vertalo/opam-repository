@@ -10,13 +10,17 @@ cd "$repo_dir"
 
 image_name="${1:-tezos/opam-repository}"
 image_tag="${2:-rust-toolchain}"
+image_tag_cache="${3:-}"
 
 echo
 echo "### Building rust-toolchain image"
 echo "### (includes: rust toolchain)"
+echo "### (cache from: $image_name:$image_tag_cache)"
 echo
 
 docker build \
        -f rust-toolchain.Dockerfile \
+       --cache-from="$image_name:$image_tag_cache" \
+       --build-arg=BUILDKIT_INLINE_CACHE=1 \
        -t "$image_name:$image_tag" \
        "$repo_dir"

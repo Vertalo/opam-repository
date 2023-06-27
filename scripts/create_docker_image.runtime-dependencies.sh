@@ -10,14 +10,18 @@ cd "$repo_dir"
 
 image_name="${1:-tezos/opam-repository}"
 image_tag="${2:-runtime-dependencies}"
+image_tag_cache="${3:-}"
 
 echo
 echo "### Building runtime-dependencies image"
 echo "### (includes: alpine, runtime-linked libraries)"
+echo "### (cache from: $image_name:$image_tag_cache)"
 echo
 
 docker build \
        -f runtime-dependencies.Dockerfile \
+       --build-arg=BUILDKIT_INLINE_CACHE=1 \
+       --cache-from="$image_name:$image_tag_cache" \
        --build-arg BUILD_IMAGE="alpine:${alpine_version}" \
        --label "org.opencontainers.image.base.name=alpine:${alpine_version}" \
        -t "$image_name:$image_tag" \
