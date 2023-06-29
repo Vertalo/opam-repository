@@ -28,6 +28,7 @@ WORKDIR /home/tezos
 ENV BLST_PORTABLE=yes
 
 # hadolint ignore=SC2046,DL4006
-RUN opam install --yes $(opam list --all --short | grep -v ocaml-option-)
+RUN opam install --yes $(opam list --all --short | grep -v ocaml-option-) \
+    && opam clean
 
 # ENTRYPOINT and CMD already set in runtime-prebuild-dependencies
