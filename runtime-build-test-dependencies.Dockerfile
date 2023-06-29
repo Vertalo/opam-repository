@@ -67,6 +67,6 @@ COPY --chown=tezos:tezos ./poetry.lock ./pyproject.toml ./
 # by avoiding duplicated poetry setup checks.
 RUN poetry config virtualenvs.in-project true \
  && poetry install \
- && rm -rf /tmp/*
+ && rm -rf /tmp/* /home/tezos/.cache/pip /home/tezos/.cache/pypoetry
 
 # ENTRYPOINT and CMD already set in runtime-prebuild-dependencies
