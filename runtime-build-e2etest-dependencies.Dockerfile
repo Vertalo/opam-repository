@@ -1,16 +1,10 @@
 # runtime + build + test + end-to-end test dependencies
 #
 # This image includes
-# - runtime dependencies (libraries linked at load time of the process)
-# - non-opam build-dependencies (rust dependencies)
-# - cache for opam build-dependencies
-# - opam build-dependencies
-# - opam test-dependencies (alcotest, etc.)
-# - python and python libraries for tests executed in python
-# - some preinstalled nvm packages for end-to-end integration testing
+# - the eth-cli npm package used for end-to-end integration testing
 #
 # This image is intended for
-# - running the CI tests of tezos
+# - running the integration CI tests of tezos
 
 ARG BUILD_IMAGE
 # hadolint ignore=DL3006

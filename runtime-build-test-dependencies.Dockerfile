@@ -1,16 +1,18 @@
 # runtime + build + test dependencies
 #
-# This image includes
-# - runtime dependencies (libraries linked at load time of the process)
-# - non-opam build-dependencies (rust dependencies)
-# - cache for opam build-dependencies
-# - opam build-dependencies
-# - opam test-dependencies (alcotest, etc.)
-# - python and python libraries for tests executed in python
+# This image builds upon the `runtime-build-dependencies` image, see
+# its header for details on its content.
+#
+# It adds upon the contents of `runtime-build-dependencies`:
+# - shellcheck
+# - a python environment for building the octez documentation
 # - nvm for javascript backend testing
 #
 # This image is intended for
-# - running the CI tests of tezos
+# - running certain tests in the tezos/tezos repo (unit tests, shellcheck)
+# - building the documentation
+# - building images on top of it in the image stack (see README.md)
+
 
 ARG BUILD_IMAGE
 # hadolint ignore=DL3006

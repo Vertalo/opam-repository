@@ -4,8 +4,8 @@
 # - runtime dependencies (libraries linked at load time of the process)
 #
 # This image is intended for
-# - distributing the tezos binaries in
-# - building the runtime-prebuild-dependencies, runtime-build-dependencies, and runtime-build-test-dependencies images
+# - distributing the Tezos binaries in
+# - building the CI images on top of it in the image stack (see README.md)
 
 ARG BUILD_IMAGE
 # hadolint ignore=DL3006

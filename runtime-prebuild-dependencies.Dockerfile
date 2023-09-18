@@ -1,13 +1,15 @@
 # runtime + prebuild dependencies
 #
-# This image includes
-# - runtime dependencies (libraries linked at load time of the process)
+# This image builds upon the `runtime-dependencies` image, see its
+# header for details on its content.
+#
+# It adds upon the contents of `runtime-dependencies`:
 # - non-opam build-dependencies (rust dependencies)
 # - cache for opam build-dependencies
 #
 # This image is intended for
 # - testing the buildability of tezos opam packages
-# - building the runtime-build-dependencies and runtime-build-test-dependencies image
+# - building images on top of it in the image stack (see README.md)
 
 ARG BUILD_IMAGE
 # hadolint ignore=DL3006
