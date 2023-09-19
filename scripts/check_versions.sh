@@ -7,6 +7,7 @@ set -eu
 current_dir=$(cd "$(dirname "${0}")" && pwd)
 
 image_name="${1:-tezos/opam-repository}"
+image_tag_suffix="${2:-}"
 
 error=''
 
@@ -87,5 +88,6 @@ check_version_in_e2e_test_dependency_image() {
 }
 
 # Launch testing
-check_version_in_test_dependency_image "$2"
-check_version_in_e2e_test_dependency_image "$2"
+
+check_version_in_test_dependency_image "${image_tag_suffix}"
+check_version_in_e2e_test_dependency_image "${image_tag_suffix}"
