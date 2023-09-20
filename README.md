@@ -9,21 +9,46 @@ This repository contains different Docker images and artefacts used in
 
 ## Dockerfiles
 
-The images defined in this repo are built on top of each other (such
-that the contents of image N is also in N+1[^1]), and used in the CI
-pipelines of [Octez](https://gitlab.com/tezos/tezos). These images,
-and their content, are:
+The images defined in this repo are used in the CI pipelines of
+[Octez](https://gitlab.com/tezos/tezos), and as base images for the
+[Octez Docker distribution](https://hub.docker.com/r/tezos/tezos).
 
-| Image                                        | Contents                           | Usage                             |
-|----------------------------------------------|------------------------------------|-----------------------------------|
-| 1. `runtime-dependencies`                    | run-time libraries + zcash-params  | distributing Octez executables    |
-| 2. `runtime-prebuild-dependencies`           | OCaml + opam package cache + Cargo | CI: OPAM installability tests     |
-| 3. `runtime-build-dependencies`              | opam packages                      | CI: Building Octez                |
-| 4. `runtime-build-test-dependencies`         | Python + NVM + ShellCheck          | CI: Octez tests and documentation |
-| 5. `runtime-build-test-e2etest-dependencies` | `eth-cli`                          | CI: Octez integration tests       |
+Except `runtime-e2etest-dependencies`, they are built on top of each
+other, such that the contents of image N is also in N+1[^1]. The image
+`runtime-e2etest-dependencies` is built on top of
+`runtime-dependencies` and additionally copies some binaries from
+`runtime-build-dependencies`:
 
-For details on the contents and usage of each image, see the header
-comment of the corresponding Dockerfile.
+```mermaid
+graph TB
+
+    R[runtime-dependencies]
+    RP[runtime-prebuild-dependencies]
+    RB[runtime-build-dependencies]
+    RT[runtime-build-test-dependencies]
+    RE[runtime-e2etest-dependencies]
+
+    R -->|FROM| RP
+    RP -->|FROM| RB
+    RB -->|FROM| RT
+
+    R -->|FROM| RE
+    RT -.->|COPY bisect-ppx-report, ocamlformat| RE
+```
+
+
+The images, their content and indented usage, are:
+
+| Image                             | Contents                           | Usage                             |
+|-----------------------------------|------------------------------------|-----------------------------------|
+| `runtime-dependencies`            | run-time libraries + zcash-params  | distributing Octez executables    |
+| `runtime-prebuild-dependencies`   | OCaml + opam package cache + Cargo | CI: OPAM installability tests     |
+| `runtime-build-dependencies`      | opam packages                      | CI: Building Octez                |
+| `runtime-build-test-dependencies` | Python + NVM + ShellCheck          | CI: Octez tests and documentation |
+| `runtime-e2etest-dependencies`    | `eth-cli`                          | CI: Octez integration tests       |
+
+For more details on the contents and usage of each image, see the
+header comment of each corresponding Dockerfile.
 
 ## Adding OPAM dependencies
 
