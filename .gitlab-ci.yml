@@ -64,7 +64,6 @@ build-runtime-amd64:
     DOCKER_IMAGE_FAMILY: "runtime"
   only:
     - //@tezos/opam-repository
-    - //@nomadic-labs/opam-repository
 
 # Build runtime family Docker images for arm64/v8
 # Only on Nomadic Labs' repositories and arm64 runners
@@ -76,7 +75,6 @@ build-runtime-arm64:
     DOCKER_IMAGE_FAMILY: "runtime"
   only:
     - //@tezos/opam-repository
-    - //@nomadic-labs/opam-repository
   tags:
     - arm64
 
@@ -103,7 +101,6 @@ merge-manifests-runtime:
     - ./scripts/docker_merge_manifests.sh "${CI_REGISTRY_IMAGE}"
   only:
     - //@tezos/opam-repository
-    - //@nomadic-labs/opam-repository
 
 # Mirror Docker image from all families from Gitlab container registry @GCP to private ECR @AWS,
 # closer to GitLab runners/executors. Requires environment variables to be set
@@ -133,4 +130,3 @@ build:
     DOCKER_IMAGE_FAMILY: "all"
   except:
     - //@tezos/opam-repository
-    - //@nomadic-labs/opam-repository
