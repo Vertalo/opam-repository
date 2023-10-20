@@ -22,6 +22,18 @@ stages:
     # Credentials for Docker registries
     - ./scripts/docker_registry_auth.sh
 
+.rules__tezos_namespace:
+  rules:
+    - if: '$CI_PROJECT_NAMESPACE == "tezos"'
+
+.rules__not_tezos_namespace:
+  rules:
+    - if: '$CI_PROJECT_NAMESPACE != "tezos"'
+
+.rules__protected:
+  rules:
+    - if: '$AWS_ACCESS_KEY_ID && $AWS_SECRET_ACCESS_KEY && $AWS_ECR'
+
 # Template used by all Docker image build jobs
 # Variables needs to be set properly
 .build-template:
@@ -57,37 +69,36 @@ shellcheck:
 
 # Build runtime family docker images for x86_64/amd64
 build-runtime-amd64:
-  extends: .build-template
+  extends:
+    - .build-template
+    - .rules__tezos_namespace
   variables:
     TARGETARCH: "amd64"
     DOCKER_IMAGE_TAG_SUFFIX: "--${TARGETARCH}--${CI_COMMIT_SHA}"
     DOCKER_IMAGE_FAMILY: "runtime"
-  only:
-    - //@tezos/opam-repository
 
 # Build runtime family Docker images for arm64/v8
 # Only on Nomadic Labs' repositories and arm64 runners
 build-runtime-arm64:
-  extends: .build-template
+  extends:
+    - .build-template
+    - .rules__tezos_namespace
   variables:
     TARGETARCH: "arm64"
     DOCKER_IMAGE_TAG_SUFFIX: "--${TARGETARCH}--${CI_COMMIT_SHA}"
     DOCKER_IMAGE_FAMILY: "runtime"
-  only:
-    - //@tezos/opam-repository
   tags:
     - arm64
 
 # Build rust-toolchain family Docker image for x86_64/amd64
 build-rust-toolchain:
-  extends: .build-template
+  extends:
+    - .build-template
+    - .rules__tezos_namespace
   variables:
     TARGETARCH: ""
     DOCKER_IMAGE_TAG_SUFFIX: "--${CI_COMMIT_SHA}"
     DOCKER_IMAGE_FAMILY: "rust-toolchain"
-  only:
-    - //@tezos/opam-repository
-    - //@nomadic-labs/opam-repository
 
 # Merge manifests from jobs build-runtime-amd64 and build-runtime-arm64
 # Only on Nomadic Labs' repositories
@@ -97,10 +108,9 @@ merge-manifests-runtime:
   stage: publish
   extends:
     - .image_template__docker
+    - .rules__tezos_namespace
   script:
     - ./scripts/docker_merge_manifests.sh "${CI_REGISTRY_IMAGE}"
-  only:
-    - //@tezos/opam-repository
 
 # Mirror Docker image from all families from Gitlab container registry @GCP to private ECR @AWS,
 # closer to GitLab runners/executors. Requires environment variables to be set
@@ -109,18 +119,17 @@ mirror:
   stage: mirror
   extends:
     - .image_template__docker
+    - .rules__protected
   variables:
     AWS_ECR_IMAGE: "${AWS_ECR}/${CI_PROJECT_PATH}"
   script:
     - ./scripts/mirror_to_ecr.sh "${CI_REGISTRY_IMAGE}" "${AWS_ECR_IMAGE}" all
-  only:
-    variables:
-      # Only available on protected branches @tezos/opam-repository
-      - $AWS_ACCESS_KEY_ID && $AWS_SECRET_ACCESS_KEY && $AWS_ECR
 
 # Duplicated job to allow forks to build x86_64/amd64 images
 build:
-  extends: .build-template
+  extends:
+    - .build-template
+    - .rules__not_tezos_namespace
   services:
     - name: docker:20-dind
       command: ["--experimental"]
@@ -128,5 +137,3 @@ build:
     # this variable is empty as we don't want to merge any manifest
     DOCKER_IMAGE_TAG_SUFFIX: ""
     DOCKER_IMAGE_FAMILY: "all"
-  except:
-    - //@tezos/opam-repository
