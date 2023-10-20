@@ -4,10 +4,14 @@ set -eu
 # To run after the final Docker image was built on top of all the
 # other ones to display various software versions
 
+# shellcheck source=./scripts/docker.sh
+. ./scripts/docker.sh
+
 current_dir=$(cd "$(dirname "${0}")" && pwd)
 
 image_name="${1:-tezos/opam-repository}"
 image_tag_suffix="${2:-}"
+image_family="${3:-all}"
 
 error=''
 
@@ -88,6 +92,19 @@ check_version_in_e2e_test_dependency_image() {
 }
 
 # Launch testing
+check_docker_image_family "$image_family"
+case "$image_family" in
+    "runtime")
+        check_version_in_test_dependency_image "${image_tag_suffix}"
+        check_version_in_e2e_test_dependency_image "${image_tag_suffix}"
+        ;;
+    "rust-toolchain")
+        # TODO: add checks for rust-toolchain image
 
-check_version_in_test_dependency_image "${image_tag_suffix}"
-check_version_in_e2e_test_dependency_image "${image_tag_suffix}"
+        ;;
+    "all")
+        check_version_in_test_dependency_image "${image_tag_suffix}"
+        check_version_in_e2e_test_dependency_image "${image_tag_suffix}"
+
+        ;;
+esac

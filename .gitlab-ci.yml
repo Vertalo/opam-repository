@@ -31,14 +31,15 @@ stages:
   variables:
     TARGETARCH: ""               # Docker build argument for architecture specific instructions
     DOCKER_IMAGE_TAG_SUFFIX: ""
+    DOCKER_IMAGE_FAMILY: ""
   script:
     - . ./scripts/version.sh
     # Build docker images
-    - ./scripts/create_docker_image.sh "${CI_REGISTRY_IMAGE}" "${DOCKER_IMAGE_TAG_SUFFIX}" "${TARGETARCH}"
+    - ./scripts/create_docker_image.sh "${CI_REGISTRY_IMAGE}" "${DOCKER_IMAGE_TAG_SUFFIX}" "${TARGETARCH}" "${DOCKER_IMAGE_FAMILY}"
     # Verify we packed expected software versions
-    - ./scripts/check_versions.sh "${CI_REGISTRY_IMAGE}" "${DOCKER_IMAGE_TAG_SUFFIX}"
+    - ./scripts/check_versions.sh "${CI_REGISTRY_IMAGE}" "${DOCKER_IMAGE_TAG_SUFFIX}" "${DOCKER_IMAGE_FAMILY}"
     # Push docker images
-    - ./scripts/docker_push_all.sh "${CI_REGISTRY_IMAGE}" "${DOCKER_IMAGE_TAG_SUFFIX}"
+    - ./scripts/docker_push_all.sh "${CI_REGISTRY_IMAGE}" "${DOCKER_IMAGE_TAG_SUFFIX}" "${DOCKER_IMAGE_FAMILY}"
 
 # Dockerfile linter
 hadolint:
@@ -54,34 +55,47 @@ shellcheck:
   script:
     - shellcheck -x scripts/*.sh
 
-# Build docker images for x86_64/amd64
-build-amd64:
+# Build runtime family docker images for x86_64/amd64
+build-runtime-amd64:
   <<: *build-definition
   variables:
     TARGETARCH: "amd64"
     DOCKER_IMAGE_TAG_SUFFIX: "--${TARGETARCH}--${CI_COMMIT_SHA}"
+    DOCKER_IMAGE_FAMILY: "runtime"
   only:
     - //@tezos/opam-repository
     - //@nomadic-labs/opam-repository
 
-# Build docker images for arm64/v8
+# Build runtime family Docker images for arm64/v8
 # Only on Nomadic Labs' repositories and arm64 runners
-build-arm64:
+build-runtime-arm64:
   <<: *build-definition
   variables:
     TARGETARCH: "arm64"
     DOCKER_IMAGE_TAG_SUFFIX: "--${TARGETARCH}--${CI_COMMIT_SHA}"
+    DOCKER_IMAGE_FAMILY: "runtime"
   only:
     - //@tezos/opam-repository
     - //@nomadic-labs/opam-repository
   tags:
     - arm64
 
-# Merge manifests from jobs build-amd64 and build-arm64
+# Build rust-toolchain family Docker image for x86_64/amd64
+build-rust-toolchain:
+  <<: *build-definition
+  variables:
+    TARGETARCH: ""
+    DOCKER_IMAGE_TAG_SUFFIX: "--${CI_COMMIT_SHA}"
+    DOCKER_IMAGE_FAMILY: "rust-toolchain"
+  only:
+    - //@tezos/opam-repository
+    - //@nomadic-labs/opam-repository
+
+# Merge manifests from jobs build-runtime-amd64 and build-runtime-arm64
 # Only on Nomadic Labs' repositories
 # (Forks don't have the capacity to build arm64 images and thus they don't have the
 # capacity to merge the manifest either)
-manifest:
+merge-manifests-runtime:
   stage: publish
   extends:
     - .image_template__docker
@@ -91,7 +105,7 @@ manifest:
     - //@tezos/opam-repository
     - //@nomadic-labs/opam-repository
 
-# Mirror Docker image from Gitlab container registry @GCP to private ECR @AWS,
+# Mirror Docker image from all families from Gitlab container registry @GCP to private ECR @AWS,
 # closer to GitLab runners/executors. Requires environment variables to be set
 # with AWS credentials and AWS_ECR.
 mirror:
@@ -101,7 +115,7 @@ mirror:
   variables:
     AWS_ECR_IMAGE: "${AWS_ECR}/${CI_PROJECT_PATH}"
   script:
-    - ./scripts/mirror_to_ecr.sh "${CI_REGISTRY_IMAGE}" "${AWS_ECR_IMAGE}"
+    - ./scripts/mirror_to_ecr.sh "${CI_REGISTRY_IMAGE}" "${AWS_ECR_IMAGE}" all
   only:
     variables:
       # Only available on protected branches @tezos/opam-repository
@@ -117,6 +131,7 @@ build:
   variables:
     # this variable is empty as we don't want to merge any manifest
     DOCKER_IMAGE_TAG_SUFFIX: ""
+    DOCKER_IMAGE_FAMILY: "all"
   except:
     - //@tezos/opam-repository
     - //@nomadic-labs/opam-repository

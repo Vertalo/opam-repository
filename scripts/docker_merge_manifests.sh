@@ -8,7 +8,8 @@ set -eu
 image_name="${1:-tezos/opam-repository}"
 
 # Loop over images
-for tag_prefix in ${docker_images}
+# NOTE: only the runtime image family is multi-arch
+for tag_prefix in $(docker_images_family "runtime")
 do
   echo "### Merging tags for docker image: ${tag_prefix}"
 

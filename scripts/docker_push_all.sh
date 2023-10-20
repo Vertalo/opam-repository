@@ -8,8 +8,10 @@ set -eu
 
 image_name="${1:-tezos/opam-repository}"
 tag_suffix="${2:-}"
+image_family="${3:-all}"
 
-for tag_prefix in ${docker_images}
-do
-  docker push "${image_name}:${tag_prefix}${tag_suffix}"
+check_docker_image_family "$image_family"
+
+for tag_prefix in $(docker_images_family "$image_family"); do
+	docker push "${image_name}:${tag_prefix}${tag_suffix}"
 done

@@ -13,7 +13,9 @@ The images defined in this repo are used in the CI pipelines of
 [Octez](https://gitlab.com/tezos/tezos), and as base images for the
 [Octez Docker distribution](https://hub.docker.com/r/tezos/tezos).
 
-Except `runtime-e2etest-dependencies`, they are built on top of each
+They are split in two families: `runtime` and `rust-toolchain`.
+
+In the `runtime` family, all images except `runtime-e2etest-dependencies`, are built on top of each
 other, such that the contents of image N is also in N+1[^1]. The image
 `runtime-e2etest-dependencies` is built on top of
 `runtime-dependencies` and additionally copies some binaries from
@@ -22,19 +24,33 @@ other, such that the contents of image N is also in N+1[^1]. The image
 ```mermaid
 graph TB
 
-    R[runtime-dependencies]
-    RP[runtime-prebuild-dependencies]
-    RB[runtime-build-dependencies]
-    RT[runtime-build-test-dependencies]
-    RE[runtime-e2etest-dependencies]
+    subgraph rust_toolchain
+        direction TB
+        RTC[rust-toolchain]
+    end
 
-    R -->|FROM| RP
-    RP -->|FROM| RB
-    RB -->|FROM| RT
+    subgraph runtime
+        direction TB
 
-    R -->|FROM| RE
-    RT -.->|COPY bisect-ppx-report, ocamlformat| RE
+        R[runtime-dependencies]
+        RP[runtime-prebuild-dependencies]
+        RB[runtime-build-dependencies]
+        RT[runtime-build-test-dependencies]
+        RE[runtime-e2etest-dependencies]
+
+        R -->|FROM| RP
+        RP -->|FROM| RB
+        RB -->|FROM| RT
+
+        R -->|FROM| RE
+        RT -.->|COPY bisect-ppx-report, ocamlformat| RE
+    end
 ```
+
+The `rust-toolchain` family contains only one `rust-toolchain`
+image. It is used in the CI of [tezos/tezos](https://gitlab.com/tezos/tezos)
+to build and test kernels, and to build the kernel SDK. It is also used to
+build the `evm_kernel` distributed in Octez docker distribution.
 
 
 The images, their content and indented usage, are:
@@ -46,6 +62,7 @@ The images, their content and indented usage, are:
 | `runtime-build-dependencies`      | opam packages                      | CI: Building Octez                |
 | `runtime-build-test-dependencies` | Python + NVM + ShellCheck          | CI: Octez tests and documentation |
 | `runtime-e2etest-dependencies`    | `eth-cli`                          | CI: Octez integration tests       |
+| `rust-toolchain`                  | cargo                              | CI: kernel build, test and SDK    |
 
 For more details on the contents and usage of each image, see the
 header comment of each corresponding Dockerfile.
