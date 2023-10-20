@@ -16,6 +16,7 @@ ENV LANG='C.UTF-8' LC_ALL='C.UTF-8' TZ='Etc/UTC'
 WORKDIR /root
 
 # common packages
+# hadolint ignore=DL3008
 RUN apt-get update && \
     apt-get install --no-install-recommends -y \
     ca-certificates curl file \
@@ -25,6 +26,7 @@ RUN apt-get update && \
 
 ENV SSL_VERSION=1.0.2u
 
+# hadolint ignore=DL3003
 RUN curl https://www.openssl.org/source/openssl-$SSL_VERSION.tar.gz -O && \
     tar -xzf openssl-$SSL_VERSION.tar.gz && \
     cd openssl-$SSL_VERSION && ./config && make depend && make install && \
@@ -35,7 +37,7 @@ ENV OPENSSL_LIB_DIR=/usr/local/ssl/lib \
     OPENSSL_STATIC=1
 
 # install toolchain
-RUN curl https://sh.rustup.rs -sSf | \
+RUN curl https://sh.rustup.rs --silent --show-error --fail | \
     sh -s -- --default-toolchain stable -y
 
 ENV PATH=/root/.cargo/bin:$PATH
@@ -45,14 +47,21 @@ RUN rustup update 1.66 \
     && rustup target add wasm32-unknown-unknown
 
 # install wabt: https://packages.debian.org/source/sid/wabt
+# hadolint ignore=DL3008
 RUN apt-get update \
-    && apt-get install wabt
+    && apt-get install --no-install-recommends -y wabt \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
 # install newever version of clang, see https://apt.llvm.org/
-RUN apt-get install -y wget gnupg \
+# hadolint ignore=DL3008
+RUN apt-get update \
+    && apt-get install --no-install-recommends -y gnupg \
     && echo "deb http://apt.llvm.org/buster/ llvm-toolchain-buster main" >> /etc/apt/sources.list \
     && echo "deb-src http://apt.llvm.org/buster/ llvm-toolchain-buster main" >> /etc/apt/sources.list \
-    && wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add \
+    && curl https://apt.llvm.org/llvm-snapshot.gpg.key --silent --show-error --fail | apt-key add \
     && apt-get update \
-    && apt-get install -y clang \
-    && clang --version
+    && apt-get install --no-install-recommends -y clang \
+    && clang --version \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
