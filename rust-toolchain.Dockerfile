@@ -42,9 +42,10 @@ RUN curl https://sh.rustup.rs --silent --show-error --fail | \
 
 ENV PATH=/root/.cargo/bin:$PATH
 
-# install rust toolchain 1.66 and wasm32-unknown-unknown
-RUN rustup update 1.66 \
-    && rustup target add wasm32-unknown-unknown
+# install rust toolchains and compilation targets
+RUN rustup update 1.66 1.71.1 \
+    && rustup target add --toolchain=1.66 wasm32-unknown-unknown \
+    && rustup target add --toolchain=1.71.1 wasm32-unknown-unknown riscv64gc-unknown-none-elf riscv64gc-unknown-linux-gnu
 
 # install wabt: https://packages.debian.org/source/sid/wabt
 # hadolint ignore=DL3008
