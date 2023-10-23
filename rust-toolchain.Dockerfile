@@ -7,7 +7,7 @@
 # - building kernels, testing kernels and building the kernel SDK in the tezos/tezos CI
 # - building the EVM kernel distributed in the tezos/tezos Docker images.
 
-FROM debian:buster
+FROM debian:sid
 
 SHELL ["/bin/bash", "-euo", "pipefail", "-c"]
 
@@ -21,7 +21,7 @@ RUN apt-get update && \
     apt-get install --no-install-recommends -y \
     ca-certificates curl file \
     build-essential \
-    autoconf automake autotools-dev libtool xutils-dev && \
+    autoconf automake autotools-dev libtool xutils-dev clang && \
     rm -rf /var/lib/apt/lists/*
 
 ENV SSL_VERSION=1.0.2u
@@ -50,18 +50,5 @@ RUN rustup update 1.66 \
 # hadolint ignore=DL3008
 RUN apt-get update \
     && apt-get install --no-install-recommends -y wabt \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
-
-# install newever version of clang, see https://apt.llvm.org/
-# hadolint ignore=DL3008
-RUN apt-get update \
-    && apt-get install --no-install-recommends -y gnupg \
-    && echo "deb http://apt.llvm.org/buster/ llvm-toolchain-buster main" >> /etc/apt/sources.list \
-    && echo "deb-src http://apt.llvm.org/buster/ llvm-toolchain-buster main" >> /etc/apt/sources.list \
-    && curl https://apt.llvm.org/llvm-snapshot.gpg.key --silent --show-error --fail | apt-key add \
-    && apt-get update \
-    && apt-get install --no-install-recommends -y clang \
-    && clang --version \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
