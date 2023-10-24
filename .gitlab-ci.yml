@@ -1,4 +1,24 @@
 ---
+
+workflow:
+  name: "[$PIPELINE_TYPE] $CI_COMMIT_TITLE"
+  rules:
+    # Use merge request pipelines
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+      variables:
+        PIPELINE_TYPE: 'mr'
+    # Inhibit double pipelines
+    - if: '$CI_COMMIT_BRANCH && $CI_OPEN_MERGE_REQUESTS'
+      when: never
+    # Allow branch pipelines on non-master branches if there is no merge request.
+    # No need to run branch pipelines on master: images are built and
+    # pushed by the merge request pipelines.
+    - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH'
+      when: always
+      variables:
+        PIPELINE_TYPE: 'branch'
+    - when: never
+
 default:
   interruptible: true
 
