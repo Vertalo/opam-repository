@@ -28,3 +28,28 @@ docker_images_family() {
         echo "$docker_images" | tr " " "\n" | grep "^${family}"
     fi
 }
+
+docker_cache_disabled() {
+    [ "${DOCKER_NO_CACHE:-}" = "1" ] ||
+        echo "${CI_MERGE_REQUEST_LABELS:-}" \
+            | grep -q '(?:^|[,])ci--no-cache(?:$|[,])'
+}
+
+docker_cache_disabled_pp() {
+   if docker_cache_disabled ; then
+        echo "docker cache: disabled"
+    else
+        echo "docker cache: enabled"
+    fi
+}
+
+# Build with the '--no-cache' Docker build flag if DOCKER_NO_CACHE is set
+# to 1 or if the comma-separated list CI_MERGE_REQUEST_LABELS contains
+# 'ci--no-cache'.
+docker_build() {
+    if docker_cache_disabled ; then
+        docker build --no-cache "$@"
+    else
+        docker build "$@"
+    fi
+}

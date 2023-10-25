@@ -8,6 +8,9 @@ cd "$repo_dir"
 # shellcheck source=scripts/version.sh
 . "$script_dir"/version.sh
 
+# shellcheck source=scripts/docker.sh
+. "$script_dir"/docker.sh
+
 image_name="${1:-tezos/opam-repository}"
 image_tag="${2:-runtime-prebuild-dependencies}"
 image_tag_cache="${3:-}"
@@ -17,10 +20,10 @@ targetarch="${5:-amd64}"
 echo
 echo "### Building runtime-prebuild-dependencies image"
 echo "### (includes: non-opam deps, cache of not-installed opam deps)"
-echo "### (cache from: $image_name:$image_tag_cache)"
+echo "### (cache from: $image_name:$image_tag_cache, $(docker_cache_disabled_pp))"
 echo
 
-docker build \
+docker_build \
        -f runtime-prebuild-dependencies.Dockerfile \
        --build-arg=BUILDKIT_INLINE_CACHE=1 \
        --cache-from="$image_name:$image_tag_cache" \
