@@ -86,7 +86,6 @@ WORKDIR /home/tezos
 
 # TODO: Use a single COPY instruction and avoid duplicates files
 COPY --chown=tezos:tezos repo opam-repository/
-COPY --chown=tezos:tezos packages opam-repository/packages
 COPY --chown=tezos:tezos \
       packages/ocaml \
       packages/ocaml-config \
@@ -100,12 +99,17 @@ COPY --chown=tezos:tezos \
 
 WORKDIR /home/tezos/opam-repository
 
+# Install OCaml
 ARG OCAML_VERSION
 # hadolint ignore=SC2046,DL4006
 RUN opam init --disable-sandboxing --no-setup --yes \
               --compiler ocaml-base-compiler.${OCAML_VERSION} \
               tezos /home/tezos/opam-repository \
- && opam admin cache \
+ && opam clean
+
+# Add opam cache
+COPY --chown=tezos:tezos packages packages
+RUN opam admin cache \
  && opam update \
  && opam clean
 
