@@ -1,22 +1,22 @@
 #!/bin/sh
 
 # Base docker image
-export alpine_version='3.17'
+export alpine_version='3.18'
 
 # Installed via apk cargo in runtime-prebuild-dependencies.Dockerfile
-export cargo_version='1.64.0'
+export cargo_version='1.71.1'
 
 # Installed via apk rust in runtime-prebuild-dependencies.Dockerfile
-export rust_version='1.64.0'
+export rust_version='1.71.1'
 
 # Installed via apk rust in runtime-prebuild-dependencies.Dockerfile
-export opam_version='2.1.3'
+export opam_version='2.1.4'
 
 # Installed via opam in runtime-prebuild-dependencies.Dockerfile
 export ocaml_version='4.14.1'
 
 # Installed via apk python3-dev in runtime-build-test-dependencies.Dockerfile
-export python_version='3.10.13'
+export python_version='3.11.6'
 
 # Installed via apk in runtime-build-test-dependencies.Dockerfile
-export poetry_version='1.2.2'
+export poetry_version='1.4.2'
