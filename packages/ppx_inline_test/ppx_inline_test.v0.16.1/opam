@@ -13,18 +13,20 @@ depends: [
   "ocaml"    {>= "4.14.0"}
   "base"     {>= "v0.16" & < "v0.17"}
   "time_now" {>= "v0.16" & < "v0.17"}
-  "dune"     {>= "2.0.0"}
+  "dune"     {>= "3.11.1"}
   "ppxlib"   {>= "0.28.0"}
 ]
+available: arch != "arm32" & arch != "x86_32"
 synopsis: "Syntax extension for writing in-line tests in ocaml code"
 description: "
 Part of the Jane Street's PPX rewriters collection.
 "
 url {
   src:
-    "https://ocaml.janestreet.com/ocaml-core/v0.16/files/ppx_inline_test-v0.16.0.tar.gz"
+    "https://github.com/janestreet/ppx_inline_test/archive/refs/tags/v0.16.1.tar.gz"
   checksum: [
-    "sha256=216462f8fe988587d1e90f4a10aeb38664facb6eaeb3df60a32e9fb1a6bfbc67"
-    "sha512=e6b901daba04b50e9c90b614eb868f11aea91919c2856194f106a96d4bb0d3fb8c5ba63f78a2643cc629551c6f6b5ca6559eb12ba93e0b097ad5906eb01412db"
+    "md5=470acc022eb7015862307dad8fe9bcba"
+    "sha512=f82d6d9fe6d84b837d69eb35cc92e2a0b6d0802079437e291aa350b89af1df54a996d6c7843019d488a3afe1e635da070f7ca80595dfdfd8257b2d0722725bf9"
+    "sha256=ea4e61e50529d76774904752f642e18eaf21dfe11844a084b133ccbc41e4295d"
   ]
 }
