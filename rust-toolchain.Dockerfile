@@ -43,9 +43,17 @@ RUN curl https://sh.rustup.rs --silent --show-error --fail | \
 ENV PATH=/root/.cargo/bin:$PATH
 
 # install rust toolchains and compilation targets
-RUN rustup update 1.66.0 1.71.1 \
+RUN rustup update 1.66.0 1.71.1 1.73.0 \
     && rustup target add --toolchain=1.66.0 wasm32-unknown-unknown \
-    && rustup target add --toolchain=1.71.1 wasm32-unknown-unknown riscv64gc-unknown-none-elf riscv64gc-unknown-linux-gnu
+    && rustup target add --toolchain=1.71.1 wasm32-unknown-unknown riscv64gc-unknown-none-elf riscv64gc-unknown-linux-gnu \
+    && rustup target add --toolchain=1.73.0 wasm32-unknown-unknown riscv64gc-unknown-none-elf riscv64gc-unknown-linux-gnu
+
+# Install Rust 1.73.0 standard library for riscv64gc-unknown-hermit
+RUN curl -L "https://github.com/hermit-os/rust-std-hermit/releases/download/1.73.0/rust-std-1.73.0-riscv64gc-unknown-hermit.tar.gz" -o rust-std-1.73.0-riscv64gc-unknown-hermit.tar.gz \
+    && (echo 65980ab1110081a6b7edd70b45bebe63a50e34a6e1555d6fc000c35360907547 rust-std-1.73.0-riscv64gc-unknown-hermit.tar.gz | sha256sum -c) \
+    && tar xf rust-std-1.73.0-riscv64gc-unknown-hermit.tar.gz \
+    && rust-std-1.73.0-riscv64gc-unknown-hermit/install.sh \
+    && rm -r rust-std-1.73.0-riscv64gc-unknown-hermit rust-std-1.73.0-riscv64gc-unknown-hermit.tar.gz
 
 # install wabt: https://packages.debian.org/source/sid/wabt
 # hadolint ignore=DL3008
