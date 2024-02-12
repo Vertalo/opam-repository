@@ -27,13 +27,13 @@ build: [
   [make "-C" "hacl-star-raw" "build-bindings"]
 ]
 install: [make "-C" "hacl-star-raw" "install"]
-dev-repo: "git+https://github.com/cryspen/hacl-packages.git"
+dev-repo: "git+https://github.com/Vertalo/hacl-packages.git"
 url {
   src:
-    "https://github.com/cryspen/hacl-packages/releases/download/ocaml-v0.7.1/hacl-star.0.7.1.tar.gz"
+    "https://github.com/Vertalo/hacl-packages/releases/download/ocaml-v0.7.1/hacl-star.0.7.1.tar.gz"
   checksum: [
-    "md5=192bca3819b9e21b39a0d38f02081d39"
-    "sha512=28c3f43af0bfeb3976ca11f8cb8ac38694165fd2c897b9048515b02a2116aff8aa45c37c8e475dc172dc7c964a8712beb94ba149426c2caeda1659312347e0b2"
-    "sha256=40e0708d0e44b4febb864d14a185f2901cd997b30001ed3c24064c127ece88db"
+    "md5=5339360910f615f1c2f6a8505cba9aa1"
+    "sha512=d8409e9c2376edfd577b574f63625701b01223b48f117087bbeb5d7f0f801665fa9c2fa216b345f4cceee424b70d8cffcf7da5c2d997d4d03b83639c97143a72"
+    "sha256=17ab0ff7a45a0977d790a9036e5d3547a1d80ea2e2f8c53aa073ed4773524262"
   ]
 }
